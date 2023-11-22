@@ -10,9 +10,11 @@
         .parent {
             outline: 2px solid red;
         }
+
         .child {
             outline: 2px solid blue;
         }
+
         /* :root {
             --primary-font-family: "SF Pro TC", "SF Pro Text", "SF Pro Icons", "PingFang TC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
             --price-font-family: 'Oxygen', sans-serif;
@@ -22,25 +24,30 @@
 
         .wrap {
             /*固定寬的容器，一律是置中*/
-            width: 100%;
-            max-width: 1200px;
+            /* width: 100%; */
+            width: 1200px;
             margin: auto;
             display: flex;
             flex-wrap: wrap;
-            align-items: stretch;
-            
+            /* align-items: stretch; */
+
             /* justify-content:stretch ; */
 
         }
 
-        .item{
+        .item {
             box-sizing: border-box;
-            margin: 10px;
+            padding: 2px;
             width: 180px;
+            line-height: 1.2;
             text-align: center;
             border-bottom: 1px dotted #888888;
             display: flex;
             flex-direction: column;
+        }
+
+        .sloganTitle {
+            height: 12px;
         }
 
         .item img {
@@ -83,7 +90,7 @@
         .preOrderTag {
             margin-right: 8px;
             padding: 1px 4px 0 4px;
-            display: inline-block;
+            /* display: inline-block; */
             vertical-align: top;
             background-color: #FF960A;
             border-radius: 4px;
@@ -92,9 +99,10 @@
             letter-spacing: 0.1em;
         }
 
-        .prdNameTitle {
+        .prdName {
             width: 100%;
-            margin-bottom: 15px;
+            /* margin-bottom: 15px; */
+
             box-sizing: border-box;
             font-size: 0.5em;
             text-align: left;
@@ -153,12 +161,15 @@
             font-size: 0.3em;
             color: #d9d7d7;
         }
-        .iconArea i.registerIcon, .giftIcon {
+
+        .iconArea i.registerIcon,
+        .giftIcon {
             background-color: #FF4C76;
             font-size: 10px;
             color: white;
             border-radius: 3px;
         }
+
         /* .registerIcon, .giftIcon {
             background-color: #FF4C76;
             font-size: 10px;
@@ -175,11 +186,37 @@
             /* Adjust padding if needed 
             border-radius: 3px;
         } */
+        .iconArea {
+            background-color: #681b1b;
+            /*width: 180px;*/
+            /* display: inline-flex;
+            justify-content: flex-end; */
+            height: 26px;
+           
+            /*margin: 1px auto 0px;*/
+            /*padding: 0px 5px;*/
+            overflow: hidden;
+            white-space: normal;
+
+            /* outline: 2px solid green; */
+        }
+        .styleRight{
+            display: inline-flex;
+            justify-content: flex-end;
+        }
+
+        .styleCenter {
+            /* background-color: #EEEEEE; */
+            color: gray;
+            /* text-align: center;  */
+            display: flex;
+            justify-content: center;
+        }
 
         .iconArea i {
             font-size: 12px;
             line-height: 26px;
-            font-family:  Helvetica;
+            font-family: Helvetica;
             margin: 1px;
             padding: 2px 4px;
             border-radius: 3px;
@@ -187,23 +224,13 @@
             color: #FFFFFF;
         }
 
-        .iconArea {
-            background-color: #EEEEEE;
-            width: 180px;
-            height: 26px;
-            text-align: right;
-            margin: 1px auto 0px;
-            padding: 0px 5px;
-            overflow: hidden;
-            white-space: normal;  
-
-            outline: 2px solid green;
+        .iconArea .fast {
+            background-color: #BE0211;
+            color: #FFFFFF;
         }
 
-        .iconArea .note {
-            color: gray;
-            text-align: center;
-        }
+
+
 
         /* .iconArea{
             background-color: #eee;
@@ -284,8 +311,8 @@
                     <!-- <i class="fastIcon">速</i>
                     <i class="registerIcon">登記</i>
                     <i class="giftIcon">贈品</i> -->
-                    <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
-                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                    <i class="fast">速</i>
+                    <i>登記</i>
                     <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
                 </p>
             </figure>
@@ -481,12 +508,22 @@
                     </div>
                     <span class="totalSales">總銷量>500</span>
                     <div class="remark"></div>
-                    <p class="iconArea">
-                        <!--  <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                    <div class="iconArea">
+
+                        <div class="styleRight">
+                            <!--  <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
                         <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
                         <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i> -->
-                        <span class="note">可訂貨時通知我</span>
-                    </p>
+                        </div>
+
+
+                        <div class="styleCenter">
+                            <span>可訂貨時通知我</span>
+                        </div>
+                    </div>
+
+
+
                 </figure>
                 <figure class="item">
                     <img src="pic/11833607_OL.webp">
@@ -556,8 +593,9 @@
                     <img src="pic/8273675_OL.webp">
                     <p class="sloganTitle"></p>
                     <div class="prdNameTitle">
-                        <span class="preOrderTag">預購</span>
-                        <h3 class="prdName">【SONY 索尼】PS5 DualSense 無線控制器(PlayStation 5 原廠周邊)</h3>
+
+                        <h3 class="prdName"> <span class="preOrderTag">預購</span>【SONY 索尼】PS5 DualSense 無線控制器(PlayStation
+                            5 原廠周邊)</h3>
                     </div>
 
                     <p class="money">
