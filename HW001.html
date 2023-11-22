@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        .parent {
+            outline: 2px solid red;
+        }
+        .child {
+            outline: 2px solid blue;
+        }
+        /* :root {
+            --primary-font-family: "SF Pro TC", "SF Pro Text", "SF Pro Icons", "PingFang TC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --price-font-family: 'Oxygen', sans-serif;
+            --primary-pink: #d62872;
+            --primary-link-color: #027bff;
+        } */
+
+        .wrap {
+            /*固定寬的容器，一律是置中*/
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            
+            /* justify-content:stretch ; */
+
+        }
+
+        .item{
+            box-sizing: border-box;
+            margin: 10px;
+            width: 180px;
+            text-align: center;
+            border-bottom: 1px dotted #888888;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* .product-a .wrap,
+        .product-b .wrap {
+            display: flex;
+            /*預設置中對齊
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+        }*/
+        /*
+        .product-a .item,
+        .product-b .item {
+            margin: 10px;
+            width: 180px;
+            /*1200/6 =200*/
+        /* text-align: center; */
+        /*裡面要置中
+            border-bottom: 1px dotted #888888;
+        }*/
+
+        /*.product-a .item img,
+        .product-b .item img {
+            width: 100%;
+            height: auto;
+        }  */
+
+        .sloganTitle {
+            color: red;
+            margin: 0;
+            font-size: 0.5em;
+            text-align: left;
+        }
+
+        .preOrderTag {
+            margin-right: 8px;
+            padding: 1px 4px 0 4px;
+            display: inline-block;
+            vertical-align: top;
+            background-color: #FF960A;
+            border-radius: 4px;
+            color: #fff;
+            font: 13px/18px Helvetica, sans-serif;
+            letter-spacing: 0.1em;
+        }
+
+        .prdNameTitle {
+            width: 100%;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            font-size: 0.5em;
+            text-align: left;
+        }
+
+        .product-a .price {
+            font-size: xx-small;
+            color: #d62872
+        }
+
+        .product-a .price .priceNum {
+            font-size: x-large;
+
+        }
+
+        .ratingStars {
+            display: inline-flex;
+            padding: 0 5px;
+            vertical-align: middle;
+            line-height: 15px;
+        }
+
+        .ratingStars .star.starFull {
+            background-image: url(//image.momoshop.com.tw/ecm/img/cmm/icon_star_full_24x24.svg);
+        }
+
+        .ratingStars .star {
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .ratingStars .star.startHalf {
+            background-image: url(//image.momoshop.com.tw/ecm/img/cmm/icon_star_half_24x24.svg);
+        }
+
+
+        .ratingCounts {
+            font-size: 0.3em;
+            color: #d9d7d7;
+        }
+
+        .priceNum .star-box {
+            line-height: 1em;
+        }
+
+        .totalSales {
+            font-size: 0.3em;
+            text-align: left;
+        }
+
+        .money .discountTxt {
+            font-size: 0.3em;
+            color: #d9d7d7;
+        }
+        .iconArea i.registerIcon, .giftIcon {
+            background-color: #FF4C76;
+            font-size: 10px;
+            color: white;
+            border-radius: 3px;
+        }
+        /* .registerIcon, .giftIcon {
+            background-color: #FF4C76;
+            font-size: 10px;
+            color: white;
+            padding: .5px 1px;
+            /* Adjust padding if needed 
+            border-radius: 3px;
+        }
+        .fastIcon{
+            background-color: #BE0211;
+            font-size: 10px;
+            color: white;
+            padding: .5px 1px;
+            /* Adjust padding if needed 
+            border-radius: 3px;
+        } */
+
+        .iconArea i {
+            font-size: 12px;
+            line-height: 26px;
+            font-family:  Helvetica;
+            margin: 1px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            background-color: #FF4C76;
+            color: #FFFFFF;
+        }
+
+        .iconArea {
+            background-color: #EEEEEE;
+            width: 180px;
+            height: 26px;
+            text-align: right;
+            margin: 1px auto 0px;
+            padding: 0px 5px;
+            overflow: hidden;
+            white-space: normal;  
+
+            outline: 2px solid green;
+        }
+
+        .iconArea .note {
+            color: gray;
+            text-align: center;
+        }
+
+        /* .iconArea{
+            background-color: #eee;
+            justify-content: flex-end;
+            display: inline-flex;
+            height: 26px;
+            margin: 8px 3px 0px ;
+        } */
+    </style>
+</head>
+
+<body>
+    <ul class="product-a">
+        <li class="wrap">
+            <figure class="item parent">
+                <img src="pic/11023988_OL.webp">
+                <p class="sloganTitle">光碟主機 現貨快搶★</p>
+                <div class="prdNameTitle">
+                    <h3 class="prdName">【SONY 索尼】PS5 光碟版主機組(CIF-1218A01)</h3>
+                </div>
+
+                <p class="money">
+                    <span class="price">
+                        $
+                        <b class="priceNum">17,580</b>
+                        <span class="note"></span>
+                    </span>
+                    <span class="discountTxt"></span>
+                </p>
+                <div class="star-box">
+                    <div class="ratingStars">
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star startHalf"></span>
+                        <span class="ratingCounts">(486)</span>
+                    </div>
+                </div>
+                <span class="totalSales">總銷量>8,000</span>
+                <div class="remark"></div>
+                <p class="iconArea">
+                    <!-- <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i> -->
+                    <i class="registerIcon">登記</i>
+                    <!-- <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i> -->
+                    <!-- <i class="giftIcon">贈品</i> -->
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                </p>
+            </figure>
+            <figure class="item">
+                <img src="pic/11041886_OL.webp">
+                <p class="sloganTitle"></p>
+                <div class="prdNameTitle">
+                    <h3 class="prdName">【SONY 索尼】PS5 雙手把同捆主機組(ASIA-00441 T)</h3>
+                </div>
+
+                <p class="money">
+                    <span class="price">
+                        $
+                        <b class="priceNum">19,380</b>
+                        <span class="note"></span>
+                    </span>
+                    <span class="discountTxt"></span>
+                </p>
+                <div class="star-box">
+                    <div class="ratingStars">
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star startHalf"></span>
+                        <span class="ratingCounts">(13)</span>
+                    </div>
+                </div>
+                <span class="totalSales">總銷量>1,000</span>
+                <div class="remark"></div>
+                <p class="iconArea">
+                    <!-- <i class="fastIcon">速</i>
+                    <i class="registerIcon">登記</i>
+                    <i class="giftIcon">贈品</i> -->
+                    <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                </p>
+            </figure>
+            <figure class="item">
+                <img src="pic/11065533_OL.webp">
+                <p class="sloganTitle">PS5光碟機+熱門遊戲片</p>
+                <div class="prdNameTitle">
+                    <h3 class="prdName">【SONY 索尼】PS5 光碟版主機+PS4熱門遊戲多選一(送魔物手機支架)</h3>
+                </div>
+
+                <p class="money">
+                    <span class="price">
+                        $
+                        <b class="priceNum">17,580</b>
+
+
+                    </span>
+                    <span class="discountTxt">(售價已折)</span>
+                </p>
+                <div class="star-box">
+                    <div class="ratingStars">
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star startHalf"></span>
+                        <span class="ratingCounts">(5)</span>
+                    </div>
+                </div>
+                <span class="totalSales">總銷量>8,000</span>
+                <div class="remark"></div>
+                <p class="iconArea">
+                    <!-- <i style="background-color: #BE0211; font-size: 0.2em; color: white;">速</i> -->
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                    <!-- <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i> -->
+                </p>
+            </figure>
+            <figure class="item"><img src="pic/11074844_OL.webp">
+                <p class="sloganTitle"></p>
+                <div class="prdNameTitle">
+                    <h3 class="prdName">【SONY 索尼】PS5 數位版主機 + 充電座</h3>
+                </div>
+
+                <p class="money">
+                    <span class="price">
+                        $
+                        <b class="priceNum">21,260</b>
+                        <span class="note"></span>
+                    </span>
+                    <span class="discountTxt"></span>
+                </p>
+                <div class="star-box">
+                    <div class="ratingStars">
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="ratingCounts">(1)</span>
+                    </div>
+                </div>
+                <span class="totalSales">總銷量>1,000</span>
+                <div class="remark"></div>
+                <p class="iconArea">
+                    <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                </p>
+            </figure>
+            <figure class="item">
+                <img src="pic/11158160_OL.webp">
+                <p class="sloganTitle">數位版超值組</p>
+                <div class="prdNameTitle">
+                    <h3 class="prdName">【SONY 索尼】PS5 主機 雙手把同捆組 + HD攝影機</h3>
+                </div>
+
+                <p class="money">
+                    <span class="price">
+                        $
+                        <b class="priceNum">15,560</b>
+                    </span>
+                    <span class="discountTxt"></span>
+                </p>
+                <div class="star-box">
+                    <div class="ratingStars">
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star startHalf"></span>
+                        <span class="ratingCounts">(64)</span>
+                    </div>
+                </div>
+                <span class="totalSales">總銷量>5,000</span>
+                <div class="remark"></div>
+                <p class="iconArea">
+                    <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                </p>
+            </figure>
+            <figure class="item">
+                <img src="pic/11351553_OL.webp">
+                <p class="sloganTitle">滿1件折3900</p>
+                <div class="prdNameTitle">
+                    <h3 class="prdName">【SONY 索尼】PS5 太空戰士16 同捆組</h3>
+                </div>
+
+                <p class="money">
+                    <span class="price">
+                        $
+                        <b class="priceNum">15,480</b>
+                        <span></span>
+                    </span>
+                    <span class="discountTxt">(售價已折)</span>
+                </p>
+                <div class="star-box">
+                    <div class="ratingStars">
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star starFull"></span>
+                        <span class="star startHalf"></span>
+                        <span class="ratingCounts">(40)</span>
+                    </div>
+                </div>
+                <span class="totalSales">總銷量>100</span>
+                <div class="remark"></div>
+                <p class="iconArea">
+                    <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                    <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                </p>
+            </figure>
+        </li>
+        <ul class="product-b">
+            <li class="wrap">
+                <figure class="item">
+                    <img src="pic/11495124_OL.webp">
+                    <p class="sloganTitle">滿1件折100</p>
+                    <div class="prdNameTitle">
+                        <h3 class="prdName">【SONY 索尼】PS5 遊戲《漫威蜘蛛人2 Marvels Spider-Man 2》中文版</h3>
+                    </div>
+
+                    <p class="money">
+                        <span class="price">
+                            $
+                            <b class="priceNum">1,990</b>
+                        </span>
+                        <span class="discountTxt">(下單再折)</span>
+                    </p>
+                    <div class="star-box">
+                        <div class="ratingStars">
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star startHalf"></span>
+                            <span class="ratingCounts">(74)</span>
+                        </div>
+                    </div>
+                    <span class="totalSales">總銷量>1,000</span>
+                    <div class="remark"></div>
+                    <p class="iconArea">
+                        <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                    </p>
+                </figure>
+                <figure class="item">
+                    <img src="pic/11666446_OL.webp">
+                    <p class="sloganTitle">滿1件折3900</p>
+                    <div class="prdNameTitle">
+                        <h3 class="prdName">【SONY索尼】PS5蜘蛛人2 限量版同捆組</h3>
+                    </div>
+
+                    <p class="money">
+                        <span class="price">
+                            $
+                            <b class="priceNum">16,880</b>
+                        </span>
+                        <span class="discountTxt">(售價已折)</span>
+                    </p>
+                    <div class="star-box">
+                        <div class="ratingStars">
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star startHalf"></span>
+                            <span class="ratingCounts">(111)</span>
+                        </div>
+                    </div>
+                    <span class="totalSales">總銷量>500</span>
+                    <div class="remark"></div>
+                    <p class="iconArea">
+                        <!--  <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i> -->
+                        <span class="note">可訂貨時通知我</span>
+                    </p>
+                </figure>
+                <figure class="item">
+                    <img src="pic/11833607_OL.webp">
+                    <p class="sloganTitle">防疫在家一起打電動</p>
+                    <div class="prdNameTitle">
+                        <h3 class="prdName">【SONY 索尼】PS5 蜘蛛人2 限量版同捆組+豪華收納包+主機風扇直立架</h3>
+                    </div>
+
+                    <p class="money">
+                        <span class="price">
+                            $
+                            <b class="priceNum">22,600</b>
+                        </span>
+                        <span class="discountTxt"></span>
+                    </p>
+                    <div class="star-box">
+                        <div class="ratingStars">
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="ratingCounts">(1)</span>
+                        </div>
+                    </div>
+                    <span class="totalSales"></span>
+                    <div class="remark"></div>
+                    <p class="iconArea">
+                        <!-- <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i> -->
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                        <!-- <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i> -->
+                    </p>
+                </figure>
+                <figure class="item">
+                    <img src="pic/12010082_OL.webp">
+                    <p class="sloganTitle">突破限制的遊玩體驗</p>
+                    <div class="prdNameTitle">
+                        <h3 class="prdName">【SONY 索尼】PS5 DualSense 原廠無線控制器(火山紅)</h3>
+                    </div>
+
+                    <p class="money">
+                        <span class="price">
+                            $
+                            <b class="priceNum">2,280</b>
+                        </span>
+                        <span class="discountTxt"></span>
+                    </p>
+                    <div class="star-box">
+                        <div class="ratingStars">
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="ratingCounts">(6)</span>
+                        </div>
+                    </div>
+                    <span class="totalSales">總銷量>50</span>
+                    <div class="remark"></div>
+                    <p class="iconArea">
+                        <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                    </p>
+                </figure>
+                <figure class="item">
+                    <img src="pic/8273675_OL.webp">
+                    <p class="sloganTitle"></p>
+                    <div class="prdNameTitle">
+                        <span class="preOrderTag">預購</span>
+                        <h3 class="prdName">【SONY 索尼】PS5 DualSense 無線控制器(PlayStation 5 原廠周邊)</h3>
+                    </div>
+
+                    <p class="money">
+                        <span class="price">
+                            $
+                            <b class="priceNum">2,180</b>
+                        </span>
+                        <span class="discountTxt">(售價已折)</span>
+                    </p>
+                    <div class="star-box">
+                        <div class="ratingStars">
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="ratingCounts">(131)</span>
+                        </div>
+                    </div>
+                    <span class="totalSales">總銷量>3,000</span>
+                    <div class="remark"></div>
+                    <p class="iconArea">
+                        <!-- <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i> -->
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                    </p>
+                </figure>
+                <figure class="item"><img src="pic/8273679_OL.webp">
+                    <p class="sloganTitle"></p>
+                    <div class="prdNameTitle">
+                        <h3 class="prdName">【SONY 索尼】PS5 DualSense 充電座(PlayStation 5 原廠周邊)</h3>
+                    </div>
+
+                    <p class="money">
+                        <span class="price">
+                            $
+                            <b class="priceNum">980</b>
+                        </span>
+                        <span class="discountTxt"></span>
+                    </p>
+                    <div class="star-box">
+                        <div class="ratingStars">
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star starFull"></span>
+                            <span class="star startHalf"></span>
+                            <span class="ratingCounts">(158)</span>
+                        </div>
+                    </div>
+                    <span class="totalSales">總銷量>5,000</span>
+                    <div class="remark"></div>
+                    <p class="iconArea">
+                        <i style="background-color: #BE0211; font-size: 10px; color: white;">速</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">登記</i>
+                        <i style="background-color: #FF4C76; font-size: 10px; color: white;">贈品</i>
+                    </p>
+                </figure>
+            </li>
+</body>
+
+</html>
