@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            font-family: YakuHanJP, sans-serif, serif;/*優先使用 "YakuHanJP" 字體，如果不可用，則嘗試使用 sans-serif，最後使用 serif*/
+            line-height: 1.4;/*固定行高*/
+        }
+
+        section {
+            padding: 96px 0px;/*給 section 添加了上下兩個方向上的 padding*/
+        }
+
+        .sectionTitle {/*最上方的標題元素*/
+            font: freight-neo-pro, sans-serif;/*屬性指定了字體，如果 "freight-neo-pro" 不可用，則使用 sans-serif*/
+            font-size: 24px;
+            padding: 10px 0px 64px;/*屬性控制上、下方向的內邊距*/
+            border-top: 2px black solid;/* 添加了一條黑色的上邊框*/
+
+        }
+
+        .containerTitle {/*標題容器樣式*/
+            display: flex;
+            border-top: 1px lightgray solid;/*加了一條淺灰色的上邊框*/
+            margin: 64px 0px 24px;/*控制容器的外邊距*/
+            padding: 20px 0px 30px;/*控制上、下方向的內邊距*/
+            justify-content: space-between;/*在橫式排列狀態下，控制每一直欄在主軸上的對齊與分布: 將內容的水平空間分佈到容器的兩側*/
+            /*將剩餘空間分配到flex子物件與子物件之間，所以同列第一個flex子物件左側跟最後一個flex子物件右側不會分配剩餘空間*/
+            align-items: end; /*在橫排列狀態下，設定子物件在格子中直向交叉軸的位置*/
+        }
+
+        h2,
+        h3,
+        p {
+            color: #222;
+        }
+
+        h2 {
+            display: inline-block;/*以inline的方式呈現，但同時擁有block的屬性，可設定元素的寬高/margin/padding，可水平排列*/
+        }
+
+        a {
+            text-decoration: none;/*移除超連結底線*/
+        }
+
+        .moreInfo {
+            display: inline-block;
+            font-size: 13px;
+            color: #F65936;
+            font-weight: 600;/*字體微粗*/
+        }
+
+        .moreInfo::after {/*偽元素 (pseudo-element)::after在物件內容的後方加入資料 */
+            content: '➜';
+            display: inline-block;
+            padding-top: 4px;
+            margin: 0px 0px 0px 8px;
+            width: 18px;
+            height: 14px;
+            font-size: 8px;
+            text-align: center;
+            vertical-align: middle;
+            border: 0.5px solid #f65936;
+            border-radius: 50%;
+        }
+
+        h3 {
+            font-weight: 600;
+        }
+
+        h2 .jp {/*日文*/
+            font-size: 26px;
+            font-weight: 800;/*字體粗細為 800*/
+        }
+
+        h2 .en {/*英文*/
+            font-size: 14px;
+            padding-left: 26px;/*左邊填充為 26像素*/
+        }
+
+        .container,
+        .secondContainer {
+            width: 1200px;
+            margin: auto;/*使容器在父容器中水平居中。*/
+        }
+
+        .wrap {
+            display: flex;
+            justify-content: space-between;/*在橫式排列狀態下，控制每一直欄在主軸上的對齊與分布: 將內容的水平空間分佈到容器的兩側*/
+        }
+
+        .wrap:nth-child(even) {
+            flex-direction: row-reverse;/*選擇偶數位置的 .wrap 元素，並將其子元素的排列方向設置為從右到左。橫列反向*/
+        }
+
+        .spaceBetween {
+            width: 30px;/*大圖跟4小圖間寬距離*/
+        }
+
+        .SingleItem {
+            flex: 1;/*flex-grow, flex-shrink, flex-basis三者合一的簡稱，將其放置在 .wrap 中的合適位置，使其佔據剩餘的空間。*/
+            display: flex;/*轉變物件特性為flex物件特性，*/
+            flex-direction: column;/*設定flex主軸方向，將內容垂直排列*/
+        }
+
+        .icon,
+        .iconRight {
+            display: flex;
+            align-items: center;/*垂直居中對齊*/
+            text-align: right;/*文字項右對齊*/
+            width: 100%;
+            margin-bottom: 5px;/*在底部添加一些間距*/
+        }
+
+        .icon img,
+        .iconRight img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .iconRight img {
+            opacity: 0;
+        }
+
+        .iconRight {
+            color: white;
+
+        }
+
+        img {
+            display: block;/*區塊元素，元素寬度預設會撐到最大，使其占滿整個容器，可以設定長寬/margin/padding，但仍會占滿一整行*/
+            width: 100%;
+            border-radius: 10px;/*圖片的邊角添加 10 像素的圓角*/
+        }
+
+        .textSlogan {
+            display: flex;
+            margin: 20px 0px;/* 上下方向的外邊距為 20 像素*/
+        }
+
+        .textSlogan h3 {
+            font-size: 24px;
+            width: 150%;/*將寬度擴展為父容器的 1.5 倍*/
+            margin-right: 30px;/* 在右側添加 30 像素的外邊距*/
+        }
+
+        .textSlogan p:first-child {/*.textSlogan 中的第一個p標籤*/
+            font-size: 13px;
+            margin-bottom: 10px;/*底部外邊距為 10 像素*/
+        }
+
+        .date {
+            font-size: 12px;
+        }
+
+        .fourSubItems {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);/*在橫式排列狀態下，建立網格橫列數量及高度，*/
+            /*repeat(要建立的欄/列數, 單欄寬度/單列高度)，這邊是要2個欄，每個欄佔1等分*/
+            gap: 30px;/*新的gap屬性，取代grid-gap的屬性，*/
+            flex: 1;/*flex-grow, flex-shrink, flex-basis三者合一的簡稱*/
+            /*經常用作自適應布局的方法之一是將父容器的 display: flex 屬性設置為 flex，在固定側邊欄大小後，通過將內容區域的 flex: 1，使其自動擴展以充滿剩餘的空間。 flex 屬性實際上是 flex-grow、flex-shrink 和 flex-basis 這三個屬性的縮寫。*/
+        }
+
+        .subitems {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;/*設定在flex元素身上，預設值，將內容元素撐開至 flexbox 大小*/
+        }
+
+        .subitems>div {
+            display: flex;
+            flex-direction: column;/*主軸是直向，長度等於Y軸，也就是Height值*/
+            justify-content: space-between;
+            flex-grow: 1;/*當父層主軸有剩餘空間時，取得主軸長度的分配量*/
+        }
+
+        .subitems h3 {
+            font-size: 16px;
+            margin: 18px 0px 10px;/*上邊距為 18 像素，下邊距為 10 像素*/
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+
+        <div class="container">
+            <p class="sectionTitle">LATEST</p>
+            <div class="containerTitle">
+                <h2><span class="jp">旅行者にできること</span><span class="en">What Travelers Can Do</span></h2>
+                <a href="https://www.allhawaii.jp/malamahawaii/initiatives/corporate/" class="moreInfo">すべて見る</a>
+            </div>
+            <div class="wrap">
+                <div class="SingleItem">
+                    <span class="icon">
+                        <img src="https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_ocean.svg"
+                            alt="iconImage">海</span>
+
+                    <img src="https://picsum.photos/300/200/?random=10">
+                    <div class="textSlogan">
+                        <h3>11月はサンゴ白化啓発月間 〜日常でできること〜</h3>
+                        <div>
+                            <p>世界のサンゴ礁を救うことを使命としている環境NGO団体コーラル・リーフ・アライアンス（The Coral Reef Alliance）は、2023年11月を「サ
+                            </p>
+                            <p class="date">2023.11.09</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="spaceBetween"></div>
+                <div class="fourSubItems">
+                    <div class="iconItem">
+                        <span class="icon">
+                            <img src="https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_other.svg"
+                                alt="iconImage">その他</span>
+
+                        <div class="subitems">
+                            <img src="https://picsum.photos/300/200/?random=12">
+                            <div>
+                                <h3>マウイ島の山火事救援金、日本円で受付開始</h3>
+                                <p class="date">2023.08.18</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="iconItem">
+                        <span class="iconRight">
+                            <img src="https://www.allhawaii.jp/malamahawaii/wp-content/themes/malamahawaii/img/common/icon/icon_other.svg"
+                                alt="iconImage">その他</span>
+                        <div class="subitems">
+                            <img src="https://picsum.photos/300/200/?random=13">
+                            <div>
+                                <h3>2023年7月後半～9月にハワイで開催されるカルチャーイベント</h3>
+                                <p class="date">2023.07.20</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="subitems">
+                        <img src="https://picsum.photos/300/200/?random=14">
+                        <div>
+                            <h3>第46回プリンスロット•フラフェスティバル、7月に開催</h3>
+                            <p class="date">2023.06.22</p>
+                        </div>
+                    </div>
+                    <div class="subitems">
+                        <img src="https://picsum.photos/300/200/?random=15">
+                        <div>
+                            <h3>今年もアースデーにビーチクリーンを開催！</h3>
+                            <p class="date">2023.04.18</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="secondContainer">
+            <div class="containerTitle">
+                <h2><span class="jp">企業の取組み</span><span class="en">Corporate Initiatives</span></h2>
+                <a href="https://www.allhawaii.jp/malamahawaii/initiatives/corporate/" class="moreInfo">すべて見る</a>
+            </div>
+            <div class="wrap">
+                <div class="SingleItem">
+                    <p>ジャルパック</p>
+                    <img src="https://picsum.photos/300/200/?random=16">
+                    <div class="textSlogan">
+                        <h3>【チームJALハワイ】ビーチクリーンアップ活動で地元コミュニティに貢献</h3>
+                        <div>
+                            <p>JALハワイ支店とJALPAK International Hawaiiで構成された“チームJALハワイ”は、ハワイ州観光局が提唱する「マラマハワイ～ハワイを思</p>
+                            <p class="date">2022.11.02</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="spaceBetween"></div>
+                <div class="fourSubItems">
+                    <div class="subitems">
+                        <img src="https://picsum.photos/300/200/?random=17">
+                        <div>
+                            <h3>廃棄された漁網を服に生まれ変わらせる！海を守ろうと活動する人々が主役のドキュメンタリーを作るプロジェクトをサポートしませんか？</h3>
+                            <p class="date">2022.07.27</p>
+                        </div>
+                    </div>
+                    <div class="subitems">
+                        <img src="https://picsum.photos/300/200/?random=18">
+                        <div>
+                            <h3>第33回タートル・インディペンデンス・デイ開催</h3>
+                            <p class="date">2022.07.01</p>
+                        </div>
+                    </div>
+                    <div class="subitems">
+                        <img src="https://picsum.photos/300/200/?random=19">
+                        <div>
+                            <h3>「シーアスパラガス」を生産している「オラカイ」のサステナブルな取り組み</h3>
+                            <p class="date">2022.06.15</p>
+                        </div>
+                    </div>
+                    <div class="subitems">
+                        <img src="https://picsum.photos/300/200/?random=20">
+                        <div>
+                            <h3>【ザ・リッツ・カールトン・レジデンス ワイキキビーチ】オアフ島内最大運河、アラワイ運河の浄化プロジェクト「ゲンキ・アラワイ・プロジェクト」の協力パートナーに</h3>
+                            <p class="date">2022.06.14</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
