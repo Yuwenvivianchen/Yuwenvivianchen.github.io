@@ -99,7 +99,10 @@
         }
 
         .spaceBetween {
-            width: 30px;/*大圖跟4小圖間寬距離*/
+            /*width: 30px;/*大圖跟4小圖間寬距離*/
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
 
         .SingleItem {
