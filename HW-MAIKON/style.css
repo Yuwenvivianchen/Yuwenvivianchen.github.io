@@ -1,0 +1,716 @@
+/* Common area */
+body {
+    font-family: Robert, sans-serif;/*設定網頁的整體字體為 Robert 或 sans-serif*/
+}
+h2 {
+    font-size: 42px;
+    font-weight: 300;
+}
+a {
+    text-decoration: none;/*取消所有連結的底線裝飾*/
+}
+img {
+    vertical-align: bottom;/*設定所有圖片的垂直對齊方式為底端*/
+}
+/* Header area */
+header {/*設定標頭區域為 sticky，即隨著頁面捲動而固定不動。背景色為白色，z-index 為 2，確保其在其他元素之上。*/
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 2;
+}
+.mainHeader {
+    display: flex;
+    margin: auto;
+    background-color: #ffffff;
+    width: 1200px;
+    padding: 20px 15px;
+    
+}
+.mainHeader .img {/*設定標頭區域中左側圖像的寬度為 300px*/
+    width: 300px;
+}
+.mainHeader .linkList {/*設定標頭區域中右側連結列表的寬度為 1200px，並設定其左側的空白間距為 450px。使用 align-self 屬性將其垂直居中。*/
+    width: 1200px;
+    padding-left: 450px;
+    align-self: center;
+}
+
+.mainHeader .linkList a{
+    color: #5d6678;
+    transition: .8s;
+    margin-left: 15px;
+}
+
+.mainHeader .linkList a:hover {
+    text-decoration-color: #bdbec0;
+    text-decoration-line: underline;/*滑鼠移動時連結文字會添加下底線效果*/
+    text-underline-offset: 15px;/*偏移量為 15px，文字大小會略微放大*/
+}
+.mainHeader .iconArea {
+    width: 150px;/*將 mainHeader 區域中 iconArea 類別下的所有元素的寬度設定為 150px。*/
+    align-self: center;/*將 iconArea 類別下的所有元素垂直居中。*/
+}
+.mainHeader .icon {
+    padding: 12px 19.5px 10px;
+    font-size: 14px;
+    border: 1px solid #dcdcdc;/*將 icon 類別下的所有元素添加 1 像素的實線邊框，顏色為 #dcdcdc*/
+    border-radius: 3px;
+    transition: .5s;/*將 icon 類別下的所有元素的樣式變化使用 0.5 秒的渲染效果。*/
+}
+.mainHeader .icon a {
+    color: #5d6678;/*將 mainHeader 區域中 icon 類別下的所有 a 元素的顏色設定為 #5d6678*/
+    font-size: 14px;/*將 icon 類別下的所有 a 元素的字體大小設定為 14 像素*/
+    font-weight: 500;/*將 icon 類別下的所有 a 元素的字體粗細設定為 500，即中粗*/
+    text-transform: uppercase;/*將 icon 類別下的所有 a 元素的文字轉換為大寫*/
+    line-height: 1em;/*將 icon 類別下的所有 a 元素的行高設定為 1 倍字體大小*/
+    letter-spacing: 0px;/*將 icon 類別下的所有 a 元素的字間距設定為 0*/
+}
+.mainHeader .icon:hover {/*當滑鼠移入 mainHeader 區域中 icon 類別下的所有元素時，其背景色會變為 #1FDE82*/
+    background-color: #1FDE82;
+    border: 1px solid #FFFFFF;/*當滑鼠移入 icon 類別下的所有元素時，其邊框會變為 1 像素的實線，顏色為 #FFFFFF*/
+    cursor: pointer;/*當滑鼠移入 icon 類別下的所有元素時，游標會變為手指圖案*/
+}
+.mainHeader .icon:hover a{
+    color: #FFFFFF;/* 表示當滑鼠移入 mainHeader 區域中 icon 類別下的所有 a 元素時，其文字顏色會變為 #FFFFFF*/
+}
+/* Introduction Area */
+.introduction {
+    position: relative;/*將 introduction 元素的定位方式設定為相對定位，即其位置會相對於其最近的非定位祖先元素進行定位。*/
+}
+.introductionArea {
+    margin: auto;/*將 introductionArea 元素的水平邊距設置為自動，使其在頁面中水平居中*/
+    margin-top: 50px;/*將 introductionArea 元素的頂部邊距設置為 30px*/
+    width: 1200px;/*將 introductionArea 元素的寬度設置為 1200px*/
+    position: relative;/*將元素的定位方式設置為相對定位，使得後續的子元素可以基於這個相對定位進行定位。*/
+    z-index: 1;/*設置元素的堆疊順序（z軸的位置）為1，這在多個重疊元素之間確定元素的顯示順序*/
+}
+.introductionPart {
+    padding: 10px;/*內邊距設置為上下左右各 10px*/
+    margin-bottom: 80px;/*設定了 .introductionPart 元素的底部外邊距為 60 像素。外邊距是元素邊框外的空間*/
+    display: flex;/*定為彈性盒模型*/
+}
+.introductionPart:nth-of-type(even) {/*選取器，選擇了所有父元素為 .introductionPart 且是偶數項目的元素。:nth-of-type(even) 表示選擇該類型的偶數元素*/
+    flex-direction: row-reverse;/*row-reverse 表示將元素排列為從右到左的水平方向*/
+}
+.introductionContent {
+    width: 45%;
+    /*將上邊距和下邊距都設置為 "auto"，這會使得元素在垂直方向上在其父容器中垂直置中*/
+    margin: auto;
+    padding: 10px;/*元素的內邊距設置為上下左右各 10px*/
+    display: grid;
+    gap: 20px;/*子元素之間的間距為 20 像素，這個間距存在於網格的行和列之間*/
+    
+}
+.introductionContent h1{
+    display: block;/*指定 <h1> 元素應該呈現為區塊元素。區塊元素會在頁面上獨自佔據一行，並且通常會開始新的一行*/
+    width: 470px;/*設置 <h1> 元素的寬度為 470 像素。這可以限制元素的寬度，使其不佔滿其父容器的寬度*/
+    font-size: 58px;
+    font-weight: 300;/*較輕的字體*/
+    line-height: 1.315em;/*行高（行距）為字體大小的 1.315 倍。這可以控制行與行之間的垂直間距*/
+}
+.introductionContent p {
+    display: block;
+    width: 450px;
+    color: #5D6678;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 2em;
+}
+.introductionContent .button {
+    display: flex;
+    
+}
+.introductionContent .button .buttonLeft,
+.introductionContent .button .buttonRight {
+    width: 125px;
+    text-align: center;/*設定文字內容在元素中水平置中*/
+    padding: 10px 15px;
+    background-color: #1FDE82;
+    transition: .6s;
+    margin-right: 20px;/*設定元素的右邊外邊距為 20 像素，用於在元素之間提供一些間距*/
+    font-size: 14px;
+    color: #FFFFFF;
+    box-shadow: 0px 8px 28px 0px #1fde8275;/*添加陰影效果，具體參數表示陰影的水平偏移、垂直偏移、模糊度和顏色*/
+    border-radius: 3px;/*設定元素的圓角半徑為 3 像素，使其具有圓角效果*/
+}
+.button .buttonLeft:hover,
+.button .buttonRight:hover {
+    background-color: #6d7076;/*當滑鼠懸停在 buttonLeft 或 buttonRight 元素上時，其背景顏色會變為深灰色*/
+}
+.button .video {
+    width: 156px;
+}
+.button .video img {
+    height: 40px;
+}
+.introduction .backgroundCloud1 {
+    position: absolute;/*絕對定位，元素會相對於其最近的父元素進行定位*/
+    top: 40%;/*設定元素的頂部位置。40% 表示頂部位置為其父元素高度的 40%*/
+}
+.introduction .backgroundCloud2 {
+    position: absolute;/*絕對定位，元素會相對於其最近的父元素進行定位*/
+    left: 50%;/*表示左側位置為其父元素寬度的 50%*/
+    bottom:90%;/*底部位置為其父元素高度的 90%*/
+}
+.introduction .backgroundCloud3 {
+    position: absolute;
+    right: 10%;
+    top: 30%;
+}
+.introduction .backgroundCloud4 {
+    position: absolute;
+    left: 42%;
+    top: 70%;
+}
+/* Services Area */
+.services {
+    position: relative;
+}
+.servicesArea {
+    width: 1200px;
+    margin: auto;/*左右邊距設置為auto，使元素水平居中*/
+    padding: 5px;
+    position: relative;
+    z-index: 1;
+}
+.servicesArea .servicesTitle {
+    margin-bottom: 40px;
+}
+.servicesArea .servicesTitle h2{
+    width: 40%;
+}
+.servicesArea .servicesContent {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);/*3欄，每欄寬度均分剩餘可用空間，1fr 表示分配相等的可用空間*/
+    padding: 15px;
+    gap: 30px;
+    justify-content: center;/*網格內容在主軸上（水平方向）居中對齊，如果網格有額外的空間，它將在左右兩側平均分配*/
+}
+.servicesContent .servicesList {
+    margin: 10px;
+    padding: 40px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 2ex;/*指定3列，每一列，的高度分別為1fr、1fr和2ex。1fr 表示分配相等的可用空間，而2ex 是相對於字元小寫"x"高度的單位*/
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 50px 0px #111d300f;
+}
+
+.servicesContent .servicesList .img {
+    margin-bottom: 40px;/*設置 .img 元素的底部外邊距為 40 像素*/
+}
+.servicesContent .servicesList .img img {
+    box-shadow: 0px 8px 28px 0px #1fde8275;
+    border-radius: 50%;
+    opacity: 1;
+}
+.servicesContent .servicesList h3 {
+    margin-bottom: 20px;
+    font-weight: 450;
+    font-size: 20px;
+    
+}
+.servicesContent .servicesList p {
+    color: #5D6678;
+    margin-bottom: 40px;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 2em;
+}
+.servicesContent .servicesList a {
+    color: #555555;
+    width: fit-content;/*設定元素的寬度擴展到其包含的內容的寬度，這樣元素的寬度會根據內容的大小而變化*/
+    font-weight: 500;
+}
+.services .backgroundCloud1 {
+    position: absolute;/*將元素的定位方式設置為絕對定位，基準點為最近的已定位（position 屬性不是 static）的父層或是 body*/
+    bottom: 15%;/*將元素底邊緣與其包含塊的底邊緣對齊，即設定底部距離為 15%*/
+}
+.services .backgroundCloud2 {
+    position: absolute;
+    top: -5%;/*將元素上邊緣與其包含塊的上邊緣對齊，並向上偏移 5%*/
+    transform: scale(1.0);/*對元素進行縮放，這裡設置為原始大小（1.0）倍*/
+}
+/* Pros Area */
+.pros {
+    background-color: #2570FF;
+    color: white;
+    position: relative;
+    padding: 50px 0; 
+}
+.pros .prosArea {
+    width: 1200px;
+    margin: auto;/*水平方向上自動居中*/
+    display: grid;
+    grid-template-columns: repeat(2,1fr);/*2欄，每欄的寬度平均分配（1fr）*/
+    gap: 80px;
+    position: relative;/*設置相對定位，使得內部元素的定位參考點為 .pros 元素*/
+    z-index: 1;
+}
+.prosArea .prosPart {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);/*2欄，每欄的寬度平均分配（1fr）*/
+}
+.prosPart .prosList {
+    margin: 10px;
+    padding: 50px 30px;
+    background-color: #3f81ff;
+    border-radius: 10px;
+}
+.prosPart .prosList p {
+    font-size: 56px;
+    color: #ffffff;
+}
+.prosPart .prosList span {
+    display: block;/*將 span 元素設置為區塊級元素，使其單獨佔據一行*/
+    margin: 30px 0;/*元素的外邊距，上下為 30px，左右為 0*/
+    font-size: 14px;
+    line-height: 2em;/*行高為 2倍字體大小*/
+}
+.prosContent {
+    padding-top: 80px;
+    color: #ffffff;
+}
+.prosContent p {
+    width: 60%;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 200;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    line-height: 2em;
+}
+
+.prosContent .orderService {
+    width: 120px;
+    text-align: center;/*將 .orderService 元素內文本的對齊方式設置為居中*/
+    padding: 12px 19.5px 10px;
+    color: white;
+    font-weight: 600;/*字體粗細為 600*/
+    font-size: 14px;
+    border: 1px solid white;
+    border-radius: 3px;
+    transition: .6s;
+}
+.orderService:hover {
+    background-color: #1FDE82;
+}
+/*設置了三個雲朵元素的絕對位置，分別位於父容器的右下角、右上角和右中間位置*/
+.pro .backgroundCloud {
+   position: absolute; /*元素的定位方式為絕對定位，基準點是其最近的已定位（positioned）祖先元素，如果沒有，則基準點是包含它的塊級（block-level）元素。*/
+}
+.pros .backgroundCloud1 { right: 2%; bottom: 10%;}
+.pros .backgroundCloud2 { right: 7%; top: 25%;}
+.pros .backgroundCloud3 { left: 30%; top: 45%;}
+/* Workflow Area */
+.workflow {
+    position: relative;/*元素會根據其正常位置進行定位，然後再進行偏移*/
+    width: 1200px;
+    margin: auto;/*下外邊距設置為自動，從而使元素在其容器中水平居中*/
+    margin-top: 100px;
+    position: relative;
+    z-index: 1;/*具有較大 z-index 值的元素會覆蓋具有較小 z-index 值的元素*/
+    padding-bottom: 80px;/*元素底部內邊距為80像素*/
+}
+
+.workflow .workflowTitle {
+    width: 100%;
+    padding-bottom: 50px;
+}
+.workflowList{
+    display: flex;
+    justify-content: center;/*主軸上居中對齊，.workflowList 元素的子元素。這使得子元素在 .workflowList 元素內水平居中*/
+}
+.workflowList:nth-of-type(4n+3){
+    /*對每第 4 個（4n）加 3 的 .workflowList 元素進行樣式設置*/
+    /*每第 4 項反轉一次-Reverse every 4th item*/
+    flex-direction: row-reverse;/*將這些特定的 .workflowList 的子元素的排列方向設為反向（由右到左）*/
+}
+.workflowList:nth-child(7) {/*對第 7 個 .workflowList 元素進行樣式設置*/
+    /* Add padding to the 7th item */
+    padding-top: 80px;
+}
+.workflowList .workflowSteps {
+    display: flex;
+}
+/* Add bottom padding to the 9th item's workflowSteps and adjust left padding */
+.workflowList:nth-child(9) .workflowSteps{
+    padding-bottom: 90px;
+}
+.workflowList:nth-child(9) .workflowSteps .steps {
+    padding-left: 50px;
+}
+.workflowList .steps {
+    display: flex;
+    justify-content: flex-end;
+    width: 180px;
+    align-self: center;
+    margin-right: 20px;
+}
+.workflowList .img{
+    /* Add padding to images in each list item */
+    padding: 10px;
+}
+
+.workflowList .steps img {
+    box-shadow: 0px 8px 32px 0px #1fde8275;
+    border-radius: 50%;
+    opacity: 1;
+}
+.workflowList:nth-of-type(4n+3) .steps{
+    padding-left: 100px;
+    padding-bottom: 80px;
+}
+.workflowList .stepsContent {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+}
+.workflowList:nth-of-type(4n+3) .stepsContent {
+    padding-bottom: 50px;
+}
+
+.workflowList .stepsContent h3 {
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.workflowList .stepsContent p {
+    color: #5d6678;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 2em;
+}
+
+/* Use more meaningful class names for step indicators */
+.stepOneToStepTwo, .stepTwoToStepThree, .stepThreeToStepFour, .stepFourToStepFive {
+    position: absolute;
+}
+.stepOneToStepTwo { left: 360px; top: 300px; }
+.stepTwoToStepThree { left: 320px; top: 550px; }
+.stepThreeToStepFour { left: 310px; top: 850px; }
+.stepFourToStepFive { left: 300px; top: 1155px; }
+.workflow .backgroundCloud {
+    position: absolute;
+}
+.workflow .backgroundCloud1 { right: 0%; bottom: 15%;
+}
+.workflow .backgroundCloud2 { left: 0%; top: 30%;
+}
+.workflow .backgroundCloud3 {  right: 0%; top: 10%;
+}
+/* Projects Area */
+.projects {
+    position: relative;
+    background-color: #F9FBFF;
+    padding: 40px 20px 40px 28px;
+}
+.projectsPart {
+    width: 1200px;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+.projectsPart .projectsTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+.projectsTitle h2{
+    width: 40%;
+}
+.projectsTitle a {
+    padding: 15px 30px;
+    color: white;
+    align-self: end;
+    background-color:  #1FDE82;
+    transition: .6s;
+    border-radius: 3px;
+    box-shadow: 0px 8px 32px 0px #1fde8275;
+}
+.projectsTitle a:hover {
+    background-color: #5d6678;
+}
+.projectsContent {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 35px;
+}
+.projectsContent .projectsList {
+    position: relative;
+    box-shadow: 0px 8px 32px 0px #d5d5d575;
+}
+.projectsContent .projectsImage img{
+    width: 100%;
+    border-radius: 3px;
+}
+.projectsContent .projectsInfo {
+    background-color: #1FDE82;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    opacity: 0;
+    transition: .6s;
+    border-radius: 3px;
+}
+.projectsContent .projectsInfo:hover {
+    opacity: 100%;
+}
+.projectsContent .projectsInfo .title {
+    margin: 60px 20px 160px;
+}
+.projectsContent .projectsInfo .title h3 {
+    margin: 0px 0px 156px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #ffffff;
+}
+.projectsInfo .viewsite {
+    width: fit-content;
+    margin: 0 20px;
+    color: #ffffff;
+    transition: .6s;
+}
+.projectsInfo .viewsite:hover {
+    color: #5d6678;
+}
+.projects .backgroundCloud1 {
+    position: absolute;
+    left: 20%;
+    top: 25%;
+}
+/* Sign up Area */
+.signUp {
+    position: relative;
+}
+.signUp .signUpPart {
+    width: 1200px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+.signUpPart .signUpContent {
+    display: flex;
+    padding: 100px 10px;
+}
+.signUpContent .signUpArea {
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 25px 79px 44px 0;
+    padding: 39px 51px 38px;
+    box-shadow: 0px 8px 32px 0px#d5d5d575;
+}
+.signUpImage {
+    padding: 10px;
+}
+.signUpArea .signUpTitle {
+    width: 60%;
+    margin-bottom: 30px;
+}
+.signUpArea input {
+    width: 94%;
+    height: 40px;
+    margin: 0px 0px 4px;
+    padding: 11px 14px 10px;
+    text-indent: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+}
+.signUpArea textarea {
+    width: 100%;
+    height: 100px;
+    margin: 0px 0px 4px;
+    padding: 11px 14px 10px;
+    box-sizing: border-box;
+    resize: none;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+}
+.signUpArea .sendButton {
+    width: fit-content;
+    margin: -3px 0px 0px;
+    padding: 10px 20px 8px;
+    background-color: #1FDE82;
+    border-radius: 3px;
+    color: white;
+    transition: .6s;
+    box-shadow: 0px 8px 32px 0px#1fde8275;
+}
+.signUpArea .sendButton:hover {
+    background-color: #5d6678;
+}
+.signUp .backgroundCloud1 {
+    position: absolute;
+    right: 0%;
+    top: 10%;
+}
+/* Subscribe Area */
+.subscribeAndMore {
+    padding: 60px 0 ;
+    background-color: #F7FAFF52;
+    position: relative;
+}
+.subscribeAndMore .subscribeAndMorePart {
+    width: 570px;
+    margin: auto;
+    padding: 15px 130px 14px 18px;
+    position: relative;
+    z-index: 1;
+}
+.subscribeAndMorePart .subscribeAndMoreTitle {
+    padding: 66px 0px 72px;
+}
+.subscribeAndMorePart .subscribeAndMoreTitle h2 {
+    text-align: center;
+} 
+.subscribeAndMorePart .subscribeAndMoreField {
+    display: flex;
+}
+.subscribeAndMoreField input  {
+    width: 80%;
+    height: 40px;
+    text-indent: 1em;
+    border: 1px solid #ffffff;;
+    border-radius: 3px;
+    box-shadow: 0px 8px 50px 0px #d3d3d375;
+}
+.subscribeAndMoreField .subscribeButton {
+    padding: 17px 20px 15px;
+    background-color: #1FDE82;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 3px;
+    transition: .6s;
+    box-shadow: 0px 8px 28px 0px #1fde8275;
+}
+.subscribeAndMoreField .subscribeButton:hover {
+    background-color: #5d6678;
+}
+.subscribeAndMore .backgroundCloud {
+    position: absolute;
+}
+.subscribeAndMore .backgroundCloud1 { top: 25%; left: 0%;}
+.subscribeAndMore .backgroundCloud2 { right: 5%; bottom: 25%;
+}
+/* Information Area */
+.information .informationPart {
+    width: 1200px;
+    margin: auto;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 30px;
+}
+.informationList:first-child .informationTitle {
+    margin-top: 20px;
+}
+.informationList:first-child .informationContent {
+    margin-top: 20px;
+}
+.informationList:first-child .informationContent span {
+    color:  #1FDE82;
+}
+.informationList .informationTitle {
+    margin-top: 25px;
+}
+.informationTitle h3{
+    font-family: Robort, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 1.32em;
+    letter-spacing: .44px;
+    color: #1d273b;
+}
+.informationList .informationContent {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 15px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 2em;
+}
+.informationList .informationContent a, p{
+    color: #5d6678;
+    transition: .6s;
+}
+.informationList:nth-of-type(n+2) .informationContent a:hover {
+    color: #1FDE82;
+}
+.informationList .informationLink svg {
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 50%;
+    transition: .5s;
+}
+.informationList .informationLink svg:hover {
+    background-color: #1FDE82;
+    
+}
+.informationList .informationLink svg:hover>path {
+    fill: #ffffff;
+}
+/* footer part */
+.footer {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+}
+.footer .copyright {
+    width: 50%;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: 200;
+    color:#5d6678;
+}
+.footer .copyright a {
+    color: #1FDE82;
+    transition: .6s;
+}
+.footer .copyright a:hover {
+    color: #551a8b;
+}
+.footer .privacyAndPolicyArea {
+    width: 50%;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: 200;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    
+}
+.privacyAndPolicyArea .privacyAndPolicy a{
+    color:#5d6678;
+    margin-right: 55px;
+    padding: 15px;
+    transition: .6s;
+}
+.privacyAndPolicy a:hover {
+    color: #1FDE82;
+}
+.privacyAndPolicyArea .FAQ a {
+    font-size: 12px;
+    font-weight: 200;
+    transition: .6s;
+    color:#5d6678;
+}
+.privacyAndPolicyArea .FAQ a:hover {
+    color: #1FDE82;
+}
