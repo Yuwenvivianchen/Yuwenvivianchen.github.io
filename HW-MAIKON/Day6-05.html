@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            /* width: 960px; */
+            outline: 2px solid red;
+        }
+        .card {
+            /* width: 300px; */
+            /*width: 31.25%;/*把象數換算成%: 300/960*100，但此作法會因為畫面縮放而margin改變*/
+            /*要讓margin不會因畫面縮放而有變化的作法用計算函式calc(欄的%減掉左右margin)，父層不設寬度*/
+            width: calc(33.333333% - 10px * 2) ;
+            margin: 10px;
+            margin: 1.04166667%;/*從10px改為%；10/960*100*/
+            height: 100px;
+            background-color: #fa0;
+        }
+        @media screen and (min-width: 768px) {
+            .card {
+                background-color: #f00;
+                width: calc(25% -10px * 2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+    </div>
+</body>
+</html>

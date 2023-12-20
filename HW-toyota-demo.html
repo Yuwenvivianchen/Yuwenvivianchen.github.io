@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        body {
+            font-size: 20px;
+            font-family: 'Microsoft JhengHei', sans-serif, serif;
+            line-height: 1.5;
+            letter-spacing: 2px;
+        }
+
+        /* Container Styles */
+        .container {
+            margin: 60px auto;/*頂部和底部添加了60px的邊距，並使容器在水平方向上居中。*/
+        }
+
+        /* Section Styles */
+        .wrap {
+            width: 960px;/*每個區塊，設置了960px的固定寬度*/
+            margin: 0 auto 140px; /*在水平方向上居中，底部添加了邊距*/
+            display: flex;
+            flex-direction: column;
+            position: relative;/*用於定位偽元素*/                   
+        }
+
+        /* Item Styles */
+        .item {
+            width: 355px;/*固定的355px寬度*/
+        }
+
+        h2 {
+            background-color: #b01;
+            color: #fff;           
+            display: flex;
+            align-items: center;/*內容垂直居中*/
+        }
+
+        h2 span {
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';/*設元素的內容，設置為空字符串，偽元素本身沒有實際內容*/
+            width: 440px;
+            height: 290px;
+            background-color: #eee;
+            position: absolute;/*設偽元素的定位方式為絕對定位，表示它相對於其包含元素（這裡是h2）定位*/
+            right: 0;/*設了偽元素與其包含元素右邊緣的距離為0，這使得偽元素靠著h2的右邊緣定位。*/
+            top: 36px;/*設了偽元素與其包含元素上邊緣的距離為36像素，這使得偽元素從h2的頂部位置向下偏移了36像素。*/
+            z-index: -1;/*設了偽元素的堆疊順序為-1，這使得偽元素位於h2的背後。這樣，即使偽元素與h2重疊，它會在堆疊順序上處於h2的後面。*/
+        }
+
+        .itemIndex {
+            writing-mode: vertical-rl;/*設元素的書寫模式，vertical-rl 表示垂直書寫，文字將沿著垂直軸（由右至左）排列。這使得文本內容垂直顯示。*/
+            margin: 10px -30px 0 -25px;/*屬性設置元素的邊距。這裡的值是10px（上邊距）、-30px（右邊距）、0（下邊距）、-25px（左邊距）。負值的右邊距和左邊距將元素向左和向右移動，分別使內文相對於正常的位置左移30px和25px*/
+            font-size: 110px;/*字體的粗細，使用較輕的字體*/
+            font-weight: 100;
+            transform: scaleX(1.5);/*允許對元素進行變換。這裡使用 scaleX(1.5) 將元素沿著X軸方向進行水平縮放，放大了1.5倍。這將增加文字的水平寬度*/
+            letter-spacing: 6px;/*設字母之間的間距為6像素。這將增加字母之間的空隙，改變文字的排列方式。*/
+        }
+
+        h2 span:nth-child(2) {/*針對 h2 元素內的第二個子元素 span 進行樣式設定*/
+            font-size: 52px;
+            margin: auto;/*這使得 h2 元素內的第二個 span 子元素在水平方向上具有自動的外邊距。這樣可以使其在其容器中水平居中*/
+        }
+
+        .itemSlogan {
+            display: flex;
+            position: relative;/*.itemSlogan 元素的子元素在定位時，參考的是它自己資料在內文中的位置。*/
+        }
+
+        /* Text Content Styles */
+        .itemText {
+            box-sizing: border-box;/*盒模型，元素的寬度和高度包括內邊距（padding）和邊框（border），不是僅包括內容*/
+            position: absolute;/*.itemText 元素會相對於其最近的已定位祖父輩元素（如果有的話）進行定位，否則它會相對於最初的包含塊進行定位*/
+            color: #fff;
+            background-color: #000;
+            padding: 25px;/*內邊距的大小，在文字內容與 .itemText 元素的邊緣之間添加空間。*/
+            z-index: 2;/*設置元素的堆疊順序。這裡被設置為 2，表示 .itemText 元素將會出現在 z 軸上比其他 z-index 較小的元素之上*/
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 700;/*粗體字體*/
+            padding-bottom: 10px;/*文字底部的內邊距為 10 像素，在 h3 標籤內文字底部和下方元素之間添加一些空間*/
+        }
+
+        /* Image Link Styles */
+        a:not(nav > a) {/*針對所有不是 nav 元素下的 a 元素進行樣式設定，不選取那些是 nav 的直接子元素的 a 元素*/
+            display: flex;
+            width: 695px;
+            position: relative;/*設元素的定位方式為相對定位。這表示 a 元素會相對於其正常位置進行微調。*/
+            left: 175px;/*屬性設置元素相對於其正常位置向左的偏移量為 175 像素。這會將 a 元素向右移動。*/
+            text-decoration: none;/*設置文字的裝飾效果，去除文字的底線*/
+            align-items: center;/*設置元素內容在交叉軸上的對齊方式。這裡被設置為 center，表示垂直居中對齊內容*/
+        }
+
+        a:not(nav > a)::after {/* 針對所有不是 nav 元素下的 a 元素的後代元素（即 a 的子元素）進行樣式設定，表示不選取那些是 nav 的直接子元素的 a 元素，而 ::after 表示選擇 a 元素的偽元素*/
+            content: '▶';/*偽元素的內容，在 a 元素的內容之後插入一個箭頭字符*/
+            font-size: 26px;
+            color: #fff;
+            background-color: #b01;
+            align-items: center;/*設元素內容在交叉軸上的對齊方式。這裡被設置為 center，表示垂直居中對齊內容*/
+            padding: 0 10px 5px 18px;/*內邊距的大小，上、右、下、左的順序，分別為 0、10 像素、5 像素、18 像素*/
+            height: 36px;
+            border-radius: 3px;/*邊框半徑為 3 像素，使其具有圓角效果*/
+            margin-left: -3%;/* 設元素相對於其正常位置向左的偏移量為 -3%。這會將箭頭元素向左移動*/
+        }
+
+        /* Item Content Styles */
+        .itemContent {
+            font-size: 16px;
+            width: 682px;
+            padding: 10px 20px 10px;/*內容區域的內邊距。這裡是上、右、下的順序，分別為 10 像素、20 像素、10 像素*/
+            box-sizing: border-box;/*設置元素框模型的盒子大小計算方式。這裡被設為 border-box，表示元素的寬度和高度包括內邊距和邊框，而不是僅考慮內容區域*/
+            background-color: #eee;
+            margin: -20px 0 0 50px;/*內邊距，上、右、下、左的順序，分別為 -20 像素、0、0、50 像素，負值的上外邊距會使元素向上移動，正值的左外邊距會使元素向右移動。*/
+            position: relative;/*設元素的定位方式為相對定位。這表示元素的定位參考點是其自身原來的位置，而不是相對於其他元素*/
+            z-index: 2;/*元素的堆疊順序。這裡被設置為 2，表示元素位於內文中的元素之上。*/
+        }
+
+        .introduction {
+            display: flex;
+            padding-bottom: 12px;/*元素底部的內邊距為 12 像素。這會在 introduction 元素的底部留出一些空間*/
+        }
+
+        .introduction p {
+            font-size: 18px;
+            color: #b01;
+            font-weight: 600;/*文字的粗細程度為中等*/
+        }
+
+        hr {/*水平線*/
+            display: inline-block;/*使水平線元素既具有 block 元素的塊狀性質，又能在內容中水平排列*/
+            flex-grow: 1;/*元素的彈性增長因子為 1。這表示當水平線所在的 flex 容器具有額外的可用空間時，水平線元素會擴展以填滿該空間*/
+            border: none;/*邊框為無。這消除了水平線預設的邊框*/
+            border-top: 1px solid #b01;/*上邊框為 1 像素寬，實線，並且顏色為深紅色 */
+            margin-left: 10px;/*素左側的外邊距為 10 像素。這會在水平線的左側添加一些空間。*/
+            margin-top: 10px;/*元素上方的外邊距為 10 像素。這會在水平線的上方添加一些空間*/
+        }
+
+        .itemContent>h4 {
+            color: #fff;
+            background-color: #000;
+            display: inline-block;/*使 h4 標題在水平方向上呈現行內元素的特性，同時保留塊狀元素的特性*/
+            padding: 2px 5px;/*元素的內邊距，上下、左右的順序，分別為 2 像素、5 像素。這會在 h4 標題的內容周圍添加一些內邊距，使其內容不至於貼得太緊*/
+        }
+
+        .itemContent>p {/*元素內部直接包含的段落元素 (<p>) 進行樣式設定*/
+            font-size: 14px;
+            padding: 4px 0 6px 25px;/* 屬性設置段落內容的內邊距。這裡是上、右、下、左的順序，分別為 4 像素、0、6 像素、25 像素。這會在段落的內容周圍添加一些內邊距，以控制段落的外觀*/
+            text-indent: -1em;/*設首行文本縮進的距離。在這裡，它被設置為 -1 個字元的寬度。這將使段落的首行向左縮進一個字元的寬度*/
+        }
+
+        .itemContent>p::before {/*元素內部直接包含的段落元素 (<p>) 中的每個段落的開頭（首行）添加一個特殊的內容*/
+            content: '\2022';/*設在元素內部插入的內容。在這裡，使用 Unicode 碼點 \2022 表示實心圓點。這將在每個段落的開頭插入一個實心圓點*/
+            color: #b01;
+            padding-right: 5px;/*設插入的實心圓點右側的內邊距為 5 像素。這將在實心圓點和段落文本之間添加一些空間*/
+        }
+
+        /* Alternate Row Styles */
+        .wrap:nth-child(even) {/*選擇 .wrap 元素的第偶數個子元素，影響 .wrap 元素在父元素中的排列*/
+            flex-wrap: wrap-reverse;/*表示子元素在行或列軸上按照反向的方式換行。當容器的空間不足以容納所有子元素時，這會導致子元素在下一行的開始處換行，而不是在原來行的末尾換行*/
+        }
+
+        .wrap:nth-child(even) h2 {
+            flex-direction: row-reverse;/*設置flex 容器的主軸方向，將 h2 標題的子元素在主軸上以反向的方向排列。通常，row-reverse 會導致子元素的順序相反，即最後一個子元素變成第一個*/
+        }
+
+        .wrap:nth-child(even) h2::after {/*選擇 .wrap 元素的第偶數個子元素，選擇這個 .wrap 元素中的 h2 標題的 ::after偽元素*/
+            width: 518px;
+            height: 413px;
+            left: 250px;/*元素距離其包含元素左邊界的距離為 250 像素*/
+            top: 50px;/*元素距離其包含元素上邊界的距離為 50 像素*/
+        }
+
+        .wrap:nth-child(even) a {/*選擇 .wrap 元素的第偶數個子元素。接著，a 表示選擇這個 .wrap 元素中的 a 標籤*/
+            left: -605px;/*設 a 元素相對於其正常位置的左側偏移量為 -605 像素。這將使該元素向左移動，超出其正常位置*/
+        }
+
+        .wrap:nth-child(even) a::after {/*:nth-child(even) 是一個 CSS 選擇器，選擇 .wrap 元素的第偶數個子元素*/
+            margin-left: -105%;/*設 ::after 元素相對於其正常位置的左側邊距為 -105%。這將使該元素在其包含元素的左邊界的左側超出 100% 的寬度，再加上 5%*/
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <div class="wrap">
+            <div class="item">
+                <h2><span class="itemIndex">01</span><span>操控樂趣</span></h2>
+                <div class="itemSlogan">
+                    <div class="itemText">
+                        <h3>人人滿意的駕駛體驗</h3>
+                        <p>透過最佳重量分配，實現平順起步，直線穩定加速，過彎同時保持車身平穩，帶給駕駛更靈敏的道路反饋，享受隨心馳騁的行駛快感。</p>
+                    </div>
+                    <a href="#">
+                        <img src="https://picsum.photos/695/430/?random=10">
+                    </a>
+                </div>
+            </div>
+            <div class="itemContent">
+                <div class="introduction">
+                    <p>因為我們做了這些革新</p>
+                    <hr>
+                </div>
+                <h4>低重心設計</h4>
+                <p>透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性。</p>
+                <h4>車體剛性強化。</h4>
+                <p>車身結構採用超高強度鋼材，提高車輛穩定性，同時藉由雷射強化焊接技術，大幅增加焊點數量，提升車身抗扭剛性，強化駕馭穩定性及安全性。</p>
+                <h4>四輪獨立懸吊</h4>
+                <p>搭載全新四輪獨立懸吊設定，透過懸吊的高承載強度，保持輪胎抓地力，同時兼顧轉向靈敏度與清晰路感回饋，提升駕馭樂趣。</p>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="item">
+                <h2><span class="itemIndex">02</span><span>安全守護</span></h2>
+                <div class="itemSlogan">
+                    <a href="#">
+                        <img src="https://picsum.photos/695/430/?random=11">
+                    </a>
+                    <div class="itemText">
+                        <h3>行車更安心的高剛性車體</h3>
+                        <p>您的愛車會妥善保護您，強悍穩固的車身可使您安全無虞。世界級的安全功能讓您輕鬆自如享受旅程，毫無後顧之憂。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="itemContent">
+                <div class="introduction">
+                    <p>因為我們做了這些革新</p>
+                    <hr>
+                </div>
+                <h4>主動安全</h4>
+                <p>可以先進的TSS系統主動偵測路況，輔助駕駛判斷路況並維持行車安全。</p>
+                <h4>被動安全</h4>
+                <p>堅固的高剛性車體，使用熱沖壓材料的高強度抗扭鋼板，強化座艙對意外事故的保護力。</p>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="item">
+                <h2><span class="itemIndex">03</span><span>乘坐舒適</span></h2>
+                <div class="itemSlogan">
+                    <div class="itemText">
+                        <h3>令人放鬆舒適的車室空間</h3>
+                        <p>車室空間設計著重人體工學，透過方向盤，踏板等位置優化，追求更舒適的駕駛位置，並以新型座椅設計，提高座椅包覆性，致力實現長途駕駛疲勞的舒適駕馭體驗。</p>
+                    </div>
+                    <a href="#">
+                        <img src="https://picsum.photos/695/430/?random=12">
+                    </a>
+                </div>
+            </div>
+            <div class="itemContent">
+                <div class="introduction">
+                    <p>因為我們做了這些革新</p>
+                    <hr>
+                </div>
+                <h4>駕駛位置最佳化</h4>
+                <p>針對駕駛位置進行徹底的修改，讓駕駛者可如同握手般自然且舒適地操控方向盤駕馭視野佳。</p>
+                <h4>駕馭視野佳</h4>
+                <p>考量駕駛坐進車內的高度，透過前擋風玻璃位置的調整，達到盲區極小化，使駕駛視野更開闊，同步提升駕取安全。</p>
+                <h4>更寧靜的車室</h4>
+                <p>採用最新三層結構的隔音材料，與引擎，變速箱的零件改革，將座艙的震動抑制在最小限度，提供乘客舒適安靜的感受。</p>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="item">
+                <h2><span class="itemIndex">04</span><span>以人為本</span></h2>
+                <div class="itemSlogan">
+                    <div class="itemText">
+                        <h3>使用者導向的貼心設計</h3>
+                        <p>藉由高度人性化的介面整合，傳遞車輛資訊，豐富日常駕駛體驗。從提升油耗表現到行李廂空間最適化，均細心考量，更加貼近使用者真正所需與習慣，並給予即時回應。</p>
+                    </div>
+                    <a href="">
+                        <img src="https://picsum.photos/695/430/?random=13">
+                    </a>
+                </div>
+            </div>
+            <div class="itemContent">
+                <div class="introduction">
+                    <p>因為我們做了這些革新</p>
+                    <hr>
+                </div>
+                <h4>優異油耗表現</h4>
+                <p>以Corolla Sport為例，更強勁的高效引擎將熱效率提升至40％，達到世界級水準，屡屡突破燃油效率新境界。</p>
+                <h4>行李箱空間最適化</h4>
+                <p>以第四代Prius為例，透過將電池位置移到後座下方，讓行李箱擁有更大的空間。</p>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="item">
+                <h2><span class="itemIndex">05</span><span>引以為傲</span></h2>
+                <div class="itemSlogan">
+                    <div class="itemText">
+                        <h3>極具吸引力的精心設計</h3>
+                        <p>TNGA車款擁有讓人忍不住回頭的新潮外觀，讓駕駛充滿自信的駕馭快感！不僅讓車主能展現個人風格，能讓擁有者都能引以為傲。</p>
+                    </div>
+                    <a href="">
+                        <img src="https://picsum.photos/695/430/?random=14">
+                    </a>
+                </div>
+            </div>
+            <div class="itemContent">
+                <div class="introduction">
+                    <p>因為我們做了這些革新</p>
+                    <hr>
+                </div>
+                <h4>設計概念</h4>
+                <p>TNGA低重心設計，不僅呈現更低伏的運動化外觀，更講究高品質內裝的一致性。</p>
+                <h4>環保概念</h4>
+                <p>為了對環境保護盡一份心力，我們全面提升傳統引擎，變速箱與油電複合動力的動力效能。</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
