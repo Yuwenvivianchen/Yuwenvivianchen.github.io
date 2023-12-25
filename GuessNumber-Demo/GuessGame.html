@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GuessGame</title>
+  <link rel="stylesheet" href="./reset.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+
+      font-family: Microsoft JhengHei, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+
+      background-image:
+         url("./rilakkuma01.jpg");
+      background-size: cover;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btnGroup {
+      margin: 10px;
+    }
+
+    .btnGroup {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      background-color: rgb(192, 255, 217);
+      border-radius: 50%;
+    }
+
+    .btnGroup:hover {
+      background-color: rgb(0, 128, 102);
+      border-radius: 50%;
+      color: aliceblue;
+    }
+
+    .btnGroup2 {
+      width: 180px;
+      height: 40px;
+      font-size: 16px;
+      font-weight: 700;
+      background-color: rgb(192, 255, 217);
+      border-radius: 3px;
+    }
+    .btnGroup2:hover {
+      background-color: rgb(0, 128, 102);
+      border-radius: 3px;
+      color: aliceblue;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+      margin-right: 8px;
+      text-align: center;
+    }
+
+    #result, #range {
+      font-size: 26px;
+      font-weight: 700;
+      color: #ebb434;
+      margin-top: 50px;
+      padding-left: 40%;
+      align-items: flex-end;
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="game-container">
+    <h1>猜數字遊戲-練習版</h1>
+    <h2>Guess Number Game- Practice Demo</h2>
+    <div>
+      <input type="button" class="btnGroup" value="1" />
+      <input type="button" class="btnGroup" value="2" />
+      <input type="button" class="btnGroup" value="3" />
+      <input type="button" class="btnGroup" value="4" />
+      <input type="button" class="btnGroup" value="5" />
+      <input type="button" class="btnGroup" value="6" />
+      <input type="button" class="btnGroup" value="7" />
+      <input type="button" class="btnGroup" value="8" />
+      <input type="button" class="btnGroup" value="9" />
+      <input type="button" class="btnGroup" value="0" />
+    </div>
+
+    <input type="text" id="guess-input" />
+    <input type="button" class="btnGroup2" value="確認 Confirm" id="button-confirm" />
+    <input type="button" class="btnGroup2" value="清除 Clear" id="button-clear" />
+    <input type="button" class="btnGroup2" value="看答案 Check Answer" id="button-check-answer" />
+    <input type="button" class="btnGroup2" value="重置遊戲 Reset" id="button-reset" />
+    <p id="result">Good Luck!!!</p>
+    <p id="range">請輸入1~100之間的數字 Please Enter one Number between 1 to 100.</p>
+
+  </div>
+
+  <script>
+
+    // Game settings
+    //initialize variables for the game settings
+    let minNum = 1;
+    let maxNum = 100;
+    let targetNumber = getRandomNum(minNum, maxNum);
+    let times = 0;
+
+    // DOM elements
+    // fetch references to important DOM elements using getElementById.
+    const rangeMessage = document.getElementById('range');
+    const guessInput = document.getElementById('guess-input');
+    const resultMessage = document.getElementById('result');
+
+    // Event listeners
+    //set up event listeners for various buttons in the game
+    document.getElementById('button-confirm').addEventListener('click', checkGuess);
+    document.getElementById('button-clear').addEventListener('click', clearInput);
+    document.getElementById('button-check-answer').addEventListener('click', checkAnswer);
+    document.getElementById('button-reset').addEventListener('click', resetGame);
+
+     //select all elements with the class 'btnGroup' and attaches a click event listener to each
+    document.querySelectorAll('.btnGroup').forEach(button => {
+      button.addEventListener('click', () => appendToGuess(button.value));
+    });
+
+    // Game functions
+    /*This function generates a random number within a specified range. It is used to set the initial target number.*/
+
+    /*What if you need the results to be inclusive at both the minimum and the maximum? The getRandomIntInclusive() function below accomplishes that.
+    
+    function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);//The Math.ceil() static method always rounds up and returns the smallest integer greater than or equal to a given number.
+    max = Math.floor(max);//The Math.floor() static method always rounds down and returns the largest integer less than or equal to a given number.
+    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+}*/
+
+    function getRandomNum(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);// The maximum is inclusive and the minimum is inclusive
+    }
+
+    //These functions are utility functions for updating the range message, appending values to the guess input, and clearing the guess input, respectively.
+    function updateRangeMessage() {
+      //rangeMessage.textContent = `請輸入${minNum}~${maxNum}之間的整數數字`;
+      rangeMessage.textContent = `Please Enter a Number between ${minNum} to ${maxNum}!`;
+      //Template literals: The backticks (`) allow for the use of template literals, which enable string interpolation.
+      //use textContent to get the element's text content
+    }
+
+    // guessInput is assumed to be a reference to an HTML input element.
+  // The function takes a 'value' as a parameter, which is typically a string.
+
+  // The value parameter is appended to the current value of the guessInput element.
+  // This is done by using the '+=' operator, which concatenates the existing value with the new value.
+    function appendToGuess(value) {
+      guessInput.value += value;
+    }
+
+    // guessInput is assumed to be a reference to an HTML input element.
+
+  // Set the value of guessInput to an empty string, effectively clearing the input.
+    function clearInput() {
+      guessInput.value ='';
+      // Call the updateRangeMessage function to update any associated range message.
+      updateRangeMessage(); // Add this line to update the range message after clearing input
+    }
+
+    function checkGuess() {
+      // Parse the user's guess from the input field
+      const userGuess = parseFloat(guessInput.value);
+
+      // Check if the user's guess is not an integer, is NaN, or is outside the valid range
+      if (!Number.isInteger(userGuess) || isNaN(userGuess)|| userGuess < minNum || userGuess > maxNum) {
+        // Display an error message, clear the input, and exit the function
+        resultMessage.textContent = '請輸入有效範圍內的整數 Please enter a valid number.';
+        clearInput();
+        return;
+      }
+
+      // Increment the number of attempts
+      times++;
+
+      // Check if the user's guess is correct
+      if (userGuess === targetNumber) {
+         // Display a success message, clear the input, and exit the function
+        resultMessage.textContent = `恭喜你猜對了！ Congrats! 共猜了 Attempt ${times}次 times.`;
+        clearInput();
+      } else {
+         // Display a hint message based on whether the guess is too high or too low
+        resultMessage.textContent = userGuess > targetNumber ? '猜小一點 Guess a smaller number.' : '猜大一點 Guess a bigger number.';
+        
+         // Update the range based on the user's guess
+         /* This is the ternary operator條件 (三元) 運算子(condition ? exprIfTrue : exprIfFalse). 
+          It's a concise way of writing an if-else statement.
+          If the condition (userGuess > targetNumber) is true, it evaluates to the value before the colon ('猜小一點').
+          If the condition is false, it evaluates to the value after the colon ('猜大一點').*/
+        userGuess < targetNumber ? minNum = userGuess + 1 : maxNum = userGuess - 1;
+
+        // Update the range message, clear the input, and continue the game
+        updateRangeMessage();
+        clearInput();
+      }
+    }
+
+    function checkAnswer() {
+      // Display an alert with the correct answer
+      alert(`答案是 Answer is : ${targetNumber}`);
+    }
+
+    // function resetGame() {
+    //   // Reload or refresh the current page
+    //   /*using location.reload() will refresh the entire page, causing a complete reload of all resources, including stylesheets, scripts, and images.*/
+    //   location.reload();
+    // }
+
+    // // Initial setup
+    // updateRangeMessage();
+
+    function resetGame(){
+      // Reset game-related variables
+      minNum = 1;
+      maxNum = 100;
+      targetNumber = getRandomNum(minNum, maxNum);
+      times = 0;
+
+      // Reset UI elements
+      updateRangeMessage();
+      clearInput();
+      resultMessage.textContent ='';
+
+      // Optionally, scroll to the top of the page
+      /*Window: scrollTo() method:
+        Window.scrollTo() scrolls to a particular set of coordinates in the document.
+        scrollTo(x-coord, y-coord)
+        or
+        scrollTo(options)
+        x-coord is the pixel along the horizontal axis of the document that you want displayed in the upper left.
+        y-coord is the pixel along the vertical axis of the document that you want displayed in the upper left.*/
+        /*The window.scrollTo() method takes two arguments:
+          The first argument represents the horizontal scroll position, and 0 sets it to the leftmost position.
+          The second argument represents the vertical scroll position, and 0 sets it to the topmost position.
+          So, window.scrollTo(0, 0); essentially scrolls the window to the top-left corner, ensuring that the content at the top of the page is visible to the user. This is commonly used as part of a reset or initialization process, providing a clean starting point for the user.*/
+      window.scrollTo(0, 0);
+    }
+
+    // Add window.onload to ensure the script runs after the DOM is fully loaded
+    /*This modification ensures that the updateRangeMessage function is called when the window has finished loading. The window.onload event is a commonly used technique to make sure that your JavaScript code interacts with the fully loaded DOM elements.*/
+    window.onload = function() {
+      // Initial setup
+      updateRangeMessage();
+    };
+
+  </script>
+</body>
+
+</html>
