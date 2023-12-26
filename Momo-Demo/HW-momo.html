@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reset.css">
+    <style type="text/css">
+        .wrap {
+            width: 1200px;
+            display: flex;
+            margin: auto;
+            flex-wrap: wrap;
+        }
+
+        .list {
+            width: 180px;
+            padding: 5px 10px;
+            box-sizing: border-box;
+            position: relative;
+            
+        }
+
+        .list:hover {
+            background-color: #fefacd;
+        }
+
+
+        a[href="#"] .list:hover {
+            background-color: #fefacd;
+        }
+
+        a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .slogan-title {
+            color: #E41B43;
+            font-size: 13px;
+            padding-left: 8px;
+        }
+
+        h2 {
+            font-family: sans-serif;
+            font-weight: 100px;
+            font-size: 12px;
+            color: #636363;
+            letter-spacing: 1px;
+            line-height: 1.5em;
+            margin-bottom: 15px;
+            text-overflow: hidden;
+            white-space: normal;
+        }
+
+        .price {
+            font-family: sans-serif;
+            font-weight: lighter;
+            font-size: 22px;
+            color: #E63995;
+        }
+
+        .price :first-child {
+            font-size: 12px;
+            margin-right: -5px;
+            font-weight: bold;
+            color: #E63995;
+        }
+
+        .price :last-child {
+            font-size: 12px;
+            font-weight: 400;
+            margin-left: 5px;
+            color: #808080;
+        }
+
+        .item-pic {
+            width: 100%;
+        }
+
+        .rating-stars {
+            display: inline-flex;
+            padding: 0 5px;
+            vertical-align: middle;
+            line-height: 15px;
+        }
+
+        .rating-stars .star.star-full {
+            background-image: url(//image.momoshop.com.tw/ecm/img/cmm/icon_star_full_24x24.svg);
+        }
+
+        .rating-stars .star {
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .rating-stars .star.star-half {
+            background-image: url(//image.momoshop.com.tw/ecm/img/cmm/icon_star_half_24x24.svg);
+        }
+
+        .pre-order-tag {
+            margin-right: 8px;
+            padding: 1px 4px 0 4px;
+            /* display: inline-block; */
+            vertical-align: top;
+            background-color: #FF960A;
+            border-radius: 4px;
+            color: #fff;
+            font: 13px/18px Helvetica, sans-serif;
+            letter-spacing: 0.1em;
+        }
+
+        .item-text {
+            padding-top: 15px;
+        }
+
+        .item-text span:nth-child(5) {
+            position: relative;
+            top: 0px;
+            left: -8px;
+            font-size: 12px;
+            font-weight: 400;
+            margin-left: 8px;
+            color: #808080;
+        }
+
+        .item-text :nth-child(6) {
+            display: block;
+            margin: 3px 0 0 5px;
+            font-size: 10px;
+            color: #636363;
+        }
+
+        .item-info {
+            display: flex;
+            margin: 10px 0px;
+            padding: 6px;
+            background-color: #EDEDED;
+            justify-content: flex-end;
+        }
+
+        .item-info span:nth-last-child(-n+2):not(.sold-out):not(.fast) {
+            background-color: #FF4778;
+        }
+
+        .item-info .fast {
+            background-color: #CC0000;
+            padding: 4px 6px;
+        }
+
+        .item-info span:not(.sold-out) {
+            margin: 1px;
+            color: #FFFFFF;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            font-family: Helvetica;
+        }
+
+        .sold-out {
+            padding: 3px 6px;
+            font-size: 13px;
+            color: #808080;
+            margin: auto;
+            font-weight: bold;
+        }
+
+        .item-pic img {
+            width: 100%;
+        }
+
+        img.pic1,
+        img.pic2,
+        img.pic4 {
+            position: absolute;
+            display: none;
+            opacity: .9;
+        }
+
+        .list:hover img.pic1 {
+            display: block;
+            top: 130px;
+            left: 10px;
+            width: 160px;
+        }
+
+        .list:hover img.pic2 {
+            display: block;
+            top: 60px;
+            left: 150px;
+            width: 20px;
+        }
+
+        .list img.pic3 {
+
+            width: 35px;
+            top: 168px;
+            left: 66px;
+            position: absolute;
+            display: block;
+        }
+
+        .list:hover img.pic3 {
+            display: none;
+        }
+
+        .list:hover img.pic4 {
+            width: 35px;
+            top: 168px;
+            left: 66px;
+            position: absolute;
+            display: block;
+        }
+
+         .line {
+            width: 100%;
+            border: 0.5px dotted #deddddb6;
+            margin: 4px 0px;
+        } 
+    </style>
+</head>
+
+<body>
+    <ul class="wrap">
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11023988_OL.webp" alt="SONY 索尼 PS5 光碟版主機組">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">光碟主機 現貨快搶★</strong>
+                    <h2 class="title">【SONY 索尼】PS5 光碟版主機組(CIF-1218A01)</h2>
+                    <p class="price"><span>$</span>
+                        17,580<span></span>
+                    </p>
+
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(486)</span>
+                    <div>總銷量 > 8,000</div>
+                    <div class="item-info">
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11041886_OL.webp" alt="SONY 索尼 PS5 雙手把同捆主機組">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title"></strong>
+                    <h2 class="title">【SONY 索尼】PS5 雙手把同捆主機組 ... </h2>
+                    <p class="price"><span>$</span>
+                        19,380<span></span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(13)</span>
+                    <div>總銷量 > 1,000</div>
+                    <div class="item-info">
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11065533_OL.webp" alt="SONY 索尼 PS5 光碟版主機+PS4熱門遊戲多選一">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">PS5光碟機+熱門遊戲片</strong>
+                    <h2 class="title">【SONY 索尼】PS5 光碟版主機+PS4熱門遊戲 ...</h2>
+                    <p class="price"><span>$</span>
+                        17,580<span>(售價已折)</span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(5)</span>
+                    <div>總銷量 > 8,000</div>
+                    <div class="item-info">
+                        <span>登記</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11074844_OL.webp" alt="SONY索尼PS5數位版主機+充電座">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title"></strong>
+                    <h2 class="title">【SONY 索尼】PS5 數位版主機+充電座</h2>
+                    <p class="price"><span>$</span>
+                        21,260<span></span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                    </div>
+                    <span>(1)</span>
+                    <div>總銷量 > 1,000</div>
+                    <div class="item-info">
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11158160_OL.webp" alt="SONY 索尼 PS5主機雙手把同捆組+HD攝影機">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">數位版超值組</strong>
+                    <h2 class="title">【SONY 索尼】PS5主機雙手把同捆組+HD攝影機</h2>
+                    <p class="price"><span>$</span>
+                        15,560<span></span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(64)</span>
+                    <div>總銷量 > 5,000</div>
+                    <div class="item-info">
+
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11351553_OL.webp" alt="SONY 索尼 PS5 太空戰士16 同捆組">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">滿1件折3900</strong>
+                    <h2 class="title">【SONY 索尼】PS5 太空戰士16 同捆組</h2>
+                    <p class="price"><span>$</span>
+                        15,480<span>(售價已折)</span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(40)</span>
+                    <div>總銷量 > 100</div>
+                    <div class="item-info">
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <hr class="line">
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11495124_OL.webp" alt="SONY 索尼 PS5 遊戲《漫威蜘蛛人2 Marvels Spider-Man 2》中文版">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">滿1件折100</strong>
+                    <h2 class="title">【SONY 索尼】PS5 遊戲《漫威蜘蛛人2 ...</h2>
+                    <p class="price"><span>$</span>
+                        1,990<span>(下單再折)</span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(74)</span>
+                    <div>總銷量 > 1,000</div>
+                    <div class="item-info">
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11666446_OL.webp" alt="SONY索尼 PS5蜘蛛人2 限量版同捆組">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">滿1件折3900</strong>
+                    <h2 class="title">【SONY索尼】PS5蜘蛛人2 限量版同捆組</h2>
+                    <p class="price"><span>$</span>
+                        16,880<span>(售價已折)</span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(111)</span>
+                    <div>總銷量 > 500</div>
+                    <div class="item-info">
+                        <span class="sold-out">可訂購時通知我</span>
+
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/11833607_OL.webp" alt="SONY 索尼 PS5 蜘蛛人2 限量版同捆組+豪華收納包+主機風扇直立架">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">防疫在家一起打電動</strong>
+                    <h2 class="title">【SONY 索尼】PS5 蜘蛛人2 限量版同捆組+ ...</h2>
+                    <p class="price"><span>$</span>
+                        22,600<span></span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                    </div>
+                    <span>(1)</span>
+                    <div>總銷量 > 10</div>
+                    <div class="item-info">
+                        <span>登記</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/12010082_OL.webp" alt="SONY 索尼 PS5 DualSense 原廠無線控制器(火山紅)">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">突破限制的遊玩體驗</strong>
+                    <h2 class="title">【SONY 索尼】PS5 DualSense 原廠無線 ...</h2>
+                    <p class="price"><span>$</span>
+                        2,280<span></span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                    </div>
+                    <span>(6)</span>
+                    <div>總銷量 > 50</div>
+                    <div class="item-info">
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/8273675_OL.webp" alt="SONY索尼PS5數位版主機+充電座">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title">滿1件折100</strong>
+                    <h2 class="title"><span class="pre-order-tag">預購</span>【SONY 索尼】PS5 DualSense 無線 ...</h2>
+                    <p class="price"><span>$</span>
+                        2,180<span>(售價已折)</span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                    </div>
+                    <span>(131)</span>
+                    <div>總銷量 > 3,000</div>
+                    <div class="item-info">
+
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+        <a href="#">
+            <li class="list">
+                <div class="item-pic">
+                    <img src="./pic/8273679_OL.webp" alt="SONY 索尼 PS5 DualSense 充電座(PlayStation 5 原廠周邊)">
+                    <img src="./pic/select.jpg" class="pic1">
+                    <img src="./pic/right.jpg" class="pic2">
+                    <img src="./pic/circle.jpg" class="pic3">
+                    <img src="./pic/circle1.jpg" class="pic4">
+                </div>
+                <div class="item-text">
+                    <strong class="slogan-title"></strong>
+                    <h2 class="title">【SONY 索尼】PS5 DualSense 充電座 ...</h2>
+                    <p class="price"><span>$</span>
+                        980<span></span>
+                    </p>
+                    <div class="rating-stars">
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-full"></span>
+                        <span class="star star-half"></span>
+                    </div>
+                    <span>(158)</span>
+                    <div>總銷量 > 5,000</div>
+                    <div class="item-info">
+                        <span class="fast">速</span>
+                        <span>登記</span>
+                        <span>贈品</span>
+                    </div>
+                </div>
+            </li>
+        </a>
+    </ul>
+</body>
+
+</html>
