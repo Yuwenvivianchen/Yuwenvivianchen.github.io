@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--專制的寬度，少了這行會壞，不會抓裝置的寬度，也可以限制裝置能不能縮放，除非需要不然用預設initial-scale=1.0，不能縮放的網頁不好用，除非特殊原因，可以設定縮放的倍率，RWD不希望一直來來回回的縮放，除了看照片跟老人家眼力不好才會去做縮放-->
+    <title>Document</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        .card {
+            border: 1px solid #aaa;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .card img {
+            width: 100%;
+            vertical-align: top;
+        }
+        @media screen and (min-width:768px) {
+            .card-list {
+                display: flex;
+                flex-wrap: wrap;
+                max-width: 1200px;
+                margin: auto;
+            }
+            .card {
+                width: calc(100% / 3 -20px);
+            }
+        }
+        @media screen and (min-width: 1024px) {
+            .card {
+                width: calc(100% / 4 -20px);
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            .card {
+                width: calc(100% / 6 -20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-list">
+        <div class="card">
+            <div class="pic">
+                <img src="https://picsum.photos/300/200/?random=10">
+            </div>
+            <div class="txt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, commodi soluta? Maiores vel voluptatibus deserunt eveniet accusamus sunt quaerat, veniam provident soluta repellat incidunt quam quisquam voluptatum, nisi nesciunt quos?
+            </div>
+        </div>
+        <div class="card">
+            <div class="pic">
+                <img src="https://picsum.photos/300/200/?random=10">
+            </div>
+            <div class="txt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, commodi soluta? Maiores vel voluptatibus deserunt eveniet accusamus sunt quaerat, veniam provident soluta repellat incidunt quam quisquam voluptatum, nisi nesciunt quos?
+            </div>
+        </div>
+        <div class="card">
+            <div class="pic">
+                <img src="https://picsum.photos/300/200/?random=10">
+            </div>
+            <div class="txt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, commodi soluta? Maiores vel voluptatibus deserunt eveniet accusamus sunt quaerat, veniam provident soluta repellat incidunt quam quisquam voluptatum, nisi nesciunt quos?
+            </div>
+        </div>
+        <div class="card">
+            <div class="pic">
+                <img src="https://picsum.photos/300/200/?random=10">
+            </div>
+            <div class="txt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, commodi soluta? Maiores vel voluptatibus deserunt eveniet accusamus sunt quaerat, veniam provident soluta repellat incidunt quam quisquam voluptatum, nisi nesciunt quos?
+            </div>
+        </div>
+        <div class="card">
+            <div class="pic">
+                <img src="https://picsum.photos/300/200/?random=10">
+            </div>
+            <div class="txt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, commodi soluta? Maiores vel voluptatibus deserunt eveniet accusamus sunt quaerat, veniam provident soluta repellat incidunt quam quisquam voluptatum, nisi nesciunt quos?
+            </div>
+        </div>
+        <div class="card">
+            <div class="pic">
+                <img src="https://picsum.photos/300/200/?random=10">
+            </div>
+            <div class="txt">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, commodi soluta? Maiores vel voluptatibus deserunt eveniet accusamus sunt quaerat, veniam provident soluta repellat incidunt quam quisquam voluptatum, nisi nesciunt quos?
+            </div>
+        </div>
+    </div>
+</body>
+</html>
