@@ -4,6 +4,10 @@
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Adding ej2.min.js CDN link
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -36,7 +40,9 @@
         </tbody>
     </table> -->
     </div>
+    <canvas id="myPieChart"></canvas>
     <script>
+
         //巢狀物件或陣列的解構
         //Nested Object and Array Destructuring
         const marketingShare = {
@@ -57,6 +63,15 @@
             ]
         };
 
+        // Window onload event
+        window.onload = function () {
+            const table = createTable();// Call the 'createTable' function to create a table element
+            addHead(table, marketingShare.titles); // Call the 'addHead' function to add the table header
+            addBody(table, marketingShare.data); // Call the 'addBody' function to add the table body with data
+            document.body.append(table); // Append the table to the document body
+        };
+
+
         // Function to create a table element
         function createTable() {
             const table = document.createElement("table");// Create a new <table> element
@@ -70,7 +85,7 @@
             const thead = document.createElement("thead");// Create a new <thead> element
             const row = document.createElement("tr");// Create a new <tr> element for the table row
 
-             // Iterate through the 'titles' array
+            // Iterate through the 'titles' array
             titles.forEach(title => {
                 const th = document.createElement("th");// Create a new <th> element for each title
                 th.textContent = title; // Set the text content of the <th> element to the title
@@ -89,7 +104,7 @@
             data.forEach(rowData => {
                 const row = document.createElement("tr");// Create a new <tr> element for each row of data
 
-                 // Iterate through the values of each 'rowData' object
+                // Iterate through the values of each 'rowData' object
                 Object.values(rowData).forEach(item => {
                     const td = document.createElement("td");// Create a new <td> element for each data item
                     td.textContent = item;// Set the text content of the <td> element to the data item
@@ -102,13 +117,8 @@
             table.append(tbody);// Append the <tbody> element to the table
         }
 
-        // Window onload event
-        window.onload = function () {
-            const table = createTable();// Call the 'createTable' function to create a table element
-            addHead(table, marketingShare.titles); // Call the 'addHead' function to add the table header
-            addBody(table, marketingShare.data); // Call the 'addBody' function to add the table body with data
-            document.body.append(table); // Append the table to the document body
-        };
+        //
+
 
 
     </script>
