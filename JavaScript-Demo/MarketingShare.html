@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- Adding ej2.min.js CDN link
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron bg-info">
+        <h1>用Array陣列資料結合DOM API動態產生Table - MarketingShare</h1>
+    </div>
+    <div id="container">
+        <!--<table class="table table-dark table-hover" id="marketingTable">
+        <thead>
+            <tr>
+                <th>排名</th>
+                <th>公司名稱</th>
+                <th>國別</th>
+                <th>市佔率%</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               <td>資料欄1</td>
+               <td>資料欄2</td>
+               <td>資料欄3</td>
+               <td>資料欄4</td>
+               <td>資料欄5</td>
+               <td>資料欄6</td>
+               <td>資料欄7</td>
+               <td>資料欄8</td>
+               <td>資料欄9</td>
+               <td>資料欄10</td>
+            </tr>
+        </tbody>
+    </table> -->
+    </div>
+    <canvas id="myPieChart"></canvas>
+    <script>
+
+        //巢狀物件或陣列的解構
+        //Nested Object and Array Destructuring
+        const marketingShare = {
+            publish: "2021/12/31",
+            version: "1.0",
+            titles: ["排名", "公司名稱", "國別", "市佔率%"],
+            data: [
+                { Ranking: 1, Name: "台積電", Country: "台灣", Ratio: 53.1 },
+                { Ranking: 2, Name: "三星電子", Country: "韓國", Ratio: 17.3 },
+                { Ranking: 3, Name: "聯電", Country: "台灣", Ratio: 7.2 },
+                { Ranking: 4, Name: "格羅方德", Country: "美國", Ratio: 6.1 },
+                { Ranking: 5, Name: "中芯國際", Country: "中國", Ratio: 5.3 },
+                { Ranking: 6, Name: "華虹半導體", Country: "中國", Ratio: 2.6 },
+                { Ranking: 7, Name: "力積電", Country: "台灣", Ratio: 1.8 },
+                { Ranking: 8, Name: "世界先進", Country: "台灣", Ratio: 1.4 },
+                { Ranking: 9, Name: "高塔半導體", Country: "以色列", Ratio: 1.4 },
+                { Ranking: 10, Name: "東部高科", Country: "南韓", Ratio: 1 }
+            ]
+        };
+
+        // Window onload event
+        window.onload = function () {
+            const table = createTable();// Call the 'createTable' function to create a table element
+            addHead(table, marketingShare.titles); // Call the 'addHead' function to add the table header
+            addBody(table, marketingShare.data); // Call the 'addBody' function to add the table body with data
+            document.body.append(table); // Append the table to the document body
+        };
+
+
+        // Function to create a table element
+        function createTable() {
+            const table = document.createElement("table");// Create a new <table> element
+            // Add CSS classes to the table element
+            table.classList.add("table", "table-dark", "table-hover");//classList.add -> to add multiple classes to the table element 
+            return table;// Return the created table element
+        }
+
+        // Function to add table header
+        function addHead(table, titles) {
+            const thead = document.createElement("thead");// Create a new <thead> element
+            const row = document.createElement("tr");// Create a new <tr> element for the table row
+
+            // Iterate through the 'titles' array
+            titles.forEach(title => {
+                const th = document.createElement("th");// Create a new <th> element for each title
+                th.textContent = title; // Set the text content of the <th> element to the title
+                row.append(th);// Append the <th> element to the table row
+            });
+
+            thead.append(row); // Append the table row to the <thead> element
+            table.append(thead);// Append the <thead> element to the table
+        }
+
+        // Function to add table body
+        function addBody(table, data) {
+            const tbody = document.createElement("tbody"); // Create a new <tbody> element
+
+            // Iterate through the 'data' array
+            data.forEach(rowData => {
+                const row = document.createElement("tr");// Create a new <tr> element for each row of data
+
+                // Iterate through the values of each 'rowData' object
+                Object.values(rowData).forEach(item => {
+                    const td = document.createElement("td");// Create a new <td> element for each data item
+                    td.textContent = item;// Set the text content of the <td> element to the data item
+                    row.append(td);// Append the <td> element to the table row
+                });
+
+                tbody.append(row);// Append the table row to the <tbody> element
+            });
+
+            table.append(tbody);// Append the <tbody> element to the table
+        }
+
+        //
+
+
+
+    </script>
+</body>
+
+</html>
