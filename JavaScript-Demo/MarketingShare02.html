@@ -5,8 +5,8 @@
     <!-- Include Bootstrap CSS for styling -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-        <!-- Include Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include Chart.js library -->
+
 </head>
 
 <body>
@@ -19,6 +19,7 @@
     <!-- Canvas element for the pie chart -->
     <canvas id="myPieChart" width="400" height="200"></canvas>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Data representing marketing share details
         const marketingShare = {
@@ -40,18 +41,28 @@
         };
 
         // Function to be executed when the window has fully loaded
-        window.onload = function () {
-            // Create a table dynamically and append it to the 'container' div
+        // window.onload = function () {
+        //     //Create a table dynamically and append it to the 'container' div
+        //     const table = createTable();
+        //     addHead(table, marketingShare.titles);
+        //     addBody(table, marketingShare.data);
+        //     document.getElementById('container').appendChild(table);
+
+        //    // Create a smaller pie chart with specified dimensions
+        //     createPieChart(marketingShare.data, 'myPieChart', 200, 50);
+        // };
+        window.addEventListener("load", () => {
+            //Create a table dynamically and append it to the 'container' div
             const table = createTable();
             addHead(table, marketingShare.titles);
             addBody(table, marketingShare.data);
             document.getElementById('container').appendChild(table);
 
-           // Create a smaller pie chart with specified dimensions
+            // Create a smaller pie chart with specified dimensions
             createPieChart(marketingShare.data, 'myPieChart', 200, 50);
-        };
+        })
 
-         // Function to create a table element
+        // Function to create a table element
         function createTable() {
             const table = document.createElement("table");
             // Add Bootstrap classes for styling
@@ -148,6 +159,7 @@
             });
         }
     </script>
+
 </body>
 
 </html>
