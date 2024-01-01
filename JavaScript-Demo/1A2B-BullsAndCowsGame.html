@@ -14,10 +14,13 @@
             margin: 100px;
             font-family: Microsoft JhengHei, Arial, sans-serif;
             font-weight: 800;
+            background-image:
+                url("./images/rilakkuma02.jpg");
+            background-size:cover;
         }
 
         h1 {
-            color: #30c1ff;
+            color: #1f467d ;
             text-align: center;
             padding: 30px 20px;
         }
@@ -28,33 +31,35 @@
             border-radius: 10px;
             color: white;
         }
+
         .resultA {
             background-color: rgb(59, 195, 59);
         }
+
         .resultB {
             background-color: rgb(210, 74, 74);
-        }    
+        }
     </style>
 </head>
 
 <body>
-    <div class="w-75 mx-auto mb-3">
+    <div class="w-50 mx-auto mb-3">
         <h1>猜數字遊戲 Bulls and Cows Game (1A2B)</h1>
         <!-- Buttons for starting, resetting, and checking the answer -->
         <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
             <button type="button" class="btn btn-outline-danger" id="startBtn">開始 Start</button>
-            <button type="button" class="btn btn-outline-warning" id="restartBtn" disabled>重來 Restart</button>
+            <button type="button" class="btn btn-outline-secondary" id="restartBtn" disabled>重來 Restart</button>
             <button type="button" class="btn btn-outline-success" id="showAnswerBtn" disabled>看答案 Show Answer</button>
         </div>
     </div>
 
     <!-- Displaying game history as a list -->
-    <ul id="gameHistory" class="list-group w-75 mx-auto mb-3">
+    <ul id="gameHistory" class="list-group w-50 mx-auto mb-3">
         <li class="list-group-item">遊戲歷程 Game progression</li>
     </ul>
 
     <!-- Input field for entering guesses -->
-    <div class="input-group w-75 mx-auto">
+    <div class="input-group w-50 mx-auto">
         <input id="guessInput" type="text" class="form-control"
             placeholder="請輸入四個不重複的數字 Please enter four non-repeating numbers!" aria-label="Recipient's username"
             aria-describedby="button-addon2">
