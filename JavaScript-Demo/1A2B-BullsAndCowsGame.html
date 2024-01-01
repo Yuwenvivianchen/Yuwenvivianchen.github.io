@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜數字遊戲 Bulls and Cows Game (1A2B)</title>
+    <!-- Adding Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Adding custom styles -->
+    <style>
+        body {
+            margin: 100px;
+            font-family: Microsoft JhengHei, Arial, sans-serif;
+            font-weight: 800;
+        }
+
+        h1 {
+            color: #30c1ff;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .result {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: white;
+        }
+        .resultA {
+            background-color: rgb(59, 195, 59);
+        }
+        .resultB {
+            background-color: rgb(210, 74, 74);
+        }    
+    </style>
+</head>
+
+<body>
+    <div class="w-75 mx-auto mb-3">
+        <h1>猜數字遊戲 Bulls and Cows Game (1A2B)</h1>
+        <!-- Buttons for starting, resetting, and checking the answer -->
+        <div class="btn-group w-100" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-danger" id="startBtn">開始 Start</button>
+            <button type="button" class="btn btn-outline-warning" id="restartBtn" disabled>重來 Restart</button>
+            <button type="button" class="btn btn-outline-success" id="showAnswerBtn" disabled>看答案 Show Answer</button>
+        </div>
+    </div>
+
+    <!-- Displaying game history as a list -->
+    <ul id="gameHistory" class="list-group w-75 mx-auto mb-3">
+        <li class="list-group-item">遊戲歷程 Game progression</li>
+    </ul>
+
+    <!-- Input field for entering guesses -->
+    <div class="input-group w-75 mx-auto">
+        <input id="guessInput" type="text" class="form-control"
+            placeholder="請輸入四個不重複的數字 Please enter four non-repeating numbers!" aria-label="Recipient's username"
+            aria-describedby="button-addon2">
+        <!-- Button for checking the guess -->
+        <button class="btn btn-outline-dark" type="button" id="checkGuessBtn" disabled>猜 Guess!!!</button>
+    </div>
+
+    <!-- Adding Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script>
+        //This line ensures that the JavaScript code runs only after the DOM (Document Object Model) has been fully loaded. The provided function is an event handler that will be executed once the DOM is ready.
+        document.addEventListener("DOMContentLoaded", function () {
+            //These lines retrieve references to various HTML elements using their respective IDs. These elements include buttons (startBtn, restartBtn, showAnswerBtn, checkGuessBtn), a list for game history (gameHistory), and an input field for entering guesses (guessInput).
+            const startBtn = document.getElementById('startBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const showAnswerBtn = document.getElementById('showAnswerBtn');
+            const checkGuessBtn = document.getElementById('checkGuessBtn');
+            const gameHistory = document.getElementById('gameHistory');
+            const guessInput = document.getElementById('guessInput');
+
+            //declares an empty array named answer to store the answer to the guessing game.
+            let answer = [];
+
+            //This function, generateUniqueNumbers, generates a unique set of four digits and stores them in the answer array. It does this by iteratively selecting a random digit from the digitNumbers array, removing it from the array, and pushing it onto the answer array.
+            function generateUniqueNumbers() {
+                let digitNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];//This line creates an array called digitNumbers containing the digits from 0 to 9 as strings. This array represents the pool of available digits to choose from.
+                for (let i = 0; i < 4; i++) {//This line starts a loop that will iterate four times. The loop is responsible for selecting four unique digits.
+                    let index = Math.floor(Math.random() * digitNumbers.length);//Within each iteration, this line generates a random index (index) within the current length of the digitNumbers array. It uses Math.random() to get a random floating-point number between 0 (inclusive) and 1 (exclusive) and then scales it to the length of digitNumbers.(在每次迭代中，這一行生成一個隨機索引 (index)，該索引位於 digitNumbers 數組的當前長度範圍內。它使用 Math.random() 來獲得一個介於 0（包括）和 1（不包括）之間的隨機浮點數，然後將其縮放到 digitNumbers 的長度範圍內。)
+                    answer.push(digitNumbers.splice(index, 1)[0]);//Here, it removes one element from the digitNumbers array at the randomly generated index using splice. The removed element (a digit) is then pushed onto the answer array. splice returns an array of removed elements, so [0] is used to get the first (and only) element.(在這裡，它使用 splice 從 digitNumbers 數組中的隨機生成的索引處刪除一個元素。刪除的元素（一個數字）然後被推送到 answer 數組中。splice 返回一個包含刪除元素的數組，因此使用 [0] 來獲取第一個（也是唯一的）元素。splice 方法不僅檢索了隨機索引處的數字，還確保所選的數字從 digitNumbers 中刪除，從而避免了重複。這確保了每次選擇的數字都是唯一的。)
+                }
+            }
+
+            //The startGame function is called when the user clicks the "Start" button (startBtn). It resets the answer array, generates a new set of unique digits, clears the game history, and enables the "Restart," "Show Answer," and "Guess" buttons.
+            function startGame() {
+                answer = [];//This line resets the answer array to an empty array. This array will store the correct answer for the current game.
+                generateUniqueNumbers();//generates a new set of four unique numbers and assigns them to the answer array.
+                gameHistory.innerHTML = '<li class="list-group-item">遊戲歷程 Game progression </li>';//adds a list item with the text "遊戲歷程 Game progression" to the game history list, effectively resetting the game history display.
+                restartBtn.disabled = showAnswerBtn.disabled = checkGuessBtn.disabled = false;//allows the user to interact with these buttons after starting a new game.
+            }
+            //The restartGame function is called when the user clicks the "Restart" button (restartBtn). It shows the answer and then starts a new game.
+            function restartGame() {
+                showAnswer();
+                startGame();
+            }
+            //The showAnswer function is called when the user clicks the "Show Answer" button (showAnswerBtn). It displays an alert with the answer.
+            function showAnswer() {
+                alert(`答案是 Answer is : ${answer.join('')}`);
+            }
+            //The checkGuess function is called when the user clicks the "Guess" button (checkGuessBtn). It validates the user's input, checks for duplicates, compares the guess with the answer, updates the game history, and clears the input field.
+            function checkGuess() {
+                const guess = guessInput.value;//retrieves the value entered by the user in the guessInput field and assigns it to the variable guess
+
+                if (!/^\d{4}$/.test(guess)) {//checks if the entered guess is not in the correct format of four digits using a regular expression. returns true if guess does not match the pattern (i.e., if it does not contain exactly four digits) and false if it does.
+                    /*^\d{4}$: This is a regular expression pattern.
+                        ^: Asserts the start of the string.
+                        \d: Matches any digit (0-9).
+                        {4}: Specifies that exactly four digits must be present.
+                        $: Asserts the end of the string.*/
+                    alert("請輸入正確格式的四位數字 Please enter the correct format of four digits！");
+                    return;
+                }
+
+                if (hasDuplicate(guess)) {
+                    alert("請輸入不重複的四位數字 Please enter four non-repeating digits!");
+                    return;
+                }
+                //This line calls the compareGuess function with the current guess and destructures its result into bulls and cows. The function compares the guess with the correct answer and counts the number of bulls (correct digits in the correct position) and cows (correct digits in the wrong position).
+                const { bulls, cows } = compareGuess(guess);
+                const result = `${bulls}A${cows}B`;
+                //This block appends a new list item to the gameHistory element. If the guess is correct (all bulls), it uses a green background (resultA) and displays a congratulatory message. Otherwise, it uses a red background (resultB).
+                if (bulls === 4) {
+                    gameHistory.innerHTML += `<li class="list-group-item"> <span class="result resultA">${result}</span> - ${guess} - 恭喜你猜對了 Congratulations, you guessed it right!</li>`;
+                } else {
+                    gameHistory.innerHTML += `<li class="list-group-item"> <span class="result resultB">${result}</span> - ${guess}</li>`;
+                }
+                //This line clears the guessInput field, preparing it for the next guess.
+                guessInput.value = '';
+            }
+            //The compareGuess function compares the user's guess with the correct answer and returns an object with the number of bulls and cows.
+            function compareGuess(guess) {
+                let bulls = 0;// Initialize a variable bulls to store the count of correct numbers in the correct positions.
+                let cows = 0;//Initialize a variable cows to store the count of correct numbers in incorrect positions.
+
+                for (let i = 0; i < 4; i++) {
+                    if (guess[i] === answer[i]) {//Check if the current digit in the guess matches the digit in the answer at the same position.
+                        bulls++;//If true, it means it's a "bull" (correct digit in the correct position), so increment the bulls count by 1.
+                    } else if (answer.includes(guess[i])) {//If the digits at the current position don't match but the digit exists elsewhere in the answer.
+                        cows++;//If true, it means it's a "cow" (correct digit in the incorrect position), so increment the cows count by 1.
+                    }
+                }
+
+                return { bulls, cows };// Return an object containing the counts of bulls and cows.
+            }
+            //The hasDuplicate function checks whether there are any duplicate digits in the user's guess.
+            function hasDuplicate(num) {
+                //Creates a new Set object from the digits of the input number num. The Set is a JavaScript data structure that only allows unique values, so any duplicate digits will be removed.
+                //Retrieves the size of the Set, which corresponds to the number of unique digits in the input number.
+                //Compares the number of unique digits in the Set with the length of the original input number.
+                //If the number of unique digits is not equal to the length of the original number, it implies that there are duplicates.
+                return (new Set(num)).size !== num.length;
+                //The function returns true if there are duplicates and false if all digits in the number are unique.
+            }
+
+            // Event listeners
+            //These lines add event listeners to the buttons. When the "Start," "Restart," "Show Answer," or "Guess" button is clicked, the corresponding function is called.
+            startBtn.addEventListener('click', startGame);
+            restartBtn.addEventListener('click', restartGame);
+            showAnswerBtn.addEventListener('click', showAnswer);
+            checkGuessBtn.addEventListener('click', checkGuess);
+        });
+    </script>
+</body>
+
+</html>
