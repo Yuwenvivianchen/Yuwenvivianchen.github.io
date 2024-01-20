@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To-do List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Microsoft JhengHei, Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-image:
+                url("./rilakkuma01.jpg");
+            background-size: contain;
+        }
+
+        h1 {
+            margin-top: 120px;
+            color: rgb(6, 71, 169);
+            font-weight: 800;
+        }
+
+        .add-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .add-btn {
+            background-color: rgb(192, 217, 255);
+        }
+
+        .add-btn:hover {
+            background-color: rgb(107, 0, 128);
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap my-3 mx-auto">
+        <h1 class="text-center">My To-Do List</h1>
+        <div class="input-group mb-md-3">
+            <input type="text" class="input-text form-control" placeholder="Add your to-do List here!">
+            <button class="add-btn btn btn-dark" type="button">Add</button>
+        </div>
+
+        <!-- <ul class="list-group">
+            <li class="list-group-item d-flex p-2 mb-2 mt-2 ml-2 border border-dark-subtle align-items-center">
+                <div class="div-Todo .bg-body-secondary bg-opacity-25 d-flex align-items-center p-2">
+                    <input type="checkbox" class="check-Box form-check-input border">
+                    <input type="text" class="input-Todo form-control .bg-body-secondary bg-opacity-10 m-2 flex-wrap" disabled="true">
+                </div>
+                <div class="div-Btn mx-auto">
+                     <button class="edit-Btn btn btn-warning m-auto">Edit</button>
+                    <button class="edit-Btn btn btn-success m-auto">Edit</button>
+                    <button class="del-Btn btn btn-danger">Delete</button>
+                </div>
+            </li>
+        </ul> -->
+
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+<!--Bootstrap CDN-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+<script src="main.js"></script>
+
+</html>

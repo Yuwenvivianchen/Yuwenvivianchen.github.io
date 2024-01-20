@@ -1,11 +1,11 @@
 /* Common styles for both desktop and mobile */
-.calendar {
+body {
     padding: 20px;
     font-family: Microsoft JhengHei, Arial, sans-serif;
     height: 100lvh;
     background-image:
          url("rilakkuma03.jpg");
-      background-size: contain;
+      background-size: cover;
 }
 
 .body-list ul {
