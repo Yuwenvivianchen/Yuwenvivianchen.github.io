@@ -5,6 +5,8 @@ const wrap = document.querySelector(".wrap");
 const localStorageKey = "my-todoList";
 
 // 當網頁加載完成時，呼叫 getFromLocalStorage()函式來初始化頁面
+/*使用了DOMContentLoaded事件，它會在整個HTML文檔（包括DOM樹和所有資源）完全載入和解析後觸發。換句話說，這個事件表示頁面的基本結構已經可以進行操作。
+這個特定的代碼片段的作用是在頁面完全載入後，呼叫getFromLocalStorage。這可以確保當網頁載入時，LocalStorage 中存儲的代辦事項數據會被取出，從而初始化你的代辦事項清單。*/ 
 document.addEventListener("DOMContentLoaded", function () {
     getFromLocalStorage();
 });
@@ -62,7 +64,7 @@ function createTodoItemElement(item) {
         "align-items-center"
     );
     // 在 div 元素中插入 HTML，包含checkbox、輸入框和按鈕
-    divItem.innerHTML = `<div class="div-Todo .bg-body-secondary bg-opacity-25 d-flex align-items-center p-2">
+    divItem.innerHTML = `<div class="div-Todo bg-body-secondary bg-opacity-25 d-flex align-items-center p-2">
         <input type="checkbox" class="checkbox form-check-input border">
         <input type="text" class="input-Todo form-control .bg-body-secondary bg-opacity-10 m-2 flex-wrap" disabled="true">
     </div>
@@ -72,6 +74,7 @@ function createTodoItemElement(item) {
     </div>`;
     // 取出代辦事項輸入框中的值，將其值是傳入的item (參數)
     const inputTodoContent = divItem.querySelector(".input-Todo");
+    
     inputTodoContent.value = item;
     // 回傳代辦事項元素
     return divItem;
@@ -82,6 +85,7 @@ function handleCheckboxClick(event) {
     // 取得checkbox元素及其最近的代辦事項元素
     const checkbox = event.target;
     //closest用法: var closestElement = targetElement.closest(selectors);
+    //從父層向下尋找子元素
     const divItem = checkbox.closest(".list-group-item");
     // 將代辦事項存儲到LocalStorage
     setToLocalStorage();
@@ -150,14 +154,18 @@ function setToLocalStorage() {
             completed: checkbox.checked,
         });
      });
-      // 將物件陣列轉換為 JSON 純文字，並儲存到LocalStorage
+      // 將物件陣列轉換為 JSON 純文字，並儲存到LocalStorage 
+      //setItem(keyName, keyValue)
       localStorage.setItem(localStorageKey, JSON.stringify(itemsToLocalStorage));
 }
 
 // 從LocalStorage中取代辦事項的JSON
 function getFromLocalStorage() {
     // 從LocalStorage取待辦事項的 JSON 純文字，並轉換為JS物件，若不存在則返回空陣列。
+    //getItem(keyName)
     const todos = JSON.parse(localStorage.getItem(localStorageKey)) || [];
     // 將代辦事項加到頁面
-    todos.forEach(addTodoItem);
+    todos.forEach((item)=>{
+        addTodoItem(item.value);
+    });
 }
