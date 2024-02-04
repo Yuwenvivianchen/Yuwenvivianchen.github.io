@@ -86,29 +86,67 @@ function resetButtonStyles(selector) {
     });
 }
 
-//main function是整個內容的主要初始化函數，它調用其他函數來設置點擊事件監聽器，並在頁面加載完成後執行。
-function main() {//main 的主初始化函式，這是整個內容的進入點。
+// 主函式，當網頁載入完成後執行。
+function main() {
+     // 從伺服器獲取商店數據。
     fetchShopData();
+    // 為每個顏色選項按鈕添加事件監聽器。
     document.querySelectorAll('.color-option').forEach(button => {
         button.addEventListener('click', () => {
-            resetButtonStyles('.color-option');//呼叫resetButtonStyles()方法，重置所有顏色選項按鈕的樣式。
+             // 重置顏色選項按鈕的樣式。
+            resetButtonStyles('.color-option');
+            // 為被點擊的按鈕添加邊框樣式。
             button.classList.add('border-primary', 'border-3');
-            const color = button.querySelector('p').id;//取所選顏色選項的ID。
-            updateSwiperImages(color);//呼叫updateSwiperImages方法，根據選擇的顏色更新 Swiper 中的圖片。
-            document.querySelector('.picked-color').textContent = button.querySelector('p').textContent;//將 .picked-color 元素的內容設置為所選顏色的文字，以顯示所選的顏色。
+             // 取得被選中的顏色名稱。
+            const color = button.querySelector('p').textContent; 
+             // 更新Swiper圖片為選擇的顏色。
+            updateSwiperImages(button.querySelector('p').id); 
+            // 更新顯示選擇的顏色。
+            document.querySelector('.picked-color').textContent = color;
+            // 在產品項目中更新選擇的顏色。
+            document.querySelector('.color').textContent = `Color: ${color}`; 
         });
     });
-    // 選擇所有型號選項按鈕
+    // 為每個型號選項按鈕添加事件監聽器。
     document.querySelectorAll('.model').forEach(button => {
         button.addEventListener('click', () => {
-            resetButtonStyles('.model');//呼叫resetButtonStyles方法，重置所有型號選項按鈕的樣式。
+             // 重置型號選項按鈕的樣式。
+            resetButtonStyles('.model');
+            // 為被點擊的按鈕添加邊框樣式。
             button.classList.add('border-primary', 'border-3');
-            const modelName = button.id;//取得所選型號選項的ID。
-            updateStorageOptions(modelName);//呼叫updateStorageOptions方法，根據所選的型號更新儲存選項。
-            document.querySelector('.title').textContent = button.textContent;//將 .title 元素的內容設置為所選型號的文字，以顯示所選的型號。
-            document.querySelector('.final-price').textContent = ''; // 清除 .final-price 元素的內容，以重置最終價格的顯示。
+            // 取得被選中的型號名稱。
+            const modelName = button.textContent; 
+            // 根據選擇的型號更新儲存選項。
+            updateStorageOptions(button.id);
+            // 在產品項目中更新選擇的型號。
+            document.querySelector('.title').textContent = `Model: ${modelName}`; 
+            // 重置顯示的價格。
+            document.querySelector('.final-price').textContent = ''; 
+        });
+    });
+     // 確保在儲存選項更新後呼叫此function以添加事件監聽器。
+    attachClickListenersToOptions('.specific'); 
+}
+
+// 此function修改為當儲存選項被選擇時也設置顏色。
+function attachClickListenersToOptions(selector) {
+    document.querySelectorAll(selector).forEach(button => {
+        button.addEventListener('click', () => {
+            // 重置按鈕的樣式。
+            resetButtonStyles(selector);
+            // 為被點擊的按鈕添加邊框樣式。
+            button.classList.add('border-primary', 'border-3');
+            // 在產品項目中更新選擇的價格。
+            document.querySelector('.final-price').textContent = `Price: ${button.querySelector('.price').textContent}`; 
+            // 確保即使在更改儲存選項後也顯示已選擇的顏色。
+            const selectedColorText = document.querySelector('.picked-color').textContent;
+            if (selectedColorText) {
+                // 重新確認所選的顏色。
+                document.querySelector('.color').textContent = `Color: ${selectedColorText}`; 
+            }
         });
     });
 }
+
 //確保當整個網頁完全載入後，main function會被執行，初始化網頁的功能。
 window.onload = main;
