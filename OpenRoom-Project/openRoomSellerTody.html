@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        /* 自定義樣式 */
+        .navbar {
+            padding: auto;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .nav-item {
+            font-family: Microsoft JhengHei, Arial, sans-serif;
+            font-weight: 800;
+            padding: 10px 16px;
+        }
+
+        /* nav-item dropdown點擊的样式 */
+        .nav-item.dropdown.show .nav-link.dropdown-toggle {
+            border: 1px solid #000;
+            /* 添加黑色边框 */
+        }
+
+        /* dropdown-item中新增功能標籤样式 */
+        .dropdown-item.new-feature::after {
+            content: '新功能';
+            padding: 2px 4px;
+            background-color: #E00B41;
+            /* Airbnb红色 */
+            color: #fff;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .nav-link:hover {
+            border-radius: 10px;
+            border-color: #000;
+        }
+
+        .nav-link:hover,
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            /* 添加hover時的背景色 */
+        }
+
+        .dropdown-item {
+            transition: background-color .3s ease;
+            /* 平滑背景色變化 */
+        }
+
+        /* 當下拉選單顯示時，改變toggle按鈕樣式 */
+        .show>.dropdown-toggle.nav-link {
+            text-decoration: underline;
+            text-decoration-color: #000;
+            /* 你的圖片中底線是黑色 */
+            text-underline-offset: 4px;
+        }
+
+        /* 下拉選單樣式 */
+        .dropdown-menu {
+            border-radius: 8px;
+            /* 添加圓角 */
+            border-color: #f8f9fa;
+            /* 設置邊框顏色 */
+        }
+
+        /* 修改下拉選單分隔線樣式 */
+        .dropdown-divider {
+            border-top-color: #e9ecef;
+            /* 設置分隔線顏色 */
+        }
+
+        .d-flex {
+            padding: 20px;
+        }
+
+        /* 圖示按鈕樣式 */
+        .icon-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            /* 按钮大小 */
+            height: 40px;
+            /* 按钮大小 */
+            border-radius: 50%;
+            /* 圓形邊框 */
+            border: 1px solid #f8f9fa;
+            /* 浅灰色邊框 */
+            background-color: transparent;
+            /* 透明背景 */
+            margin: 0 8px;
+            /* 圖示間隔 */
+        }
+
+        /*圖示懸停和點擊樣式*/
+        .icon-button:hover,
+        .icon-button:focus {
+            background-color: #000000;
+            /* 黑色背景 */
+            color: #ffffff;
+
+        }
+
+        /* SVG圖標樣式 */
+        .icon-button svg {
+            fill: currentColor;
+
+        }
+
+
+
+        /*body*/
+        body {
+            padding-top: 100px;
+            /* 确保内容不会被覆盖导航栏 */
+        }
+
+        .title-body {
+            background: linear-gradient(90deg, rgba(102, 16, 242, 1) 0%, rgba(192, 30, 252, 1) 100%);
+            color: #fff;
+        }
+
+        .card {
+            align-items: center;
+            border: 0;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgb(0 0 0 / 5%);
+
+        }
+
+        .card-img-top {
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+
+
+        /* 卡片懸停效果 */
+
+        .card-hover:hover {
+            transform: scale(1.05);
+            /* 輕微放大效果 */
+            box-shadow: 0 4px 20px rgb(0 0 0 / 20%);
+            /* 加深陰影 */
+            cursor: pointer;
+            /* 鼠標變成指針 */
+        }
+
+        .card-link {
+            text-decoration: none;
+            /* 移除鏈接的下劃線 */
+        }
+
+        .card-link:hover {
+            text-decoration: none;
+        }
+
+        .custom-btn {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            margin-right: 20px;
+            /* 按钮之间的间距 */
+            text-align: left;
+            /* 文本对齐 */
+            padding: 0.5rem 1rem;
+            /* 按钮内边距 */
+            border: 1px solid #e1e1e1;
+            /* 设置淺灰色边框 */
+            border-radius: 10px;
+            /* 边框圆角 */
+            background-color: #fff;
+            /* 按钮背景色 */
+        }
+
+        .custom-btn:hover {
+            border: 1px solid #000;
+        }
+
+        /* 最後一个按钮没有右邊距 */
+        .custom-btn:last-child {
+            margin-right: 0;
+        }
+
+        /* svg样式 */
+        .icon {
+            width: 35px;
+            height: 35px;
+            margin-right: 0.5rem;
+            /* svg和內文之間的間距 */
+        }
+        .footer {
+            background-color: #e4e1e1fb
+        }
+        .footer h6 {
+            font-weight: 600;
+        }
+        .footer a {
+
+            text-decoration: none;
+        }
+        /* 小螢幕樣式 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-item {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .nav-link {
+                width: 100%;
+                /* 讓連接占满整个nav-item的寬度 */
+            }
+
+            .navbar-collapse {
+                padding-top: 10px;
+
+            }
+
+            .d-flex.align-items-center {
+                justify-content: center;
+                width: 100%;
+                padding-top: 10px;
+                /* 添加一些空間 */
+            }
+
+            .icon-button {
+                margin: 0 auto;
+                display: block;
+            }
+
+
+
+
+            /* 小屏幕上的按钮堆叠顯示 */
+            .custom-btn {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/openroom_logo2-2.png" alt="logo" style="width: 100px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">今天</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">日曆</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">房源</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">收件匣</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                選單
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item new-feature" href="#">搶先試用</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">預定</a></li>
+                                <li><a class="dropdown-item" href="#">收入</a></li>
+                                <li><a class="dropdown-item" href="#">深入分析</a></li>
+                                <li><a class="dropdown-item" href="#">新建新房源</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">《在地指南》</a></li>
+                                <li><a class="dropdown-item" href="#">樓覽出租資源</a></li>
+                                <li><a class="dropdown-item" href="#">與附近的房東交流</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <div class="d-flex align-items-center">
+                        <button class="icon-button" id="bellIcon">
+                            <!-- SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"
+                                style="display:block;fill:none;height:16px;width:16px;stroke:currentColor;stroke-width:3;overflow:visible"
+                                aria-hidden="true" role="presentation" focusable="false">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6.83 20.55 7 20.3V13a9 9 0 1 1 18 0v7.3l.17.25 2.68 4.02a.92.92 0 0 1-.77 1.43H4.92a.92.92 0 0 1-.77-1.43zm6.18 5.82-.01.83a3 3 0 1 0 6 0l-.01-.77M16 1v3">
+                                </path>
+
+                            </svg>
+                        </button>
+                        <button class="icon-button" id="userIcon">
+                            <!-- 另一个SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                style="display:block;fill:none;height:16px;width:16px;stroke:currentColor;stroke-width:3;overflow:visible"
+                                aria-hidden="true" role="presentation" focusable="false">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a9 9 0 0 0 5-1.5 4 4 0 0 0-4-3.5h-2a4 4 0 0 0-4 3.5 9 9 0 0 0 5 1.5Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--body-->
+    <div class="container mt-3">
+        <div class="text-left mb-4 p-2">
+            <div class="title-body">
+                <h1>Vivian，歡迎！</h1>
+                <h2>你的預定</h2>
+            </div>
+
+            <div class="d-flex flex-row justify-content-end mb-3">
+                <button type="button" class="btn btn-outline-secondary">完成房源發布</button>
+            </div>
+        </div>
+
+        <!-- 功能按鈕组 -->
+        <div class="d-flex flex-row justify-content-between mb-3">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-secondary">即將退房 (0)</button>
+                <button type="button" class="btn btn-outline-secondary">目前接待中 (0)</button>
+                <button type="button" class="btn btn-outline-secondary">即將入住 (0)</button>
+                <button type="button" class="btn btn-outline-secondary">即將開始的的住宿 (0)</button>
+                <button type="button" class="btn btn-outline-secondary">尚待評價 (0)</button>
+            </div>
+            <button type="button" class="btn btn-outline-secondary">所有預定 (0)</button>
+        </div>
+
+        <!-- 内容卡片 -->
+        <div class="card">
+            <div class="card-body">
+                <button class="icon-button" id="userIcon">
+                    <!-- 另一个SVG图标 -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
+                        focusable="false" style="display: block; height: 32px; width: 32px;">
+                        <path
+                            d="M24 1a5 5 0 0 1 5 4.78v5.31h-2V6a3 3 0 0 0-2.82-3H8a3 3 0 0 0-3 2.82V26a3 3 0 0 0 2.82 3h5v2H8a5 5 0 0 1-5-4.78V6a5 5 0 0 1 4.78-5H8zm-2 12a9 9 0 1 1 0 18 9 9 0 0 1 0-18zm0 2a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm3.02 3.17 1.36 1.46-6.01 5.64-3.35-3.14 1.36-1.46 1.99 1.86z">
+                        </path>
+                    </svg>
+
+                </button>
+                <!-- 卡片内容 -->
+                <p class="card-text text-center mb-3">今天或明天不会有任何旅客退房。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="text-left mb-5 p-2">
+            <div class="content-body">
+                <h2>我們很樂意提供協助</h2>
+            </div>
+            <!-- 使用Bootstrap的响应式flex布局类 -->
+            <div class="d-flex flex-column flex-sm-row justify-content-start mb-3">
+                <div class="d-flex flex-row mb-3 mb-sm-0">
+                    <button type="button" class="btn custom-btn">
+                        <div class="d-flex align-items-start">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true"
+                                role="presentation" focusable="false"
+                                style="display: block; height: 35px; width: 35px;">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                    d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3a2.5 2.5 0 1 1 2-4.5M19.5 17h.5c.6 0 1-.4 1-1a3 3 0 0 0-3-3h-1m0-3a2.5 2.5 0 1 0-2-4.5m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3c0 .6-.4 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
+                            </svg>
+                            <div>
+                                <h5>加入當地的房東暨體驗達人社團</h5>
+                                <h6>與其他房東和社區成員交流、合作與分享實用資訊。</h6>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="d-flex flex-row">
+                    <button type="button" class="btn custom-btn">
+                        <div class="d-flex align-items-start">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true"
+                                role="presentation" focusable="false"
+                                style="display: block; height: 35px; width: 35px;">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M14 6.8a3 3 0 0 0-4.2.1M13 20h1a4 4 0 0 0 4-4V9A6 6 0 1 0 6 9v7m7 4v-1c0-.6-.4-1-1-1h-1a1 1 0 0 0-1 1v1c0 .6.4 1 1 1h1c.6 0 1-.4 1-1Zm-7-4v-6H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h1Zm12-6h1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-1v-6Z" />
+                            </svg>
+                            <div>
+                                <h5>聯絡專門的用戶支援團隊</h5>
+                                <h6>新手房東只要輕點一下，即可聯絡經過專門的用戶支援團隊。</h6>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 响应式图片卡片区域 -->
+    <div class="container mt-4">
+        <h2>資源及建議</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-3">
+            <!-- 卡片1 -->
+            <div class="col">
+                <a href="link-to-page-1.html" class="card-link">
+                    <div class="card card-hover img">
+                        <img src="images/27eb59d7-3791-48a0-b4f8-ee0ecafc9ce1.webp" class="card-img-top"
+                            alt="如何讓房源脫穎而出">
+                        <div class="card-body">
+                            <h5 class="card-title">如何讓房源脫穎而出</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- 卡片2 -->
+            <div class="col">
+                <a href="link-to-page-2.html" class="card-link">
+                    <div class="card card-hover img">
+                        <img src="images/922a6f5f-71f2-4e17-b3fe-4331149a2f26.webp" class="card-img-top"
+                            alt="如何用手機拍出優質的照片">
+                        <div class="card-body">
+                            <h5 class="card-title">如何用手機拍出優質的照片</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- 卡片3 -->
+            <div class="col">
+                <a href="link-to-page-3.html" class="card-link">
+                    <div class="card card-hover img">
+                        <img src="images/617aaec5-059f-4599-81e6-c761fd85fb36.webp" class="card-img-top"
+                            alt="準備好房源，迎接房客到來">
+                        <div class="card-body">
+                            <h5 class="card-title">準備好房源，迎接房客到來</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!-- 卡片4 -->
+            <div class="col">
+                <a href="link-to-page-4.html" class="card-link">
+                    <div class="card card-hover img">
+                        <img src="images/27eb59d7-3791-48a0-b4f8-ee0ecafc9ce1.webp" class="card-img-top"
+                            alt="如何撰寫合適的房源描述">
+                        <div class="card-body">
+                            <h5 class="card-title">如何撰寫合適的房源描述</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <footer class="container mt-5 footer">
+        <div class="row text-muted">
+          <!-- 第一列 -->
+          <div class="col-6 col-md-3 mb-3 footer">
+            <h6>用戶支援</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-muted">說明中心</a></li>
+              <li><a href="#" class="text-muted">因安全問題而需要協助</a></li>
+              <li><a href="#" class="text-muted">OpenCover</a></li>
+              <li><a href="#" class="text-muted">反歧視</a></li>
+              <li><a href="#" class="text-muted">身心障礙支援</a></li>
+              <li><a href="#" class="text-muted">退訂選項</a></li>
+              <li><a href="#" class="text-muted">檢舉街區問題</a></li>
+            </ul>
+          </div>
+          <!-- 第二列 -->
+          <div class="col-6 col-md-3 mb-3">
+            <h6>出租房源和舉辦體驗</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-muted">在 OpenRoom 上發布房源</a></li>
+              <li><a href="#" class="text-muted">專為房東提供的 OpenCover</a></li>
+              <li><a href="#" class="text-muted">出租和舉辦體驗的相關資源</a></li>
+              <li><a href="#" class="text-muted">社區論壇</a></li>
+              <li><a href="#" class="text-muted">房東及體驗達人義務</a></li>
+            </ul>
+          </div>
+          <!-- 第三列 -->
+          <div class="col-6 col-md-3 mb-3">
+            <h6>OpenRoom</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-muted">OpenRoom 新聞中心</a></li>
+              <li><a href="#" class="text-muted">全新功能</a></li>
+              <li><a href="#" class="text-muted">工作機會</a></li>
+              <li><a href="#" class="text-muted">投資人</a></li>
+              <li><a href="#" class="text-muted">緊急住宿</a></li>
+            </ul>
+          </div>
+          
+        </div>
+        <hr>
+        <div class="row justify-content-between">
+          <div class="col-12 col-md-4 mb-3 mb-md-0">
+            <p>&copy; 2024 OpenRoom, Inc. · 隱私 · 條款 · 網站地圖</p>
+          </div>
+          <div class="col-12 col-md-4 text-md-end">
+            <a href="#" class="me-2 text-muted">繁體中文<i class="fab fa-global-f"></i></a>
+            <a href="#" class="me-2 text-muted">TWD<i class="fab fa-dollar-f"></i></a>
+            <a href="#" class="me-2 text-muted"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="me-2 text-muted"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="me-2 text-muted"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </footer>
+      
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
