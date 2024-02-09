@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,24 +7,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
-        /* 自定義樣式 */
         .navbar {
             padding: auto;
             border-bottom: 1px solid #e1e1e1;
         }
-
         .nav-item {
             font-family: Microsoft JhengHei, Arial, sans-serif;
             font-weight: 800;
             padding: 10px 16px;
         }
-
-        /* nav-item dropdown點擊的样式 */
         .nav-item.dropdown.show .nav-link.dropdown-toggle {
             border: 1px solid #000;
             /* 添加黑色边框 */
         }
-
         /* dropdown-item中新增功能標籤样式 */
         .dropdown-item.new-feature::after {
             content: '新功能';
@@ -58,16 +52,13 @@
         .show>.dropdown-toggle.nav-link {
             text-decoration: underline;
             text-decoration-color: #000;
-            /* 你的圖片中底線是黑色 */
             text-underline-offset: 4px;
         }
 
         /* 下拉選單樣式 */
         .dropdown-menu {
             border-radius: 8px;
-            /* 添加圓角 */
             border-color: #f8f9fa;
-            /* 設置邊框顏色 */
         }
 
         /* 修改下拉選單分隔線樣式 */
@@ -85,48 +76,32 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 40px;
-            /* 按钮大小 */
+            width: 40px;          
             height: 40px;
-            /* 按钮大小 */
-            border-radius: 50%;
-            /* 圓形邊框 */
-            border: 1px solid #f8f9fa;
-            /* 浅灰色邊框 */
-            background-color: transparent;
-            /* 透明背景 */
-            margin: 0 8px;
-            /* 圖示間隔 */
+            border-radius: 50%;           
+            border: 1px solid #f8f9fa;    
+            background-color: transparent;            
+            margin: 0 8px;           
         }
 
         /*圖示懸停和點擊樣式*/
         .icon-button:hover,
         .icon-button:focus {
-            background-color: #000000;
-            /* 黑色背景 */
+            background-color: #000000;          
             color: #ffffff;
 
-        }
-
-        /* SVG圖標樣式 */
+        }     
         .icon-button svg {
             fill: currentColor;
 
         }
-
-
-
-        /*body*/
         body {
-            padding-top: 100px;
-            /* 确保内容不会被覆盖导航栏 */
+            padding-top: 100px;           
         }
-
         .title-body {
             background: linear-gradient(90deg, rgba(102, 16, 242, 1) 0%, rgba(192, 30, 252, 1) 100%);
             color: #fff;
         }
-
         .card {
             align-items: center;
             border: 0;
@@ -140,22 +115,14 @@
             border-top-left-radius: 16px;
             border-top-right-radius: 16px;
         }
-
-
-        /* 卡片懸停效果 */
-
         .card-hover:hover {
             transform: scale(1.05);
-            /* 輕微放大效果 */
             box-shadow: 0 4px 20px rgb(0 0 0 / 20%);
-            /* 加深陰影 */
             cursor: pointer;
-            /* 鼠標變成指針 */
         }
 
         .card-link {
-            text-decoration: none;
-            /* 移除鏈接的下劃線 */
+            text-decoration: none;       
         }
 
         .card-link:hover {
@@ -166,35 +133,25 @@
             display: flex;
             justify-content: start;
             align-items: center;
-            margin-right: 20px;
-            /* 按钮之间的间距 */
-            text-align: left;
-            /* 文本对齐 */
-            padding: 0.5rem 1rem;
-            /* 按钮内边距 */
-            border: 1px solid #e1e1e1;
-            /* 设置淺灰色边框 */
-            border-radius: 10px;
-            /* 边框圆角 */
-            background-color: #fff;
-            /* 按钮背景色 */
+            margin-right: 20px;         
+            text-align: left;       
+            padding: 0.5rem 1rem;           
+            border: 1px solid #e1e1e1;        
+            border-radius: 10px;           
+            background-color: #fff;          
         }
 
         .custom-btn:hover {
             border: 1px solid #000;
-        }
-
-        /* 最後一个按钮没有右邊距 */
+        }   
         .custom-btn:last-child {
             margin-right: 0;
         }
-
-        /* svg样式 */
+   
         .icon {
             width: 35px;
             height: 35px;
-            margin-right: 0.5rem;
-            /* svg和內文之間的間距 */
+            margin-right: 0.5rem;        
         }
         .footer {
             background-color: #e4e1e1fb
@@ -223,33 +180,21 @@
                 width: 100%;
                 padding: 10px 0;
             }
-
             .nav-link {
                 width: 100%;
-                /* 讓連接占满整个nav-item的寬度 */
             }
-
             .navbar-collapse {
                 padding-top: 10px;
-
             }
-
             .d-flex.align-items-center {
                 justify-content: center;
                 width: 100%;
-                padding-top: 10px;
-                /* 添加一些空間 */
+                padding-top: 10px;              
             }
-
             .icon-button {
                 margin: 0 auto;
                 display: block;
             }
-
-
-
-
-            /* 小屏幕上的按钮堆叠顯示 */
             .custom-btn {
                 margin-right: 0;
                 margin-bottom: 10px;
@@ -369,7 +314,7 @@
         <div class="card">
             <div class="card-body">
                 <button class="icon-button" id="userIcon">
-                    <!-- 另一个SVG图标 -->
+                    <!-- 另一个SVG图 -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
                         focusable="false" style="display: block; height: 32px; width: 32px;">
                         <path
@@ -389,7 +334,6 @@
             <div class="content-body">
                 <h2>我們很樂意提供協助</h2>
             </div>
-            <!-- 使用Bootstrap的响应式flex布局类 -->
             <div class="d-flex flex-column flex-sm-row justify-content-start mb-3">
                 <div class="d-flex flex-row mb-3 mb-sm-0">
                     <button type="button" class="btn custom-btn">
@@ -430,7 +374,7 @@
         </div>
     </div>
 
-    <!-- 响应式图片卡片区域 -->
+    <!--卡片區塊 -->
     <div class="container mt-4">
         <h2>資源及建議</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-3">
@@ -540,9 +484,6 @@
         </div>
       </footer>
       
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
