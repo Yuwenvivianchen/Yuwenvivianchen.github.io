@@ -1,25 +1,41 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 自定義樣式 */
         .navbar {
             padding: auto;
             border-bottom: 1px solid #e1e1e1;
         }
+
         .nav-item {
             font-family: Microsoft JhengHei, Arial, sans-serif;
             font-weight: 800;
             padding: 10px 16px;
         }
+
+        /* nav-item dropdown點擊的样式 */
         .nav-item.dropdown.show .nav-link.dropdown-toggle {
             border: 1px solid #000;
             /* 添加黑色边框 */
         }
+
         /* dropdown-item中新增功能標籤样式 */
         .dropdown-item.new-feature::after {
             content: '新功能';
@@ -52,13 +68,16 @@
         .show>.dropdown-toggle.nav-link {
             text-decoration: underline;
             text-decoration-color: #000;
+            /* 你的圖片中底線是黑色 */
             text-underline-offset: 4px;
         }
 
         /* 下拉選單樣式 */
         .dropdown-menu {
             border-radius: 8px;
+            /* 添加圓角 */
             border-color: #f8f9fa;
+            /* 設置邊框顏色 */
         }
 
         /* 修改下拉選單分隔線樣式 */
@@ -76,32 +95,39 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            width: 40px;          
+            width: 40px;
             height: 40px;
-            border-radius: 50%;           
-            border: 1px solid #f8f9fa;    
-            background-color: transparent;            
-            margin: 0 8px;           
+            border-radius: 50%;
+            border: 1px solid #f8f9fa;
+            background-color: transparent;
+            margin: 0 8px;
         }
 
         /*圖示懸停和點擊樣式*/
         .icon-button:hover,
         .icon-button:focus {
-            background-color: #000000;          
+            background-color: #000000;
             color: #ffffff;
 
-        }     
+        }
+
+        /* SVG圖標樣式 */
         .icon-button svg {
             fill: currentColor;
+        }
 
-        }
+        /*body*/
         body {
-            padding-top: 100px;           
+            padding-top: 100px;        
         }
-        .title-body {
-            background: linear-gradient(90deg, rgba(102, 16, 242, 1) 0%, rgba(192, 30, 252, 1) 100%);
+        .container .title-body {
+
+            background-color: rgba(102, 16, 242, 1);
+            background-image: linear-gradient(90deg, rgba(102, 16, 242, 1) 0%, rgba(192, 30, 252, 1) 100%);
             color: #fff;
+            padding: 20px;
         }
+
         .card {
             align-items: center;
             border: 0;
@@ -115,14 +141,18 @@
             border-top-left-radius: 16px;
             border-top-right-radius: 16px;
         }
+
+
+        /* 卡片懸停效果 */
         .card-hover:hover {
-            transform: scale(1.05);
+            transform: scale(1.05);  
             box-shadow: 0 4px 20px rgb(0 0 0 / 20%);
             cursor: pointer;
+        
         }
 
         .card-link {
-            text-decoration: none;       
+            text-decoration: none;
         }
 
         .card-link:hover {
@@ -133,36 +163,76 @@
             display: flex;
             justify-content: start;
             align-items: center;
-            margin-right: 20px;         
-            text-align: left;       
+            margin-right: 20px;          
+            text-align: left;            
             padding: 0.5rem 1rem;           
-            border: 1px solid #e1e1e1;        
+            border: 1px solid #e1e1e1;            
             border-radius: 10px;           
-            background-color: #fff;          
+            background-color: #fff;           
         }
 
         .custom-btn:hover {
             border: 1px solid #000;
-        }   
+        }
+
         .custom-btn:last-child {
             margin-right: 0;
         }
-   
+
         .icon {
             width: 35px;
             height: 35px;
-            margin-right: 0.5rem;        
+            margin-right: 0.5rem;
         }
-        .footer {
-            background-color: #e4e1e1fb
-        }
-        .footer h6 {
-            font-weight: 600;
-        }
-        .footer a {
 
+        /*footer*/
+        /* footer-set */
+        .footer-set {
+            border-top: 1px solid #DDDDDD;
+            background-color: #F7F7F7;
+            padding: 20px 60px;
+            font-size: 14px;
+        }
+
+        .footer-set a {
+            color: black;
             text-decoration: none;
         }
+
+        .footer-set a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-box1 {
+            width: 100%;
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .footer-box1 ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-item li {
+            margin-bottom: 12px;
+        }
+
+        .footer-item p {
+            margin: 12px 0px;
+        }
+
+        .footer-item-title {
+            font-weight: 800;
+        }
+
+        .footer-box2 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
         /* 小螢幕樣式 */
         @media (max-width: 768px) {
             .navbar {
@@ -180,24 +250,42 @@
                 width: 100%;
                 padding: 10px 0;
             }
+
             .nav-link {
                 width: 100%;
+                /* 讓連接占满整个nav-item的寬度 */
             }
+
             .navbar-collapse {
                 padding-top: 10px;
+
             }
+
             .d-flex.align-items-center {
                 justify-content: center;
                 width: 100%;
-                padding-top: 10px;              
+                padding-top: 10px;
+                /* 添加一些空間 */
             }
+
             .icon-button {
                 margin: 0 auto;
                 display: block;
             }
+
+            /* 小屏幕上的按钮堆叠顯示 */
             .custom-btn {
                 margin-right: 0;
                 margin-bottom: 10px;
+            }
+
+            .footer-box1,
+            .footer-box2 {
+                flex-direction: column;
+            }
+
+            footer .footer-item {
+                border-bottom: 1px solid #DDDDDD;
             }
         }
     </style>
@@ -314,7 +402,7 @@
         <div class="card">
             <div class="card-body">
                 <button class="icon-button" id="userIcon">
-                    <!-- 另一个SVG图 -->
+                    <!-- 另一个SVG图标 -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation"
                         focusable="false" style="display: block; height: 32px; width: 32px;">
                         <path
@@ -334,6 +422,7 @@
             <div class="content-body">
                 <h2>我們很樂意提供協助</h2>
             </div>
+            <!-- 使用Bootstrap的响应式flex布局类 -->
             <div class="d-flex flex-column flex-sm-row justify-content-start mb-3">
                 <div class="d-flex flex-row mb-3 mb-sm-0">
                     <button type="button" class="btn custom-btn">
@@ -374,7 +463,6 @@
         </div>
     </div>
 
-    <!--卡片區塊 -->
     <div class="container mt-4">
         <h2>資源及建議</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 m-3">
@@ -430,60 +518,94 @@
     </div>
 
     <!--footer-->
-    <footer class="container mt-5 footer">
-        <div class="row text-muted">
-          <!-- 第一列 -->
-          <div class="col-6 col-md-3 mb-3 footer">
-            <h6>用戶支援</h6>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-muted">說明中心</a></li>
-              <li><a href="#" class="text-muted">因安全問題而需要協助</a></li>
-              <li><a href="#" class="text-muted">OpenCover</a></li>
-              <li><a href="#" class="text-muted">反歧視</a></li>
-              <li><a href="#" class="text-muted">身心障礙支援</a></li>
-              <li><a href="#" class="text-muted">退訂選項</a></li>
-              <li><a href="#" class="text-muted">檢舉街區問題</a></li>
-            </ul>
-          </div>
-          <!-- 第二列 -->
-          <div class="col-6 col-md-3 mb-3">
-            <h6>出租房源和舉辦體驗</h6>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-muted">在 OpenRoom 上發布房源</a></li>
-              <li><a href="#" class="text-muted">專為房東提供的 OpenCover</a></li>
-              <li><a href="#" class="text-muted">出租和舉辦體驗的相關資源</a></li>
-              <li><a href="#" class="text-muted">社區論壇</a></li>
-              <li><a href="#" class="text-muted">房東及體驗達人義務</a></li>
-            </ul>
-          </div>
-          <!-- 第三列 -->
-          <div class="col-6 col-md-3 mb-3">
-            <h6>OpenRoom</h6>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-muted">OpenRoom 新聞中心</a></li>
-              <li><a href="#" class="text-muted">全新功能</a></li>
-              <li><a href="#" class="text-muted">工作機會</a></li>
-              <li><a href="#" class="text-muted">投資人</a></li>
-              <li><a href="#" class="text-muted">緊急住宿</a></li>
-            </ul>
-          </div>
-          
+    <footer class="footer-set">
+        <div class="footer-box1">
+            <div class="footer-item col-lg-4">
+                <p class="footer-item-title">用戶支援</p>
+                <ul>
+                    <li>
+                        <a href="#">說明中心</a>
+                    </li>
+                    <li>
+                        <a href="#">因安全問題而需要協助</a>
+                    </li>
+                    <li>
+                        <a href="#">AirCover</a>
+                    </li>
+                    <li>
+                        <a href="#">反歧視</a>
+                    </li>
+                    <li>
+                        <a href="#">身心障礙支援</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-item col-lg-4">
+                <p class="footer-item-title">出租房源和舉辦體驗</p>
+                <ul>
+                    <li>
+                        <a href="#">在 Airbnb 上發布房源</a>
+                    </li>
+                    <li>
+                        <a href="#">專為房東提供的 AirCover</a>
+                    </li>
+                    <li>
+                        <a href="#">出租和舉辦體驗的相關資源</a>
+                    </li>
+                    <li>
+                        <a href="#">社區論壇</a>
+                    </li>
+                    <li>
+                        <a href="#">房東及體驗達人義務援</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-item col-lg-4">
+                <p class="footer-item-title">Airbnb</p>
+                <ul>
+                    <li>
+                        <a href="#">Airbnb 新聞中心</a>
+                    </li>
+                    <li>
+                        <a href="#">全新功能</a>
+                    </li>
+                    <li>
+                        <a href="#">工作機會</a>
+                    </li>
+                    <li>
+                        <a href="#">投資人</a>
+                    </li>
+                    <li>
+                        <a href="#">緊急住宿</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <hr>
-        <div class="row justify-content-between">
-          <div class="col-12 col-md-4 mb-3 mb-md-0">
-            <p>&copy; 2024 OpenRoom, Inc. · 隱私 · 條款 · 網站地圖</p>
-          </div>
-          <div class="col-12 col-md-4 text-md-end">
-            <a href="#" class="me-2 text-muted">繁體中文<i class="fab fa-global-f"></i></a>
-            <a href="#" class="me-2 text-muted">TWD<i class="fab fa-dollar-f"></i></a>
-            <a href="#" class="me-2 text-muted"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="me-2 text-muted"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="me-2 text-muted"><i class="fab fa-twitter"></i></a>
-          </div>
+        <div class="footer-box2">
+            <div class="footer-copyright">
+                <span>© 2024 Airbnb, Inc.</span>
+                <span>·</span>
+                <a href="#">隱私</a>
+                <span>·</span>
+                <a href="#">相關條款</a>
+                <span>·</span>
+                <a href="#">網站地圖</a>
+            </div>
+            <div class="footer-international-and-icon">
+                <i class="fa-solid fa-earth-americas fa-lg"></i>
+                <a href="#">繁體中文 (TW)</a>
+                <a href="#">$ TWD</a>
+                <i class="fa-brands fa-square-facebook fa-lg"></i>
+                <i class="fa-brands fa-line fa-lg"></i>
+                <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+                <i class="fa-brands fa-square-instagram fa-lg"></i>
+            </div>
         </div>
-      </footer>
-      
+    </footer>
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

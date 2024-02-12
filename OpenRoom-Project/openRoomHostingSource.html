@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* 自定義樣式 */
+        .navbar {
+            padding: auto;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .nav-item {
+            font-family: Microsoft JhengHei, Arial, sans-serif;
+            font-weight: 800;
+            padding: 10px 16px;
+        }
+
+        /* nav-item dropdown點擊的样式 */
+        .nav-item.dropdown.show .nav-link.dropdown-toggle {
+            border: 1px solid #000;
+        }
+
+        /* dropdown-item中新增功能標籤样式 */
+        .dropdown-item.new-feature::after {
+            content: '新功能';
+            padding: 2px 4px;
+            background-color: #E00B41;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .nav-link:hover {
+            border-radius: 10px;
+            border-color: #000;
+        }
+
+        .nav-link:hover,
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            /* 添加hover時的背景色 */
+        }
+
+        .dropdown-item {
+            transition: background-color .3s ease;
+            /* 平滑背景色變化 */
+        }
+
+        /* 當下拉選單顯示時，改變toggle按鈕樣式 */
+        .show>.dropdown-toggle.nav-link {
+            text-decoration: underline;
+            text-decoration-color: #000;
+            text-underline-offset: 4px;
+        }
+
+        /* 下拉選單樣式 */
+        .dropdown-menu {
+            border-radius: 8px;
+            border-color: #f8f9fa;
+        }
+
+        /* 修改下拉選單分隔線樣式 */
+        .dropdown-divider {
+            border-top-color: #e9ecef;
+        }
+
+        .d-flex {
+            padding: 20px;
+        }
+
+        /* 圖示按鈕樣式 */
+        .icon-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #f8f9fa;
+            background-color: transparent;
+            margin: 0 8px;
+        }
+
+        /*圖示懸停和點擊樣式*/
+        .icon-button:hover,
+        .icon-button:focus {
+            background-color: #000000;
+            /* 黑色背景 */
+            color: #ffffff;
+
+        }
+
+        /* SVG圖標樣式 */
+        .icon-button svg {
+            fill: currentColor;
+
+        }
+
+        /*body*/
+        main {
+            padding-top: 100px;
+            flex: 1;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-num {
+            display: block;
+            align-items: center;
+        }
+
+        .search-area {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 2rem 0;
+        }
+
+        .search-bar input[type="text"] {
+            flex-grow: 1;
+            min-width: 0;
+            /* 防止溢出 */
+        }
+
+        .filter-bar,
+        .create-bar {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        .create-bar {
+            justify-content: flex-end;
+            flex-grow: 1;
+        }
+
+
+        /* Modal custom styles */
+
+        .modal-content {
+            padding: 20px;
+            padding: 1rem;
+        }
+
+        .modal-footer {
+            padding-bottom: 30px;
+        }
+
+        .btn-outline-secondary.rounded-circle {
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-footer .btn {
+            padding: 0.375rem 0.75rem;
+            margin: 0 2px;
+            /* Spacing between buttons */
+        }
+
+        /* Custom button width */
+        .modal-footer .btn.w-50 {
+            width: calc(50% - 4px);
+            /* Adjust width calculation if necessary */
+        }
+
+        .form-check-input {
+            width: 1.25em;
+            height: 1.25em;
+        }
+
+        /* Custom styles for checked checkboxes */
+        .form-check-input:checked {
+            background-color: #000000;
+            border-color: #000000;
+        }
+
+        /* For Bootstrap 5.3, ensure the checkmark is visible on the black background */
+        .form-check-input:checked {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 10.793l-3.5-3.5L4.707 6.086 6.5 7.879 11.293 3.086 12.707 4.5l-6.207 6.207z'/%3E%3C/svg%3E");
+        }
+
+        /* Change the border and box shadow for the focused and checked state */
+        .form-check-input:focus:checked {
+            border-color: #000000;
+            box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.5);
+        }
+
+        /* 隱藏的filter-btn*/
+        .combined-filter-btn {
+            display: none;
+        }
+
+        /* 基本樣式 */
+        .hosting-title {
+            display: flex;
+            /* 使用Flexbox來排列列 */
+            flex-wrap: wrap;
+            /* 允許元素在需要時換行 */
+            justify-content: space-between;
+            /* 在列之間分配空間 */
+            align-items: center;
+            /* 垂直居中 */
+            padding: 1em;
+            /* 或根據需要添加適當的間距 */
+        }
+
+        .ht-item {
+            display: flex;
+            /* 讓 .ht-item 內的元素也使用Flexbox */
+            align-items: center;
+            /* 垂直居中內容 */
+            justify-content: start;
+            /* 從項目的開始位置對齊內容 */
+            flex-grow: 1;
+            /* 允許列彈性增長填滿空間 */
+        }
+
+        .ht-item span {
+            margin-right: 0.5em;
+            /* 為圖標和文字之間提供一些間距 */
+        }
+
+        /*footer*/
+        footer.fixed-bottom {
+            padding: 10px 0;
+            background-color: transparent;
+            width: 100%;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: start;         
+            align-items: center;           
+            padding-left: 15px;
+        }
+
+        .feedback-button {
+            color: black;
+            transition: background-color .3s;
+        }
+
+        .feedback-button:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* 小螢幕樣式 */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-item {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .nav-link {
+                width: 100%;
+            }
+
+            .navbar-collapse {
+                padding-top: 10px;
+
+            }
+
+            .d-flex.align-items-center {
+                justify-content: center;
+                width: 100%;
+                padding-top: 10px;
+                /* 添加一些空間 */
+            }
+
+
+            .search-area {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-bar,
+            .filter-bar,
+            .create-bar {
+                width: 100%;
+            }
+
+            .search-bar input[type="search"] {
+                width: 100%;
+            }
+
+            /* Responsive adjustments for the modal */
+            .modal-dialog {
+                margin: 0.5rem;
+            }
+
+            .modal-content {
+                padding: 1rem;
+            }
+
+            .modal-body {
+                padding: 0.5rem;
+            }
+
+            .modal-footer {
+                flex-wrap: wrap;
+                padding: 0.5rem;
+            }
+
+            .modal-footer .btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            /*maybe for @media (min-width: 576px)*/
+            .modal-footer .btn-secondary.me-auto {
+                margin-right: auto;
+            }
+
+            .modal-footer .btn-dark.ms-auto {
+                margin-left: auto;
+            }
+
+            /* Adjust the grid for smaller screens */
+            .modal-body .row .col-md-6 {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+
+            /* 隱藏原有按紐，在小螢幕螢幕顯示新按鈕 */
+            .filter-bar button:not(.combined-filter-btn) {
+                display: none;
+            }
+
+            .combined-filter-btn {
+                display: block;
+                /* 重寫Bootstrap樣式 */
+            }
+
+            /* 預設隱藏所有列*/
+            .ht-item:not(.hosting-source),
+            .ht-item:not(.last-modified) {
+                display: none;
+                /* 隱藏非 "上次修改時間" 和 "設置" 的所有列 */
+            }
+
+            /* 確保 "上次修改時間" 和 "設置" 列仍然顯示 */
+            .ht-item.hosting-source,
+            .ht-item.last-modified {
+                display: flex;
+                /* 保持flex布局 */
+                flex-grow: 0;
+                /* 不允許列彈性增長 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/openroom_logo2-2.png" alt="logo" style="width: 100px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">今天</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">日曆</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">房源</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">收件匣</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                選單
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item new-feature" href="#">搶先試用</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">預定</a></li>
+                                <li><a class="dropdown-item" href="#">收入</a></li>
+                                <li><a class="dropdown-item" href="#">深入分析</a></li>
+                                <li><a class="dropdown-item" href="#">新建新房源</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">《在地指南》</a></li>
+                                <li><a class="dropdown-item" href="#">樓覽出租資源</a></li>
+                                <li><a class="dropdown-item" href="#">與附近的房東交流</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <div class="d-flex align-items-center">
+                        <button class="icon-button" id="bellIcon">
+                            <!-- SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"
+                                style="display:block;fill:none;height:16px;width:16px;stroke:currentColor;stroke-width:3;overflow:visible"
+                                aria-hidden="true" role="presentation" focusable="false">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6.83 20.55 7 20.3V13a9 9 0 1 1 18 0v7.3l.17.25 2.68 4.02a.92.92 0 0 1-.77 1.43H4.92a.92.92 0 0 1-.77-1.43zm6.18 5.82-.01.83a3 3 0 1 0 6 0l-.01-.77M16 1v3">
+                                </path>
+
+                            </svg>
+                        </button>
+                        <button class="icon-button" id="userIcon">
+                            <!-- 另一个SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                style="display:block;fill:none;height:16px;width:16px;stroke:currentColor;stroke-width:3;overflow:visible"
+                                aria-hidden="true" role="presentation" focusable="false">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a9 9 0 0 0 5-1.5 4 4 0 0 0-4-3.5h-2a4 4 0 0 0-4 3.5 9 9 0 0 0 5 1.5Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--body-->
+    <!-- 搜索區域和按鈕 -->
+    <main>
+        <div class="container-fluid">
+            <div class="text-left mb-4 p-2">
+                <div class="hosting-header">
+                    <h2>0個房源</h2>
+                </div>
+
+                <div class="create-bar d-flex flex-row justify-content-end mb-3 ">
+                    <button type="button" class="btn btn-outline-secondary"> + 建立房源</button>
+                </div>
+            </div>
+            <div class="hosting-navbar search-area">
+                <div class="search-bar">
+                    <div class="input-group rounded">
+                        <span class="input-group-text border-1" id="search-addon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="search" class="form-control rounded" placeholder="搜尋房源" aria-label="Search"
+                            aria-describedby="search-addon" />
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#roomBedModal">
+                        房間與床鋪
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Room and Bed Modal -->
+                    <div class="modal fade" id="roomBedModal" tabindex="-1" aria-labelledby="roomBedModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <!-- Single column for room and bed options start -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <label for="bedrooms" class="form-label">臥室</label>
+                                                <div class="input-group">
+                                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                                    <input type="text" id="bedrooms" class="form-control text-center"
+                                                        value="0">
+                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <label for="beds" class="form-label">床鋪</label>
+                                                <div class="input-group">
+                                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                                    <input type="text" id="beds" class="form-control text-center"
+                                                        value="0">
+                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <label for="bathrooms" class="form-label">浴室</label>
+                                                <div class="input-group">
+                                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                                    <input type="text" id="bathrooms" class="form-control text-center"
+                                                        value="0">
+                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Single column for room and bed options end -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary me-auto">清除</button>
+                                    <button type="button" class="btn btn-dark ms-auto">套用</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#facilityServicesModal">
+                        設備服務
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Facility Services Modal -->
+                    <div class="modal fade" id="facilityServicesModal" tabindex="-1"
+                        aria-labelledby="facilityServicesModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <!-- Checkbox list start -->
+                                    <div class="row">
+                                        <!-- First column -->
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">廚房</label>
+                                            </div>
+                                            <!-- other items in the first column -->
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">空調設備</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">暖氣</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">洗衣機</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    室內壁爐</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    WiFi</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    建築物內免費停車</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    健身房</label>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- Second column -->
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">WiFi</label>
+                                            </div>
+                                            <!-- other items in the second column -->
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">游泳池</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">按摩浴池
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">烤肉區</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">庭院或陽台</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">花園或後院</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">花園或後院</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">海濱</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">湖畔</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">無需搭乘交通工具，即可前往滑雪場</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">水岸</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Checkbox list end -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary me-auto">清除</button>
+                                    <button type="button" class="btn btn-dark ms-auto">套用</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#propertyStatusModal">
+                        房源狀態
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Property Status Modal -->
+                    <div class="modal fade" id="propertyStatusModal" tabindex="-1"
+                        aria-labelledby="propertyStatusModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="available">
+                                        <label class="form-check-label" for="available">已發布</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="notAvailable">
+                                        <label class="form-check-label" for="notAvailable">取消發布</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="notAvailable">
+                                        <label class="form-check-label" for="notAvailable">建立中</label>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary me-auto">清除</button>
+                                    <button type="button" class="btn btn-dark ms-auto">套用</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#moreSelectionModal">
+                        更多篩選條件
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- More Selection Modal -->
+                    <div class="modal fade" id="moreSelectionModal" tabindex="-1" aria-labelledby="moreSelectionModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="available">
+                                        <label class="form-check-label" for="available">即時預訂功能已關閉</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="notAvailable">
+                                        <label class="form-check-label" for="notAvailable">必須更新房源</label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary me-auto">清除</button>
+                                    <button type="button" class="btn btn-dark ms-auto">套用</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 新增篩選條件按鈕，只在小螢幕顯示 -->
+                    <button type="button" class="btn btn-outline-secondary combined-filter-btn" data-bs-toggle="modal"
+                        data-bs-target="#combinedFiltersModal">
+                        篩選條件
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Combined Filters Modal -->
+                    <div class="modal fade" id="combinedFiltersModal" tabindex="-1"
+                        aria-labelledby="combinedFiltersModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="combinedFiltersModalLabel">所有篩選條件</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Room and Bed Filters -->
+                                    <h6>房間與床鋪</h6>
+                                    <!-- Room and Bed Modal -->
+                                    <!-- Single column for room and bed options start -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <label for="bedrooms" class="form-label">臥室</label>
+                                                <div class="input-group">
+                                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                                    <input type="text" id="bedrooms" class="form-control text-center"
+                                                        value="0">
+                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <label for="beds" class="form-label">床鋪</label>
+                                                <div class="input-group">
+                                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                                    <input type="text" id="beds" class="form-control text-center"
+                                                        value="0">
+                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <label for="bathrooms" class="form-label">浴室</label>
+                                                <div class="input-group">
+                                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                                    <input type="text" id="bathrooms" class="form-control text-center"
+                                                        value="0">
+                                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Single column for room and bed options end -->
+                                    <!-- Facility Services Filters -->
+                                    <h6>設備服務</h6>
+                                    <!-- Facility Services Modal -->
+                                    <!-- Checkbox list start -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">廚房</label>
+                                            </div>
+                                            <!-- other items in the first column -->
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">空調設備</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">暖氣</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">洗衣機</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    室內壁爐</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    WiFi</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    建築物內免費停車</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="kitchen">
+                                                <label class="form-check-label" for="kitchen">
+                                                    健身房</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">WiFi</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">游泳池</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">按摩浴池
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">烤肉區</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">庭院或陽台</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">花園或後院</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">花園或後院</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">海濱</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">湖畔</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">無需搭乘交通工具，即可前往滑雪場</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="wifi">
+                                                <label class="form-check-label" for="wifi">水岸</label>
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <!-- Checkbox list end -->
+
+                                    <!-- Property Status Filters -->
+                                    <h6>房源狀態</h6>
+                                    <!-- Property Status Modal -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="available">
+                                        <label class="form-check-label" for="available">已發布</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="notAvailable">
+                                        <label class="form-check-label" for="notAvailable">取消發布</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="notAvailable">
+                                        <label class="form-check-label" for="notAvailable">建立中</label>
+                                    </div>
+
+                                    <!-- More Selection Filters -->
+                                    <h6>更多篩選條件</h6>
+                                    <!-- More Selection Modal -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="available">
+                                        <label class="form-check-label" for="available">即時預訂功能已關閉</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="notAvailable">
+                                        <label class="form-check-label" for="notAvailable">必須更新房源</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary me-auto">清除</button>
+                                    <button type="button" class="btn btn-dark ms-auto">套用</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 其他內容 -->
+        <div class="hosting-title">
+            <div class="ht-item col-2 hosting-source">
+                <input type="checkbox">
+                <span>房源</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1">
+                <span>狀態</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1">
+                <span>代辦事項</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1">
+                <span>及時預定</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1">
+                <span>臥室</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1">
+                <span>床位</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1">
+                <span>衛浴</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1">
+                <span>位置</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-2 last-modified">
+                <span>上次修改時間</span>
+                <i class="fa-solid fa-sort"></i>
+            </div>
+            <div class="ht-item col-1 settings">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+        </div>
+        <div class="hosting-content-group">
+            <!-- Content goes here -->
+        </div>
+        </div>
+
+
+        <footer class="fixed-bottom">
+            <div class="container text-left">
+                <button type="button" class="btn btn-link feedback-button">提供回饋意見</button>
+            </div>
+        </footer>
+    </main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
