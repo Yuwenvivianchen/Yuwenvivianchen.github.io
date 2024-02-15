@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* 自定義樣式 */
+        .navbar {
+            padding: auto;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .nav-item {
+            font-family: Microsoft JhengHei, Arial, sans-serif;
+            font-weight: 800;
+            padding: 10px 16px;
+        }
+
+        /* nav-item dropdown點擊的样式 */
+        .nav-item.dropdown.show .nav-link.dropdown-toggle {
+            border: 1px solid #000;
+        }
+
+        /* dropdown-item中新增功能標籤样式 */
+        .dropdown-item.new-feature::after {
+            content: '新功能';
+            padding: 2px 4px;
+            background-color: #E00B41;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .nav-link:hover {
+            border-radius: 10px;
+            border-color: #000;
+        }
+
+        .nav-link:hover,
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            /* 添加hover時的背景色 */
+        }
+
+        .dropdown-item {
+            transition: background-color .3s ease;
+            /* 平滑背景色變化 */
+        }
+
+        /* 當下拉選單顯示時，改變toggle按鈕樣式 */
+        .show>.dropdown-toggle.nav-link {
+            text-decoration: underline;
+            text-decoration-color: #000;
+            text-underline-offset: 4px;
+        }
+
+        /* 下拉選單樣式 */
+        .dropdown-menu {
+            border-radius: 8px;
+            border-color: #f8f9fa;
+        }
+
+        /* 修改下拉選單分隔線樣式 */
+        .dropdown-divider {
+            border-top-color: #e9ecef;
+        }
+
+        .d-flex {
+            padding: 20px;
+        }
+
+        /* 圖示按鈕樣式 */
+        .icon-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #f8f9fa;
+            background-color: transparent;
+            margin: 0 8px;
+        }
+
+        /*圖示懸停和點擊樣式*/
+        .icon-button:hover,
+        .icon-button:focus {
+            background-color: #000000;
+            /* 黑色背景 */
+            color: #ffffff;
+
+        }
+
+        /* SVG圖標樣式 */
+        .icon-button svg {
+            fill: currentColor;
+
+        }
+
+        /*body*/
+        body {
+            padding-top: 100px;
+        }
+
+        .calendar {
+            flex-grow: 1;
+        }
+
+        .control-col {
+            width: 370px;
+        }
+
+        .calendar-button {
+            gap: 11px;
+        }
+
+        .border-radius20 {
+            border-radius: 20px;
+            background-color: white;
+        }
+
+        .calendar-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #FFF;
+        }
+
+        .calendar-content-wrapper {
+            height: calc(100vh - 120px);
+            /* Adjust the height based on header size */
+            overflow-y: auto;
+        }
+
+        .month-header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 10;
+            padding: 10px;
+            border-bottom: 1px solid #e3e3e3;
+        }
+
+        .calendar-week ul {
+            padding: 0;
+        }
+
+        .calendar-week ul li {
+            width: calc(100% / 7);
+            padding-left: 24px;
+            color: #717171;
+            font-size: 12px;
+        }
+
+        .calendar-week ul {
+            border-bottom: 1px solid #F4F4F4;
+        }
+
+
+        .modal-content {
+            border-radius: 20px;
+        }
+
+        .modal-header,
+        .modal-footer {
+            border: none;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .calendar-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .calendar-content div,
+        .calendar-days {
+            padding: 26px 24px 18px;
+            background-color: #EBEBEB;
+            color: #222222;
+            box-sizing: border-box;
+            flex: 0 0 calc(100% / 7);
+            max-width: calc(100% / 7);
+        }
+
+        .accommodation-cost {
+            margin-top: auto;
+            font-size: 14px;
+        }
+
+        .specific-date {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-tabs .nav-link {
+            color: rgb(80, 79, 79);
+        }
+
+        .nav-tabs .nav-link:hover {
+            background-color: #f2f2f2;
+
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #000;
+            font-weight: bold;
+            border-bottom: 3px solid #000;
+        }
+
+        a {
+            color: #000;
+        }
+
+        h6 .text-grey {
+            color: rgb(80, 79, 79);
+        }
+
+        .btn-fa-right {
+            display: block;
+            text-align: left;
+            white-space: normal;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            width: 100%;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .text-num {
+            color: #000;
+            font-weight: 700;
+            font-size: 30.6px;
+            line-height: 41.9421px;
+        }
+
+        span .text-avg {
+            font-size: 12px;
+        }
+
+
+        .text-num,
+        .text-avg {
+            width: 100%;
+            justify-content: space-between;
+            align-items: flex-end;
+            /* 子元素在底部對齊 */
+
+        }
+
+        .btn-fa-right span,
+        .text-avg {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .text-avg {
+            font-size: 14px;
+            line-height: 20px;
+            color: #333;
+        }
+
+        .btn-fa-right:hover,
+        .btn-outline-secondary:hover {
+            color: #000;
+            background-color: #f2f2f2;
+        }
+
+
+
+
+        /* Modal custom styles */
+
+
+
+        /* 小螢幕樣式 */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-item {
+                text-align: center;
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            .nav-link {
+                width: 100%;
+            }
+
+            .navbar-collapse {
+                padding-top: 10px;
+
+            }
+
+            .d-flex.align-items-center {
+                justify-content: center;
+                width: 100%;
+                padding-top: 10px;
+                /* 添加一些空間 */
+            }
+
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/openroom_logo2-2.png" alt="logo" style="width: 100px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">今天</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">日曆</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">房源</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">收件匣</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                選單
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item new-feature" href="#">搶先試用</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">預定</a></li>
+                                <li><a class="dropdown-item" href="#">收入</a></li>
+                                <li><a class="dropdown-item" href="#">深入分析</a></li>
+                                <li><a class="dropdown-item" href="#">新建新房源</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">《在地指南》</a></li>
+                                <li><a class="dropdown-item" href="#">樓覽出租資源</a></li>
+                                <li><a class="dropdown-item" href="#">與附近的房東交流</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                    <div class="d-flex align-items-center">
+                        <button class="icon-button" id="bellIcon">
+                            <!-- SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32"
+                                style="display:block;fill:none;height:16px;width:16px;stroke:currentColor;stroke-width:3;overflow:visible"
+                                aria-hidden="true" role="presentation" focusable="false">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6.83 20.55 7 20.3V13a9 9 0 1 1 18 0v7.3l.17.25 2.68 4.02a.92.92 0 0 1-.77 1.43H4.92a.92.92 0 0 1-.77-1.43zm6.18 5.82-.01.83a3 3 0 1 0 6 0l-.01-.77M16 1v3">
+                                </path>
+
+                            </svg>
+                        </button>
+                        <button class="icon-button" id="userIcon">
+                            <!-- 另一个SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                style="display:block;fill:none;height:16px;width:16px;stroke:currentColor;stroke-width:3;overflow:visible"
+                                aria-hidden="true" role="presentation" focusable="false">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a9 9 0 0 0 5-1.5 4 4 0 0 0-4-3.5h-2a4 4 0 0 0-4 3.5 9 9 0 0 0 5 1.5Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--body-->
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+
+                <main class="col-md-8 calendar">
+                    <div class="calendar-header d-flex flex-column justify-content-between">
+
+                        <!-- Calendar Title -->
+                        <div class="p-5 d-flex justify-content-between">
+                            <div class="calendar-title">
+                                <h2 style="font-size: 26px; font-weight: 600;">2023年2月</h2>
+                            </div>
+
+                            <!-- Button trigger modal -->
+                            <button class="btn btn-light border border-dark border-radius20" type="button"
+                                data-bs-toggle="modal" data-bs-target="#viewOptionsModal">
+                                檢視畫面
+                            </button>
+
+                        </div>
+
+                        <!-- Week Days -->
+                        <div class="calendar-week ">
+                            <ul class="d-flex " style="list-style-type: none;" aria-hidden="true">
+                                <li class="d1enmurd dir dir-ltr"><span>日</span></li>
+                                <li class="d1enmurd dir dir-ltr"><span>一</span></li>
+                                <li class="d1enmurd dir dir-ltr"><span>二</span></li>
+                                <li class="d1enmurd dir dir-ltr"><span>三</span></li>
+                                <li class="d1enmurd dir dir-ltr"><span>四</span></li>
+                                <li class="d1enmurd dir dir-ltr"><span>五</span></li>
+                                <li class="d1enmurd dir dir-ltr"><span>六</span></li>
+                            </ul>
+                        </div>
+                        <!-- Calendar Content -->
+                        <div class="calendar-content-wrapper">
+
+                            <div class="calendar-content">
+                                <div class=""></div>
+                                <div class=""></div>
+                                <div class=""></div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                                <div class="calendar-days">
+                                    <div class="specific-date">1</div>
+                                    <div class="accommodation-cost">$10,000 TWD</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </main>
+                <!-- Control Column -->
+                <aside class="col-md-4 control-col">
+                    <!-- Control Column Content -->
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active mt-3" id="pricing-tab" data-bs-toggle="tab"
+                                data-bs-target="#pricing" type="button" role="tab" aria-controls="pricing"
+                                aria-selected="true">訂價</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link mt-3" id="availability-tab" data-bs-toggle="tab"
+                                data-bs-target="#availability" type="button" role="tab" aria-controls="availability"
+                                aria-selected="false">可定狀態</button>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content" style="height: calc(100%); overflow-y: auto;">
+                        <div class="tab-pane fade show active" id="pricing" role="tabpanel"
+                            aria-labelledby="pricing-tab">
+                            <div class="card mb-3" style="border: 1px solid #e3e3e3;">
+                                <div class="card-body">
+                                    <!-- Title and Toggle -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="mb-3">
+                                            <h5 class="card-title d-flex justify-content-between">基本價格
+                                                <span><a href="">TWD</a></span>
+                                            </h5>
+                                            <button class="btn btn-outline-secondary w-100 mb-3 mt-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>每晚</span>
+                                                </div>
+                                                <div class="text-num">$614 TWD</div>
+                                            </button>
+
+                                            <button class="btn btn-outline-secondary w-100 mb-3 mt-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>自訂周末價格</span>
+                                                    <span><a href="">新增</a></span>
+                                                </div>
+                                            </button>
+                                            <button class="btn btn-outline-secondary w-100 mb-3 mt-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>智慧定價</span>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="flexSwitchCheckChecked" checked>
+                                                    </div>
+                                                </div>
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Discounts Section -->
+                                    <div class="mb-3">
+                                        <h5 class="card-title">折扣</h5>
+                                        <h6 class="text-grey">調整訂價以吸引更多房客。</h6>
+                                        <!-- Weekly Discount -->
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div
+                                                class="d-flex flex-column align-items-start justify-content-center h-100">
+                                                <div>每週</div>
+                                                <span class="text-avg text-grey">至少7晚</span>
+                                                <div class="d-flex justify-content-between align-items-end w-100">
+                                                    <div class="text-num">9%</div>
+                                                    <span class="text-avg text-grey">每星期平均$3,911 TWD</span>
+                                                </div>
+                                            </div>
+                                        </button>
+
+
+                                        <!-- Monthly Discount -->
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div
+                                                class="d-flex flex-column align-items-start justify-content-center h-100">
+                                                <div>每月</div>
+                                                <span class="text-avg text-grey">至少28晚</span>
+                                                <div class="d-flex justify-content-between align-items-end w-100">
+                                                    <div class="text-num">20%</div>
+                                                    <span class="text-avg text grey">每月平均$14736 TWD</span>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <!-- More Buttons -->
+                                    <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="button-text">
+                                                <span>更多折扣</span>
+                                                <span class="text-grey">早鳥與晚鳥優惠</span>
+                                            </div>
+                                            <i class="fa-solid fa-angle-right"></i>
+                                        </div>
+                                    </button>
+
+                                    <div class="mb-3">
+                                        <h5 class="card-title">優惠</h5>
+                                        <h6 class="text-grey">設定短租折扣，提高獲得新預訂的機率。</h6>
+                                        <button class=" btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="button-text">
+                                                    <span>新房源優惠</span>
+                                                    <span class="text-grey">迎接第一批房客入住</span>
+                                                </div>
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="mb-3">
+                                        <h5 class="card-title">額外費用</h5>
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="button-text">
+                                                    <span>費用</span>
+                                                    <span class="text-grey">清潔費、寵物費、額外房客費</span>
+                                                </div>
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="availability" role="tabpanel" aria-labelledby="availability-tab">
+                            <div class="card mb-3" style="border: 1px solid #e3e3e3;">
+                                <div class="card-body">
+                                    <!-- Title and Toggle -->
+                                    <div class="mb-3">
+                                        <h5 class="card-title d-flex justify-content-between">住宿晚數
+                                        </h5>
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div
+                                                class="d-flex flex-column align-items-start justify-content-center h-100">
+                                                <div>最短住宿晚數</div>
+                                                <div class="d-flex justify-content-between align-items-end w-100">
+                                                    <div class="text-num">1</div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div
+                                                class="d-flex flex-column align-items-start justify-content-center h-100">
+                                                <div>最長住宿晚數</div>
+                                                <div class="d-flex justify-content-between align-items-end w-100">
+                                                    <div class="text-num">365</div>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <button class="btn btn-outline-secondary w-100 mb-3 mt-3">
+                                            <div class="d-flex justify-content-between align-items-end w-100">
+                                                <span>自訂住宿晚數</span>
+                                                <div class="form-check form-switch">
+                                                    <i class="fa-solid fa-angle-right"></i>
+                                                </div>
+                                            </div>
+
+                                        </button>
+
+                                    </div>
+                                    <div class="mb-3">
+                                        <h5 class="card-title">可訂狀態</h5>
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="button-text">
+                                                    <span>預定截止時間</span>
+                                                    <span class="text-grey">至少1天</span>
+                                                </div>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </div>
+                                        </button>
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="button-text">
+                                                    <span>準備時間</span>
+                                                    <span class="text-grey">無</span>
+                                                </div>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </div>
+                                        </button>
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+
+                                                <div class="button-text">
+                                                    <span>可訂時間</span>
+                                                    <span class="text-grey">提前9個月</span>
+                                                </div>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </div>
+                                        </button>
+                                        <button class="btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="button-text">
+                                                    <span>更多可訂狀態設定</span>
+                                                    <span class="text-grey">限制可以辦理入住和退房的日子</span>
+                                                </div>
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </div>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h5 class="card-title">連結日曆</h5>
+                                        <h6 class="text-grey">同步所有出租日曆，這樣日曆就會自動更新。</h6>
+                                        <button class=" btn-fa-right btn btn-outline-secondary w-100 mb-3">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <i class="fa-solid fa-link"></i>
+                                                <div class="button-text">
+                                                    <span>連結至其他網站</span>
+                                                </div>
+                                                <i class="fa-solid fa-angle-right"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- View Option Modal -->
+    <div class="modal fade" id="viewOptionsModal" tabindex="-1" aria-labelledby="viewOptionsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewOptionsModalLabel">檢視畫面</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="viewOptions" id="viewMonthly" checked>
+                        <label class="form-check-label" for="viewMonthly">月份</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="viewOptions" id="viewYearly">
+                        <label class="form-check-label" for="viewYearly">年份</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-primary">儲存變更</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/eb29614349.js" crossorigin="anonymous"></script>
+    <!--bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

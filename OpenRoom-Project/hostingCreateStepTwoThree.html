@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成為房東</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100%;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            padding-top: 100px;
+            margin: 0px 0px 16px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .container {
+            margin: auto;
+        }
+
+        .upload-area {
+            border-radius: 15px;
+            border-style: dashed;
+            margin: auto;
+            max-width: 600px;
+        }
+
+        .progress-wrapper {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 80px;
+            padding: 0 15px;
+            z-index: 999;
+            /* 確保進度條顯示在頁面其他元素之上 */
+            background: #fff;
+        }
+
+        /* Style for the back button container */
+        .back-button-container {
+            position: fixed;
+            left: 1rem;
+            bottom: 1rem;
+            z-index: 1000;
+            /* Make sure it's above the progress bar */
+        }
+
+        /* Style for the back button */
+        .back.btn {
+            background: transparent;
+            text-decoration: underline;
+            color: #000;
+            transition: background-color 0.3s;
+            /* Smooth transition for hover effect */
+        }
+
+        /* Hover effect for the back button */
+        .back.btn:hover {
+            background-color: #e0e0e0;
+            /* Light grey background */
+            border: #000;
+        }
+
+        .next-button-container {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+        }
+
+        .next.btn.btn-dark {
+            float: right;
+            /* 按鈕向右浮動 */
+        }
+
+
+        @media screen and (max-width: 768px) {
+
+            .next-button-container {
+                position: fixed;
+                right: 10px;
+                bottom: 10px;
+                width: auto;
+                bottom: 90px;
+                /* 增加底部間隔 */
+            }
+
+            .next.btn.btn-dark {
+                width: auto;
+                float: none;
+                margin: 0 auto;
+            }
+
+            .upload-area {
+                border-radius: 10px;
+                padding: 3rem 1rem;
+            }
+
+            .progress-wrapper {
+                bottom: 60px;
+                /* Adjust if necessary for mobile */
+            }
+
+            .back-button-container {
+                left: 10px;
+                bottom: 60px;
+                /* Adjust to match the height of your mobile progress bar */
+            }
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/openroom_logo2-2.png" alt="logo" style="width: 100px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-light border border-dark border-radius20 m-3" type="button">
+                            有疑問嗎?
+                        </button>
+                        <button class="btn btn-light border border-dark border-radius20" type="button">
+                            儲存並退出
+                        </button>
+
+                    </div>
+
+
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>為貨櫃屋新增幾張相片</h1>
+                <p>首先，你需要 5 張相片。你之後還可以新增或變更相片。</p>
+                <div class="upload-area my-5 py-5 border border-2 border-dashed">
+                    <i class="fas fa-camera fa-3x"></i>
+                    <h2 class="my-3">將相片拖曳到此處</h2>
+                    <p>請選擇至少 5 張相片</p>
+                    <button class="btn btn-outline-secondary">從你的裝置上傳</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-wrapper">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            <div class="progress-bar bg-dark" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                aria-valuemax="100"></div>
+        </div>
+    </div>
+
+    <!-- New back button container -->
+    <div class="back-button-container">
+        <button type="button" class="back btn">返回</button>
+    </div>
+
+    <div class="next-button-container">
+        <button type="button" class="next btn btn-dark">下一步</button>
+    </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

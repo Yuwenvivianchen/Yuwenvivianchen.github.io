@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>成為房東</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            height: 100%;
+        }
+
+        .main-content {
+            min-height: 100vh;
+            /*Use vh unit to cover the full viewport height*/
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* This centers the .main-content vertically */
+            align-items: center;
+            /* This centers the .main-content horizontally */
+            padding: 1rem;
+
+        }
+
+        .action-button {
+            width: 100%;
+            max-width: 680px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            /* Spacing between buttons */
+            background: #FFFFFF;
+            border: 1px solid #CCCCCC;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            border: 1px solid #000;
+            background-color: #e0e0e0;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .action-button {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .action-button i {
+                /* margin: 0 0 0.5rem 0; */
+
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="images/openroom_logo2-2.png" alt="logo" style="width: 100px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-light border border-dark border-radius20" type="button">
+                            退出
+                        </button>
+
+                    </div>
+
+
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="text-left mt-5 mb-5 p-2">
+            <h1>歡迎回來，Vivian</h1>
+            <div class="content-body mt-5">
+                <h2>完成房源發布</h2>
+            </div>
+            <div class="action-button">
+                <i class="fa fa-home"></i>
+                <span>你的獨特房源</span>
+                <i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="content-body mt-5">
+                <h2>開始建立新房源</h2>
+            </div>
+            <div class="action-button">
+                <i class="fa-solid fa-house-medical"></i>
+                <span>建立新房源</span>
+                <i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="action-button">
+                <i class="fa-regular fa-copy"></i>
+                <span>複製現有防源資訊</span>
+                <i class="fa fa-chevron-right"></i>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
