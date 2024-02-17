@@ -79,6 +79,7 @@
 
         .progress-wrapper {
             position: fixed;        
+            background-color: #fff;
             left: 0;
             right: 0;
             bottom: 80px;
@@ -96,7 +97,6 @@
         .start.btn.btn-dark {
             background-color: #DE1361;
             border: #DE1361;
-            ;
             float: right;
             /* 按鈕向右浮動 */
         }
@@ -178,16 +178,16 @@
             <div class="col-12 col-lg-6">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <div class="d-flex align-items-center justify-content-lg-start">
+                        <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h2>1. 向我們介紹您的房源</h2>
-                                <p>請分享一些基本資訊，像是實際位置及可入住的人數等等。</p>
+                                <p>請分享一些基本資訊，像是實際位置及可入住的人數。</p>
                             </div>
                             <img class="step-icon ms-3" src="images/step1.webp" alt="Step 1">
                         </div>
                     </div>
                     <div class="col-12 mb-4">
-                        <div class="d-flex align-items-center justify-content-lg-start">
+                        <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h2>2. 歡迎房客預訂</h2>
                                 <p>新增至少 5 張相片，並提供標題與描述，剩下的交給我們就行了。</p>
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                     <div class="col-12 mb-4">
-                        <div class="d-flex align-items-center justify-content-lg-start">
+                        <div class="d-flex align-items-center justify-content-between">
                             <div>
                                 <h2>3. 完成設定</h2>
                                 <p>請選擇首筆預訂是否只想接待有預訂紀錄的房客，並設定初始價格，然後發布房源。</p>
@@ -209,6 +209,8 @@
         </div>
     </div>
 
+    <!--progress bar-->
+    
     <div class="progress-wrapper">
         <div class="progress">
             <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0"
