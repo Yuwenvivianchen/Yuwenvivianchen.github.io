@@ -18,78 +18,99 @@
             padding: 0;
             box-sizing: border-box;
         }
+        .save-back,
+        .next,
+        .back {
+            font-weight: 600;
+            margin-left: 20px;
+        }
 
         h1 {
             font-size: 48px;
             font-weight: 800;
-            margin: 0px 0px 16px;
         }
-        span, p {
+
+        span,
+        p {
             font-size: 18px;
         }
 
-        .container {
-            margin: auto;
-            padding: 2rem;
-        }
-
-        /* Style adjustments for the main content */
-        .container.my-5 {
-            padding-top: 5rem;
-        }
-
         /* Adjustments for the left column */
-        .col-lg-6.text-next {
+        .content {
             display: flex;
             flex-direction: column;
             justify-content: center;
             /* This will vertically center the content in the left column */
         }
 
+        .at-the-end {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0px 60px 0px;
+        }
+
         .progress-wrapper {
-            position: fixed;        
-            left: 0;
-            right: 0;
-            bottom: 80px;
-            padding: 0 15px;         
-            z-index: 999;
-            /* 確保進度條顯示在頁面其他元素之上 */
+            flex-grow: 1;
+            width: 100%;
+            /* Adjust margin as needed */
+        }
+
+        .progress {
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+        }
+
+        .back-button-container,
+        .next-button-container {
+            flex-grow: 0;
+            /* Prevent buttons from stretching */
+        }
+
+
+        /* Style for the back button container */
+        .back-button-container {
+            position: fixed;
+            left: 1rem;
+            bottom: 1rem;
+            z-index: 1000;
+            /* Make sure it's above the progress bar */
+        }
+
+        /* Style for the back button */
+        .back.btn {
+            background: transparent;
+            text-decoration: underline;
+            color: #000;
+            transition: background-color 0.3s;
+            /* Smooth transition for hover effect */
+        }
+
+        /* Hover effect for the back button */
+        .back.btn:hover {
+            background-color: #e0e0e0;
+            /* Light grey background */
         }
 
         .next-button-container {
-            position: fixed;           
-            right: 1rem;            
-            bottom: 1rem;           
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
         }
 
         .next.btn.btn-dark {
             float: right;
             /* 按鈕向右浮動 */
-        }
-
-
-        @media screen and (max-width: 768px) {
-
-            .d-flex.align-items-center.justify-content-lg-end {
-                justify-content: center;
-                /* Center the content on smaller screens */
-                text-align: center;
-            }
-
-            .next-button-container {
-                position: fixed;
-                right: 10px;            
-                bottom: 10px;               
-                width: auto;
-                bottom: 90px;
-                /* 增加底部間隔 */              
-            }
-
-            .next.btn.btn-dark {
-                width: auto;               
-                float: none;              
-                margin: 0 auto;                
-            }
         }
     </style>
 </head>
@@ -106,24 +127,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border border-dark border-radius20" type="button">
+                        <button class="btn btn-light border border-light border-radius20 save-back" type="button">
                             儲存並退出
                         </button>
-
                     </div>
-
-
                 </div>
             </div>
             </div>
         </nav>
     </header>
 
-    <div class="container my-5">
+    <div class="container my-5 p-5">
         <div class="row">
-            <div class="col-12 col-lg-6 text-next">
+            <div class="col-12 col-lg-6 text-next content">
                 <div>
                     <span>步驟 2</span>
                     <h1>讓房源脫穎而出</h1>
@@ -132,28 +149,35 @@
             </div>
             <!-- Steps column -->
             <div class="col-12 col-lg-6">
-                <div class="row"> 
-                            <img class="step-icon ms-3" src="images/step1.webp" alt="Step 1">
-                        </div>
-                    </div>
+                <div class="row">
+                    <img class="step-icon ms-3" src="images/step1.webp" alt="Step 1">
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="progress-wrapper">
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0"
-                aria-valuemax="100"></div>
-            <div class="progress-bar bg-dark" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0"
-                aria-valuemax="100"></div>
-            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-                aria-valuemax="100"></div>
-        </div>
+    </div>
     </div>
 
-    <div class="next-button-container">
-        <button type="button" class="next btn btn-dark">下一步</button>
+    <div class="at-the-end">
+        <div class="progress-wrapper">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 5%" aria-valuenow="5"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+        <!-- New back button container -->
+        <div class="back-button-container">
+            <button type="button" class="back btn">返回</button>
+        </div>
+
+        <div class="next-button-container">
+            <button type="button" class="next btn btn-dark">下一步</button>
+        </div>
     </div>
 
 </body>

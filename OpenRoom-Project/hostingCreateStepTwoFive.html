@@ -19,10 +19,15 @@
             box-sizing: border-box;
         }
 
+        .question, .save-back, .next, .back {
+            font-weight: 600;
+            margin-left: 20px;
+        }
+
         h1 {
-            padding-top: 50px;
             font-size: 32px;
             font-weight: 800;
+            margin-bottom: 20px;
         }
 
         h1 > div {
@@ -34,34 +39,38 @@
             font-weight: 800;
         }
 
-        .container {
-            margin: auto;
-            padding: 4rem;
-        }
-
-
-        /* Style adjustments for the main content */
-        .container.my-5 {
-            padding-top: 5rem;
-        }
-
-        /* Adjustments for the left column */
-        .col-lg-6.text-next {
+        .at-the-end {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            background-color: #fff;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            /* This will vertically center the content in the left column */
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0px 60px 0px;
         }
 
         .progress-wrapper {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 80px;
-            padding: 0 15px;
-            z-index: 999;
-            /* 確保進度條顯示在頁面其他元素之上 */
-            background: #fff;
+            flex-grow: 1;
+            width: 100%;
+            /* Adjust margin as needed */
+        }
+
+        .progress {
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+        }
+
+        .back-button-container,
+        .next-button-container {
+            flex-grow: 0;
+            /* Prevent buttons from stretching */
         }
 
         /* Style for the back button container */
@@ -125,38 +134,12 @@
         }
 
         @media screen and (max-width: 768px) {
-
-            .next-button-container {
-                position: fixed;
-                right: 10px;
-                bottom: 10px;
-                width: auto;
-                bottom: 90px;
-                /* 增加底部間隔 */
-            }
-
-            .next.btn.btn-dark {
-                width: auto;
-                float: none;
-                margin: 0 auto;
-            }
-
             .options-grid {
                 grid-template-columns: 1fr;
-                /* stack buttons on smaller screens */
             }
-
-            .progress-wrapper {
-                bottom: 60px;
-                /* Adjust if necessary for mobile */
-            }
-
-            .back-button-container {
-                left: 10px;
-                bottom: 60px;
-                /* Adjust to match the height of your mobile progress bar */
-            }
+            
         }
+       
     </style>
 </head>
 
@@ -172,18 +155,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border border-dark border-radius20 m-3" type="button">
+                        <button class="btn btn-light border border-light border-radius20 question" type="button">
                             有疑問嗎?
                         </button>
-                        <button class="btn btn-light border border-dark border-radius20" type="button">
+                        <button class="btn btn-light border border-light border-radius20 save-back" type="button">
                             儲存並退出
                         </button>
-
                     </div>
-
-
                 </div>
             </div>
             </div>
@@ -191,33 +170,32 @@
     </header>
 
     <!-- Add grid layout container for buttons -->
-    <div class="container my-3">
+    <div class="container my-5 p-5">
         <div class="col-12 text-center">
             <div>
                 <h1>接下來，請描述你的貨櫃屋</h1>
                 <div>最多可以選擇 2 個亮點。我們會使用這幾個特點為你的描述起頭。</div>
             </div>
         </div>
-        <div class="options-grid p-5">
+        <div class="options-grid pt-1">
             <button class="option-button"><i class="fa-solid fa-house">獨棟住宅</i></button>
             <button class="option-button"><i class="fa-solid fa-house">獨棟住宅</i></button>
             <button class="option-button"><i class="fa-solid fa-house">獨棟住宅</i></button>
             <button class="option-button"><i class="fa-solid fa-house">獨棟住宅</i></button>
             <button class="option-button"><i class="fa-solid fa-house">獨棟住宅</i></button>
             <button class="option-button"><i class="fa-solid fa-house">獨棟住宅</i></button>
-           
+
         </div>
     </div>
-    
 
-    
+    <div class="at-the-end">
         <div class="progress-wrapper">
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0"
+                <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0"
                     aria-valuemax="100"></div>
-                <div class="progress-bar bg-dark" role="progressbar" style="width: 30%" aria-valuenow="30"
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 25%" aria-valuenow="25"
                     aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20"
+                <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0"
                     aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>

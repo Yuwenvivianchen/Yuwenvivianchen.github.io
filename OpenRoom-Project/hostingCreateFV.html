@@ -12,7 +12,6 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-
         .main-content {
             min-height: 100vh;
             /*Use vh unit to cover the full viewport height*/
@@ -49,18 +48,6 @@
             background-color: #e0e0e0;
         }
 
-
-
-        @media (max-width: 768px) {
-            .action-button {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .action-button i {
-                margin-bottom: 0.5rem;
-            }
-        }
     </style>
 </head>
 
@@ -91,26 +78,26 @@
         </nav>
     </header>
 
-    <div class="main-content">
-        <div class="text-left mt-5 mb-5 p-2">
+    <div class="main-content container-xl" style="max-width: 1200px; margin: auto;">
+        <div class="text-left mt-5 mb-5 p-2 text-center" style="width: 100%;">
             <h1>歡迎回來，Vivian</h1>
             <div class="content-body mt-5">
                 <h2>完成房源發布</h2>
             </div>
-            <div class="action-button">
-                <i class="fa fa-home"></i>
+            <div class="action-button" style="margin: auto;">
+                <i class="fa fa-home" "></i>
                 <span>你的獨特房源</span>
-                <i class="fa fa-chevron-right"></i>
+                <i class=" fa fa-chevron-right"></i>
             </div>
             <div class="content-body mt-5">
                 <h2>開始建立新房源</h2>
             </div>
-            <div class="action-button">
+            <div class="action-button" style="margin: auto; margin-bottom: 20px;">
                 <i class="fa-solid fa-house-medical"></i>
                 <span>建立新房源</span>
                 <i class="fa fa-chevron-right"></i>
             </div>
-            <div class="action-button">
+            <div class="action-button" style="margin: auto;">
                 <i class="fa-regular fa-copy"></i>
                 <span>複製現有防源資訊</span>
                 <i class="fa fa-chevron-right"></i>

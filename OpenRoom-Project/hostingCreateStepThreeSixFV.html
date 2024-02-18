@@ -12,37 +12,35 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
+        body, header {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        .question, .save-back, .next, .back {
+        .exit, .end {
             font-weight: 600;
-            margin-left: 20px;
         }
-
         h1 {
-            font-size: 32px;
+            padding-top: 100px;
+            font-size: 56px;
             font-weight: 800;
-            text-align: center;
+        }
+        p {        
+            font-size: 24px;
+            font-weight: 800;
         }
 
-        p {
-            font-size: 18px;
+
+        /* Adjustments for the left column */
+        .left-part {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* This will vertically center the content in the left column */
         }
 
-        .container {
-            margin: auto;
-        }
-
-        .input-area {
-            border-radius: 15px;
-            margin: auto;
-            max-width: 600px;
-        }
+        
 
         .at-the-end {
             position: fixed;
@@ -52,7 +50,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0px 60px 0px;
+            padding: 30px 0px 60px 0px;
         }
 
         .progress-wrapper {
@@ -72,69 +70,18 @@
             height: 100%;
         }
 
-        .back-button-container,
-        .next-button-container {
-            flex-grow: 0;
-            /* Prevent buttons from stretching */
-        }
-
-        /* Style for the back button container */
-        .back-button-container {
-            position: fixed;
-            left: 1rem;
-            bottom: 1rem;
-            z-index: 1000;
-            /* Make sure it's above the progress bar */
-        }
-
-        /* Style for the back button */
-        .back.btn {
-            background: transparent;
-            text-decoration: underline;
-            color: #000;
-            transition: background-color 0.3s;
-            /* Smooth transition for hover effect */
-        }
-
-        /* Hover effect for the back button */
-        .back.btn:hover {
-            background-color: #e0e0e0;
-            /* Light grey background */
-            border: #000;
-        }
-
-        .next-button-container {
+        .end-button-container {
             position: fixed;
             right: 1rem;
             bottom: 1rem;
         }
 
-        .next.btn.btn-dark {
+        .end.btn.btn-dark {
+            background-color: #DE1361;
+            border: #DE1361;
             float: right;
             /* 按鈕向右浮動 */
         }
-
-        .input-area {
-            /* Adjustments for the input area */
-            padding: 1rem;
-            border: 1px;
-            border-radius: 15px;
-        }
-
-        .text-input {
-            box-shadow: none;
-            width: 100%;
-            height: auto;
-            padding: 1rem;
-            resize: none;
-            border-radius: 15px;
-        }
-
-        .character-count {
-            text-align: left;
-            color: #666;
-        }
-    
     </style>
 </head>
 
@@ -150,28 +97,38 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border border-light border-radius20 question" type="button">
-                            有疑問嗎?
+                        <button class="btn btn-light border border-light border-radius20 exit" type="button">
+                            退出
                         </button>
-                        <button class="btn btn-light border border-light border-radius20 save-back" type="button">
-                            儲存並退出
-                        </button>
+
                     </div>
+
+
                 </div>
             </div>
             </div>
         </nav>
     </header>
 
-    <div class="container my-5 p-5">
+    <div class="container mt-5 p-0">
         <div class="row">
-            <div class="col-12 text-center">
-                <h1>撰寫房源描述</h1>
-                <p>請分享你的房源有哪些特點。</p>
-                <div class="input-area mt-4 mb-3">
-                    <textarea class="form-control text-input" placeholder="待在這間獨特房源的時光將讓你永生難忘。" rows="10"></textarea>
-                    <div class="character-count mt-2">19/500</div>
+            <div class="col-12 col-lg-6 text-start left-part">
+                <img src="images/ceo.jpg" alt="">
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center align-items-center my-5 pt-lg-5">
+                            <h1> Vivian, 恭喜</h1>
+                            <br>
+                            <p> 我們歡迎你加入房東社群這個大家庭。感謝你分享房源，並為房客帶來一流的體驗。</p>
+                            <br>
+                            <p>OpenRoom 執行長 Franzi</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -180,24 +137,23 @@
     <div class="at-the-end">
         <div class="progress-wrapper">
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0"
+                <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="40" aria-valuemin="0"
                     aria-valuemax="100"></div>
                 <div class="progress-bar bg-dark" role="progressbar" style="width: 30%" aria-valuenow="30"
                     aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0"
+                <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30"
                     aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
 
-        <!-- New back button container -->
-        <div class="back-button-container">
-            <button type="button" class="back btn">返回</button>
-        </div>
-
-        <div class="next-button-container">
-            <button type="button" class="next btn btn-dark">下一步</button>
+        <div class="end-button-container">
+            <button type="button" class="end btn btn-dark">發布房源</button>
         </div>
     </div>
+
+        
+    
+
 
 </body>
 

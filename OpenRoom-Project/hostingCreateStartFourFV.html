@@ -17,16 +17,16 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            height: 100%;
+        }
+
+        .question, .save-back, .next, .back {
+            font-weight: 600;
+            margin-left: 20px;
         }
 
         h1 {
             font-size: 32px;
             font-weight: 800;
-            margin: 0px 0px 16px;
-        }
-
-        .main-content h1 {
             text-align: center;
             margin-bottom: 2rem;
             /* Increase space below the main heading */
@@ -41,22 +41,12 @@
             font-size: 14px;
         }
 
-        .container {
-            margin: auto;
-            padding: 2rem;
-        }
-
         .main-content {
             min-height: 100vh;
-            /*Use vh unit to cover the full viewport height*/
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            /* This centers the .main-content vertically */
+            justify-content: center;           
             align-items: center;
-            /* This centers the .main-content horizontally */
-            padding: 1rem;
-
         }
 
         .action-button {
@@ -75,11 +65,6 @@
             transition: all 0.3s ease;
         }
 
-        .action-button h2,
-        .action-button span {
-            margin: 0;
-            /* Remove margin */
-        }
 
         /* Hover effect for the action button */
         .action-button:hover {
@@ -100,20 +85,7 @@
         }
 
 
-        /* Style adjustments for the main content */
-        .container.my-5 {
-            padding-top: 5rem;
-        }
-
-        /* Adjustments for the left column */
-        .col-lg-6.text-next {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            /* This will vertically center the content in the left column */
-        }
-
-        .footer {
+        .at-the-end {
             position: fixed;
             width: 100%;
             bottom: 0;
@@ -121,12 +93,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 100px 0px 100px 0px;
+            padding: 20px 0px 60px 0px;
         }
 
         .progress-wrapper {
             flex-grow: 1;
-            margin-right: 10px;
             width: 100%;
             /* Adjust margin as needed */
         }
@@ -146,11 +117,6 @@
         .next-button-container {
             flex-grow: 0;
             /* Prevent buttons from stretching */
-        }
-
-        .back-button-container button,
-        .next-button-container button {
-            margin: 0;
         }
 
         /* Style for the back button container */
@@ -189,45 +155,7 @@
             /* 按鈕向右浮動 */
         }
 
-        @media screen and (max-width: 768px) {
-
-            .action-button {
-                flex-direction: column;
-                text-align: center;
-                padding: 1rem;
-            }
-
-            .action-button i {
-                /* margin: 0 0 0.5rem 0; */
-
-                margin-bottom: 0.5rem;
-            }
-
-            .next-button-container {
-                position: fixed;
-                right: 10px;              
-                width: auto;
-            }
-
-            .next.btn.btn-dark {
-                width: auto;
-                float: none;
-                margin: 0 auto;
-            }
-
-            .progress-wrapper {
-                bottom: 60px;
-                /* Adjust if necessary for mobile */
-            }
-
-            .back-button-container {
-                left: 10px;
-            }
-            .footer {
-                padding-top: 100px;
-            }
-
-        }
+        
     </style>
 </head>
 
@@ -243,18 +171,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border border-dark border-radius20 m-3" type="button">
+                        <button class="btn btn-light border border-light border-radius20 question" type="button">
                             有疑問嗎?
                         </button>
-                        <button class="btn btn-light border border-dark border-radius20" type="button">
+                        <button class="btn btn-light border border-light border-radius20 save-back" type="button">
                             儲存並退出
                         </button>
-
                     </div>
-
-
                 </div>
             </div>
             </div>
@@ -273,28 +197,27 @@
         </div>
         <div class="action-button">
             <div class="button-content">
-                <h2>整套房源</h2>
-                <span>房客可以獨享所有空間。</span>
+                <h2>一個房間</h2>
+                <span>房客在房源內享有專屬的房間，也能使用共用空間。</span>
             </div>
-            <i class="fa fa-home fa-2x"></i>
+            <i class="fa-solid fa-door-closed fa-2x"></i>
         </div>
         <div class="action-button">
             <div class="button-content">
-                <h2>整套房源</h2>
-                <span>房客可以獨享所有空間。</span>
+                <h2>合住房間</h2>
+                <span>房客會睡在客房或公共區域，並可能要與你或他人共用空間。</span>
             </div>
-            <i class="fa fa-home fa-2x"></i>
-        </div>
+            <i class="fa-solid fa-house-user fa-2x"></i>
     </div>
 
-    <div class="footer">
+    <div class="at-the-end">
         <div class="progress-wrapper">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0"
                     aria-valuemax="100"></div>
-                <div class="progress-bar bg-dark" role="progressbar" style="width: 30%" aria-valuenow="30"
+                <div class="progress-bar bg-dark" role="progressbar" style="width: 0%" aria-valuenow="0"
                     aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20"
+                <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0"
                     aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>

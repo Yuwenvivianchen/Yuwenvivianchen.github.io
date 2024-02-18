@@ -18,8 +18,10 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        .question, .save-back, .next, .back {
+        
+        .save-back,
+        .next,
+        .back {
             font-weight: 600;
             margin-left: 20px;
         }
@@ -27,21 +29,21 @@
         h1 {
             font-size: 32px;
             font-weight: 800;
+            padding-top: 100px;
             text-align: center;
         }
 
-        span {
-            font-size: 18px;
+
+        .stepper-container .text-grey {
+            font-size: 14px;
+            color: #7f7d7d;
         }
 
         .main-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* This centers the .main-content vertically */
             align-items: center;
-            /* This centers the .main-content horizontally */
-
         }
 
         .at-the-end {
@@ -114,35 +116,30 @@
             /* 按鈕向右浮動 */
         }
 
-        .input-group {
-            max-width: 600px;
-            /* Match the width of the map for alignment */
-            width: 100%;
-            /* Ensure it takes the full width of its parent */
+        /* Styles for the stepper input */
+        .stepper-container .row {
+            border-bottom: 1px solid #DDDDDD;
         }
 
-        .map-container {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-            border-radius: 8px;
-            overflow: hidden;
+        .stepper-container .btn {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            padding: 0;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
         }
 
-        @media screen and (max-width: 768px) {
+        .not-minus {
+            color: #e0e0e0;
+        }
 
-            .map-container {
-                max-width: 100%;
-                height: 100%;
-               
-            } 
-
-            .map-container iframe {
-                width: 100%;
-              
-            }
-
+        .stepper-container .btn:focus {
+            box-shadow: none;
+            /* Removes the focus outline */
         }
     </style>
 </head>
@@ -159,10 +156,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-light border border-light border-radius20 question" type="button">
-                            有疑問嗎?
-                        </button>
                         <button class="btn btn-light border border-light border-radius20 save-back" type="button">
                             儲存並退出
                         </button>
@@ -173,31 +168,58 @@
         </nav>
     </header>
 
-    <div class="main-content my-5 pt-5"> 
-        <h1>房源的位置在哪裡？</h1>
-        <span>只有在房客的預訂確認之後，我們才會分享房源地址。</span>
-
-        <!-- Address input field -->
-        <div class="input-group my-2">
-            <input type="text" class="form-control" placeholder="輸入您的地址" aria-label="Address"
-                aria-describedby="basic-addon2">
-            <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+    <div class="container-xl my-5 p-5">
+        <div class="text-center mb-4">
+            <h1>房客能使用哪種類型的衛浴？</h1>
         </div>
 
-        <!-- Google Map embed -->
-        <div class="map-container">
-            <!-- Replace the src attribute with your actual Google Maps embed link -->
-            <iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
-                src="images/map-sample.jpg">
-                <!--"https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Place"-->
-            </iframe>
+        <!-- Stepper Input for each category -->
+        <div class="stepper-container">
+            <div class="row my-4 align-items-center">
+                <div class="col-6">
+                    <span>房內附設衛浴</span>
+                    <br>
+                    <span class="text-grey">衛浴與房間相連，且僅供房客使用。</span>
+                </div>
+                <div class="col-6 text-end">
+                    <button class="not-minus btn btn-light" type="button">-</button>
+                    <span class="mx-2">0</span>
+                    <button class="btn btn-light" type="button">+</button>
+                </div>
+            </div>
+            <div class="row my-4 align-items-center">
+                <div class="col-6">
+                    <span>獨立專用衛浴</span>
+                    <br>
+                    <span class="text-grey">衛浴是私人的，但須從公用空間（如走廊）進入。</span>
+                </div>
+                <div class="col-6 text-end">
+                    <button class="not-minus btn btn-light" type="button">-</button>
+                    <span class="mx-2">0</span>
+                    <button class="btn btn-light" type="button">+</button>
+                </div>
+            </div>
+            <div class="row my-4 align-items-center">
+                <div class="col-6">
+                    <span>共用衛浴</span>
+                    <br>
+                    <span class="text-grey">須與他人共用。</span>
+                </div>
+                <div class="col-6 text-end">
+                    <button class="not-minus btn btn-light" type="button">-</button>
+                    <span class="mx-2">0</span>
+                    <button class="btn btn-light" type="button">+</button>
+                </div>
+            </div>
+
         </div>
+
     </div>
 
     <div class="at-the-end">
         <div class="progress-wrapper">
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0"
                     aria-valuemax="100"></div>
                 <div class="progress-bar bg-dark" role="progressbar" style="width: 0%" aria-valuenow="0"
                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -215,8 +237,6 @@
             <button type="button" class="next btn btn-dark">下一步</button>
         </div>
     </div>
-
-
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
