@@ -137,17 +137,7 @@
     document.querySelectorAll('.btnGroup').forEach(button => {
       button.addEventListener('click', () => appendToGuess(button.value));
     });
-
-    // Game functions
-    /*This function generates a random number within a specified range. It is used to set the initial target number.*/
-
-    /*What if you need the results to be inclusive at both the minimum and the maximum? The getRandomIntInclusive() function below accomplishes that.
     
-    function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);//The Math.ceil() static method always rounds up and returns the smallest integer greater than or equal to a given number.
-    max = Math.floor(max);//The Math.floor() static method always rounds down and returns the largest integer less than or equal to a given number.
-    return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
-}*/
 
     function getRandomNum(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);// The maximum is inclusive and the minimum is inclusive
@@ -161,10 +151,7 @@
       //use textContent to get the element's text content
     }
 
-    // guessInput is assumed to be a reference to an HTML input element.
-  // The function takes a 'value' as a parameter, which is typically a string.
 
-  // The value parameter is appended to the current value of the guessInput element.
   // This is done by using the '+=' operator, which concatenates the existing value with the new value.
     function appendToGuess(value) {
       guessInput.value += value;
@@ -204,10 +191,7 @@
         resultMessage.textContent = userGuess > targetNumber ? '猜小一點 Guess a smaller number.' : '猜大一點 Guess a bigger number.';
         
          // Update the range based on the user's guess
-         /* This is the ternary operator條件 (三元) 運算子(condition ? exprIfTrue : exprIfFalse). 
-          It's a concise way of writing an if-else statement.
-          If the condition (userGuess > targetNumber) is true, it evaluates to the value before the colon ('猜小一點').
-          If the condition is false, it evaluates to the value after the colon ('猜大一點').*/
+         // This is the ternary operator條件 (三元) 運算子(condition ? exprIfTrue : exprIfFalse). 
         userGuess < targetNumber ? minNum = userGuess + 1 : maxNum = userGuess - 1;
 
         // Update the range message, clear the input, and continue the game
@@ -243,22 +227,11 @@
       resultMessage.textContent ='';
 
       // Optionally, scroll to the top of the page
-      /*Window: scrollTo() method:
-        Window.scrollTo() scrolls to a particular set of coordinates in the document.
-        scrollTo(x-coord, y-coord)
-        or
-        scrollTo(options)
-        x-coord is the pixel along the horizontal axis of the document that you want displayed in the upper left.
-        y-coord is the pixel along the vertical axis of the document that you want displayed in the upper left.*/
-        /*The window.scrollTo() method takes two arguments:
-          The first argument represents the horizontal scroll position, and 0 sets it to the leftmost position.
-          The second argument represents the vertical scroll position, and 0 sets it to the topmost position.
-          So, window.scrollTo(0, 0); essentially scrolls the window to the top-left corner, ensuring that the content at the top of the page is visible to the user. This is commonly used as part of a reset or initialization process, providing a clean starting point for the user.*/
+     
       window.scrollTo(0, 0);
     }
 
     // Add window.onload to ensure the script runs after the DOM is fully loaded
-    /*This modification ensures that the updateRangeMessage function is called when the window has finished loading. The window.onload event is a commonly used technique to make sure that your JavaScript code interacts with the fully loaded DOM elements.*/
     window.onload = function() {
       // Initial setup
       updateRangeMessage();
